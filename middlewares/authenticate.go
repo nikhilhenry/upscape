@@ -37,7 +37,7 @@ func IsAuthenticated(c *gin.Context) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("There is an error")
 		}
-		return []byte(os.Getenv("SECRE")), nil
+		return []byte(os.Getenv("SECRET")), nil
 	})
 
 	if err != nil {
