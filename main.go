@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"time"
+	"upscape/controllers"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -32,7 +33,7 @@ func main() {
 		log.Fatal(err.Error())
 	}
 	// set database
-	// clientDatabase := client.Database(os.Getenv("DATABASE"))
+	clientDatabase := client.Database(os.Getenv("DATABASE"))
 	// when disconnected
 
 	fmt.Println("Connected to Atlas successfully")
@@ -49,6 +50,7 @@ func main() {
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "Welcome to Upscape!"})
 	})
+	router.POST("/api/user", controllers.CreateUser(clientDatabase))
 
 	router.Run()
 }
