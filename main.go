@@ -51,6 +51,7 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"message": "Welcome to Upscape!"})
 	})
 	router.POST("/api/user", controllers.CreateUser(clientDatabase))
+	router.POST("/api/login", controllers.LoginUser(clientDatabase))
 
 	router.Run()
 }
