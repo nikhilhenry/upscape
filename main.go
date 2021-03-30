@@ -1,12 +1,17 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func main() {
@@ -16,6 +21,26 @@ func main() {
 	}
 
 	fmt.Println("Starting the application")
+
+	// initilise database
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	// connect to DB
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGODB_URI")))
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	// set database
+	// clientDatabase := client.Database(os.Getenv("DATABASE"))
+	// when disconnected
+
+	fmt.Println("Connected to Atlas successfully")
+	defer func() {
+		if err = client.Disconnect(ctx); err != nil {
+			panic(err)
+		}
+	}()
 
 	// instantiate router
 	router := gin.Default()
