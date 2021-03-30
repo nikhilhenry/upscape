@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -21,12 +22,14 @@ type LoginRequest struct {
 }
 
 func generateToken(userId string) (string, error) {
-	token := jwt.New(jwt.SigningMethodRS256)
+	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
 
 	// define claims
 	claims["user_id"] = userId
 	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
+
+	fmt.Println(os.Getenv("SECRET"))
 
 	// sign token
 	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
