@@ -8,6 +8,7 @@ import (
 	"os"
 	"time"
 	"upscape/controllers"
+	"upscape/middlewares"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -52,6 +53,12 @@ func main() {
 	})
 	router.POST("/api/user", controllers.CreateUser(clientDatabase))
 	router.POST("/api/login", controllers.LoginUser(clientDatabase))
+
+	// @todo remove this request
+	router.GET("/howdy", middlewares.IsAuthenticated, func(c *gin.Context) {
+		user_id := c.MustGet("user_id").(string)
+		c.JSON(http.StatusOK, gin.H{"msg": "Hello!", "user_id": user_id})
+	})
 
 	router.Run()
 }
