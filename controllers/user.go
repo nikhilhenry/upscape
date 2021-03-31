@@ -18,6 +18,8 @@ import (
 
 var validate *validator.Validate = validator.New()
 
+// create user
+
 func CreateUser(client *mongo.Database) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// establish connection
@@ -73,6 +75,8 @@ func CreateUser(client *mongo.Database) gin.HandlerFunc {
 	}
 }
 
+// update user meta data
+
 type UserUpdate struct {
 	Name   string `json:"name,omitempty" bson:"name,omitempty"`
 	ImgUrl string `json:"img_url,omitempty" bson:"img_url,omitempty"`
@@ -125,5 +129,79 @@ func UpdateUser(client *mongo.Database) gin.HandlerFunc {
 		}
 
 		c.JSON(http.StatusOK, updatedUser)
+	}
+}
+
+// update user password
+
+type PasswordUpdate struct {
+	CurrentPassword string `json:"current_password"`
+	NewPassword     string `json:"password" bson:"password"`
+}
+
+func UpdateUserPassword(client *mongo.Database) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// establish connection
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		collection := client.Collection("users")
+
+		var passwordUpdate PasswordUpdate
+
+		// bind object
+		if err := c.BindJSON(&passwordUpdate); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		// validate input
+		if validationErr := validate.Struct(passwordUpdate); validationErr != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
+			return
+		}
+
+		// query database
+		var user models.User
+		err := collection.FindOne(ctx, bson.M{}).Decode(&user)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "login failed"})
+			return
+		}
+
+		// check if current password matches
+		err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(passwordUpdate.CurrentPassword))
+		if err != nil {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Incorrect email or password."})
+			return
+		}
+
+		// hash new password password
+		bytes, err := bcrypt.GenerateFromPassword([]byte(passwordUpdate.NewPassword), 14)
+		if err != nil {
+			log.Fatal(err.Error())
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		hashedPassword := string(bytes)
+
+		// save to database
+		result, err := collection.UpdateOne(
+			ctx,
+			bson.M{},
+			bson.M{"$set": bson.M{"password": hashedPassword}},
+		)
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			log.Fatal(err)
+		}
+
+		if result.MatchedCount < 1 {
+			c.JSON(http.StatusNotFound, gin.H{"error": "user info doesnt exist"})
+			return
+		}
+
+		c.JSON(http.StatusOK, gin.H{"message": "Password updated successfully"})
+
 	}
 }

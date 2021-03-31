@@ -54,7 +54,7 @@ func main() {
 	router.POST("/api/user", controllers.CreateUser(clientDatabase))
 	router.POST("/api/login", controllers.LoginUser(clientDatabase))
 	router.PUT("/api/user", middlewares.IsAuthenticated, controllers.UpdateUser(clientDatabase))
-
+	router.PUT("/api/user/password", middlewares.IsAuthenticated, controllers.UpdateUserPassword(clientDatabase))
 	// @todo remove this request
 	router.GET("/howdy", middlewares.IsAuthenticated, func(c *gin.Context) {
 		user_id := c.MustGet("user_id").(string)
