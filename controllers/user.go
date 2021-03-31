@@ -80,9 +80,9 @@ type UserUpdate struct {
 func UpdateUser(client *mongo.Database) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// establish connection
-		// ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-		// defer cancel()
-		// collection := client.Collection("users")
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		collection := client.Collection("users")
 
 		// create user-update variable
 		var userUpdate UserUpdate
@@ -98,8 +98,20 @@ func UpdateUser(client *mongo.Database) gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
 			return
 		}
+		// query database
+		result, err := collection.UpdateOne(
+			ctx,
+			bson.M{},
+			bson.M{"$set": userUpdate},
+		)
 
-		// print the object
-		fmt.Println(userUpdate)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			log.Fatal(err)
+		}
+
+		fmt.Println(result.ModifiedCount)
+
+		c.JSON(http.StatusOK, result)
 	}
 }
