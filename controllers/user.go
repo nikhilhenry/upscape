@@ -135,8 +135,8 @@ func UpdateUser(client *mongo.Database) gin.HandlerFunc {
 // update user password
 
 type PasswordUpdate struct {
-	CurrentPassword string `json:"current_password"`
-	NewPassword     string `json:"new_password"`
+	CurrentPassword string `json:"current_password" validate:"required"`
+	NewPassword     string `json:"new_password" validate:"required,min=8"`
 }
 
 func UpdateUserPassword(client *mongo.Database) gin.HandlerFunc {
