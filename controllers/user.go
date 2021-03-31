@@ -71,3 +71,30 @@ func CreateUser(client *mongo.Database) gin.HandlerFunc {
 		c.JSON(http.StatusOK, result)
 	}
 }
+
+func UpdateUser(client *mongo.Database) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// establish connection
+		// ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		// defer cancel()
+		// collection := client.Collection("users")
+
+		// create user-update variable
+		var userUpdate models.User
+
+		// bind object
+		if err := c.BindJSON(&userUpdate); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		// validate reqeust
+		if validationErr := validate.Struct(userUpdate); validationErr != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
+			return
+		}
+
+		// print the object
+		fmt.Println(userUpdate)
+	}
+}
