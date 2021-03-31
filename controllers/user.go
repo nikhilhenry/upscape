@@ -136,7 +136,7 @@ func UpdateUser(client *mongo.Database) gin.HandlerFunc {
 
 type PasswordUpdate struct {
 	CurrentPassword string `json:"current_password"`
-	NewPassword     string `json:"password" bson:"password"`
+	NewPassword     string `json:"new_password"`
 }
 
 func UpdateUserPassword(client *mongo.Database) gin.HandlerFunc {
