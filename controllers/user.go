@@ -72,6 +72,11 @@ func CreateUser(client *mongo.Database) gin.HandlerFunc {
 	}
 }
 
+type UserUpdate struct {
+	Name   string `json:"name,omitempty" bson:"name,omitempty"`
+	ImgUrl string `json:"img_url,omitempty" bson:"img_url,omitempty"`
+}
+
 func UpdateUser(client *mongo.Database) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// establish connection
@@ -80,7 +85,7 @@ func UpdateUser(client *mongo.Database) gin.HandlerFunc {
 		// collection := client.Collection("users")
 
 		// create user-update variable
-		var userUpdate models.User
+		var userUpdate UserUpdate
 
 		// bind object
 		if err := c.BindJSON(&userUpdate); err != nil {
