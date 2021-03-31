@@ -12,6 +12,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -98,20 +99,31 @@ func UpdateUser(client *mongo.Database) gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
 			return
 		}
+
+		after := options.After
+		opt := options.FindOneAndUpdateOptions{
+			ReturnDocument: &after,
+		}
+
 		// query database
-		result, err := collection.UpdateOne(
-			ctx,
+		result := collection.FindOneAndUpdate(ctx,
 			bson.M{},
 			bson.M{"$set": userUpdate},
+			&opt,
 		)
 
-		if err != nil {
+		if err := result.Err(); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			log.Fatal(err)
 		}
 
-		fmt.Println(result.ModifiedCount)
+		// decode result
+		var updatedUser UserUpdate
+		if err := result.Decode(&updatedUser); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			log.Fatal(err)
+		}
 
-		c.JSON(http.StatusOK, result)
+		c.JSON(http.StatusOK, updatedUser)
 	}
 }
