@@ -11,6 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // get tasks
@@ -21,31 +22,28 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 		defer cancel()
 		collection := client.Collection("tasks")
 
-		// query Database
-		cursor, err := collection.Find(ctx, bson.M{})
+		// @todo: get tasks based on query params
+		// var tasks []models.Task
 
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-			return
+		// get param from query
+		dateRange := c.Query("range")
+
+		// sort all results by id
+		opts := options.Find().SetSort(bson.D{{"id", 1}})
+
+		// if date range is today
+		if dateRange == "today" {
+			// query Database for uncompleted tasks
+			cursor, err := collection.Find(ctx, bson.M{"completed": "false"}, opts)
+			if err != nil {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+				return
+			}
+
+			tasks := helpers.GetDocFromCursor(cursor, models.Task{})
+			// send result
+			c.JSON(http.StatusOK, tasks)
 		}
-
-		var tasks []models.Task
-
-		// loop through results
-		defer cursor.Close(ctx)
-		for cursor.Next(ctx) {
-			var task models.Task
-			cursor.Decode(&task)
-			tasks = append(tasks, task)
-		}
-
-		if err := cursor.Err(); err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-			return
-		}
-
-		// send result
-		c.JSON(http.StatusOK, tasks)
 	}
 }
 
