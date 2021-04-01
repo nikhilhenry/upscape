@@ -8,9 +8,38 @@ import (
 	"upscape/models"
 
 	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
+
+// get objective
+func GetObjectives(client *mongo.Database) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// establish connection
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		collection := client.Collection("objectives")
+
+		// query database
+		cursor, err := collection.Find(ctx, bson.M{})
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		var objectives []models.Objective
+		// loop through results
+		defer cursor.Close(ctx)
+		for cursor.Next(ctx) {
+			var objective models.Objective
+			cursor.Decode(&objective)
+			objectives = append(objectives, objective)
+		}
+
+		// send objectives
+		c.JSON(http.StatusOK, objectives)
+	}
+}
 
 // create objective
 func CreateObjective(client *mongo.Database) gin.HandlerFunc {
