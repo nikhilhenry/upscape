@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 	"upscape/helpers"
@@ -50,6 +51,20 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 			c.JSON(http.StatusOK, tasks)
 			return
 		}
+
+		// for custom date
+		fmt.Println(dateRange)
+		lowTime, _ := time.Parse("01/02/06", dateRange)
+		fmt.Println(lowTime)
+		filter := bson.D{{"created_at", bson.D{{"$gt", lowTime}}}}
+		cursor, err := collection.Find(ctx, filter, opts)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		tasks := getDocsFromCursor(cursor)
+		// send result
+		c.JSON(http.StatusOK, tasks)
 	}
 }
 
