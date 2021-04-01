@@ -25,18 +25,3 @@ func GetDocByID(collection *mongo.Collection, ID primitive.ObjectID, document in
 	}
 	return document
 }
-
-func GetDocFromCursor(cursor *mongo.Cursor, document interface{}) []interface{} {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
-	var documents []interface{}
-
-	defer cursor.Close(ctx)
-	for cursor.Next(ctx) {
-		cursor.Decode(document)
-		documents = append(documents, document)
-	}
-
-	return documents
-}
