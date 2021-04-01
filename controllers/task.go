@@ -4,10 +4,12 @@ import (
 	"context"
 	"net/http"
 	"time"
+	"upscape/helpers"
 	"upscape/models"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -80,7 +82,11 @@ func CreateTask(client *mongo.Database) gin.HandlerFunc {
 			return
 		}
 
-		// return the objectID
-		c.JSON(http.StatusOK, result)
+		// get document
+		var createdTask models.Task
+		document := helpers.GetDocByID(collection, result.InsertedID.(primitive.ObjectID), &createdTask)
+
+		// return the document
+		c.JSON(http.StatusOK, document)
 	}
 }
