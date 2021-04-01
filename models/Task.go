@@ -13,5 +13,5 @@ type Task struct {
 	Completed   bool               `json:"completed" bson:"completed"`
 	TagIDs      []string           `json:"tag_ids" bson:"tag_ids"`
 	CreatedAt   time.Time          `json:"created_at" bson:"created_at"`
-	CompletedAt time.Time          `json:"completed_at" bson:"completed_at"`
+	CompletedAt time.Time          `json:"completed_at,,omitempty" bson:"completed_at,omitempty"`
 }
