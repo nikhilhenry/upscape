@@ -40,7 +40,7 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 				return
 			}
 
-			tasks := helpers.GetDocFromCursor(cursor, &models.Task{})
+			tasks := getDocsFromCursor(cursor)
 			// send result
 			c.JSON(http.StatusOK, tasks)
 		}
@@ -87,4 +87,20 @@ func CreateTask(client *mongo.Database) gin.HandlerFunc {
 		// return the document
 		c.JSON(http.StatusOK, document)
 	}
+}
+
+func getDocsFromCursor(cursor *mongo.Cursor) []models.Task {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	var tasks []models.Task
+
+	defer cursor.Close(ctx)
+	for cursor.Next(ctx) {
+		var task models.Task
+		cursor.Decode(&task)
+		tasks = append(tasks, task)
+	}
+
+	return tasks
 }
