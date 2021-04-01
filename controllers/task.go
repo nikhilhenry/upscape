@@ -23,9 +23,6 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 		defer cancel()
 		collection := client.Collection("tasks")
 
-		// @todo: get tasks based on query params
-		// var tasks []models.Task
-
 		// get param from query
 		dateRange := c.Query("range")
 
@@ -139,6 +136,53 @@ func CreateTask(client *mongo.Database) gin.HandlerFunc {
 
 		// return the document
 		c.JSON(http.StatusOK, document)
+	}
+}
+
+func updateTask(client *mongo.Database) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// establish connection
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		collection := client.Collection("tasks")
+
+		// get task ID
+		id, _ := primitive.ObjectIDFromHex(c.Param("id"))
+
+		var taskUpdate models.Task
+
+		// bind oject
+		if err := c.BindJSON(&taskUpdate); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		after := options.After
+		opts := options.FindOneAndUpdateOptions{
+			ReturnDocument: &after,
+		}
+
+		// query database
+		result := collection.FindOneAndUpdate(
+			ctx,
+			bson.M{"_id": id},
+			bson.M{"$set": taskUpdate},
+			&opts,
+		)
+
+		if err := result.Err(); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		// decode result
+		var updatedTask models.Task
+		if err := result.Decode(&updatedTask); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusOK, updatedTask)
 	}
 }
 
