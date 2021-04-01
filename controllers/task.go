@@ -52,11 +52,13 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 			return
 		}
 
+		// @todo: query for completed_at instead of created_at
 		// for custom date
 		fmt.Println(dateRange)
 		lowTime, _ := time.Parse("01/02/06", dateRange)
+		highTime := lowTime.Add(time.Hour*23 + time.Minute*59 + time.Second*59)
 		fmt.Println(lowTime)
-		filter := bson.D{{"created_at", bson.D{{"$gt", lowTime}}}}
+		filter := bson.D{{"created_at", bson.D{{"$gt", lowTime}, {"$lt", highTime}}}}
 		cursor, err := collection.Find(ctx, filter, opts)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
