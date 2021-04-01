@@ -62,6 +62,7 @@ func main() {
 	router.GET("/api/objective", middlewares.IsAuthenticated, controllers.GetObjectives(clientDatabase))
 	router.POST("/api/objective", middlewares.IsAuthenticated, controllers.CreateObjective(clientDatabase))
 	router.PUT("/api/objective/:id", middlewares.IsAuthenticated, controllers.UpdateObjective(clientDatabase))
+	router.DELETE("/api/objective/:id", middlewares.IsAuthenticated, controllers.DeleteObjective(clientDatabase))
 
 	// @todo remove this request
 	router.GET("/howdy", middlewares.IsAuthenticated, func(c *gin.Context) {

@@ -130,3 +130,26 @@ func UpdateObjective(client *mongo.Database) gin.HandlerFunc {
 		c.JSON(http.StatusOK, updatedobjective)
 	}
 }
+
+func DeleteObjective(client *mongo.Database) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// establish connection
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		collection := client.Collection("objectives")
+
+		// get objective ID
+		id, _ := primitive.ObjectIDFromHex(c.Param("id"))
+
+		// query Database
+		result, err := collection.DeleteOne(ctx, bson.M{"_id": id})
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		if result.DeletedCount > 0 {
+			c.JSON(http.StatusOK, gin.H{"message": "deleted successfully"})
+		}
+	}
+}
