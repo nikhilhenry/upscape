@@ -2,7 +2,6 @@ package helpers
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -13,8 +12,6 @@ import (
 // @todo add error handling
 
 func GetDocByID(collection *mongo.Collection, ID primitive.ObjectID, document interface{}) interface{} {
-
-	fmt.Println(ID)
 
 	// estbalish connection
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
