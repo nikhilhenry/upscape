@@ -139,7 +139,7 @@ func CreateTask(client *mongo.Database) gin.HandlerFunc {
 	}
 }
 
-func updateTask(client *mongo.Database) gin.HandlerFunc {
+func UpdateTask(client *mongo.Database) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// establish connection
 		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
