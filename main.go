@@ -66,7 +66,7 @@ func main() {
 	router.GET("/api/tag", middlewares.IsAuthenticated, controllers.GetTags(clientDatabase))
 	router.POST("/api/tag", middlewares.IsAuthenticated, controllers.CreateTag(clientDatabase))
 	router.PUT("/api/tag/:id", middlewares.IsAuthenticated, controllers.UpdateTag(clientDatabase))
-	router.DELETE("/api/tag/:id", middlewares.IsAuthenticated, controllers.DeleteObjective(clientDatabase))
+	router.DELETE("/api/tag/:id", middlewares.IsAuthenticated, controllers.DeleteTag(clientDatabase))
 
 	// @todo remove this request
 	router.GET("/howdy", middlewares.IsAuthenticated, func(c *gin.Context) {
