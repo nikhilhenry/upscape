@@ -1,0 +1,55 @@
+package controllers
+
+import (
+	"context"
+	"net/http"
+	"time"
+	"upscape/helpers"
+	"upscape/models"
+
+	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
+)
+
+// create objective
+func CreateObjective(client *mongo.Database) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// establish connection
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		collection := client.Collection("objectives")
+
+		// create new objective variable
+		var objective models.Objective
+
+		// bind objective
+		if err := c.BindJSON(&objective); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		// validate input
+		if validationErr := validate.Struct(objective); validationErr != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
+			return
+		}
+
+		// assign timestamp
+		objective.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+
+		// post to database
+		result, insertErr := collection.InsertOne(ctx, objective)
+		if insertErr != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": insertErr.Error()})
+			return
+		}
+
+		// get the document
+		var createdObjective models.Objective
+		document := helpers.GetDocByID(collection, result.InsertedID.(primitive.ObjectID), &createdObjective)
+
+		// return the document
+		c.JSON(http.StatusOK, document)
+	}
+}
