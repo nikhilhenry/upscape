@@ -157,6 +157,10 @@ func UpdateTask(client *mongo.Database) gin.HandlerFunc {
 			return
 		}
 
+		if taskUpdate.Completed {
+			taskUpdate.CompletedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		}
+
 		after := options.After
 		opts := options.FindOneAndUpdateOptions{
 			ReturnDocument: &after,
