@@ -11,6 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // get objective
@@ -22,6 +23,7 @@ func GetObjectives(client *mongo.Database) gin.HandlerFunc {
 		collection := client.Collection("objectives")
 
 		// query database
+		// todo:add pagination and sort by ID for results
 		cursor, err := collection.Find(ctx, bson.M{})
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -80,5 +82,51 @@ func CreateObjective(client *mongo.Database) gin.HandlerFunc {
 
 		// return the document
 		c.JSON(http.StatusOK, document)
+	}
+}
+
+func UpdateObjective(client *mongo.Database) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// establish connection
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		collection := client.Collection("objectives")
+
+		// get objective ID
+		id, _ := primitive.ObjectIDFromHex(c.Param("id"))
+
+		var objectiveUpdate models.Objective
+
+		// bind oject
+		if err := c.BindJSON(&objectiveUpdate); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		after := options.After
+		opts := options.FindOneAndUpdateOptions{
+			ReturnDocument: &after,
+		}
+
+		// query database
+		result := collection.FindOneAndUpdate(
+			ctx,
+			bson.M{"_id": id},
+			bson.M{"$set": objectiveUpdate},
+			&opts,
+		)
+
+		if err := result.Err(); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		// decode result
+		var updatedobjective models.Objective
+		if err := result.Decode(&updatedobjective); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusOK, updatedobjective)
 	}
 }
