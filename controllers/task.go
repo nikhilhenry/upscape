@@ -29,18 +29,18 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 		dateRange := c.Query("range")
 
 		// sort all results by id
-		opts := options.Find().SetSort(bson.D{{"id", 1}})
+		opts := options.Find().SetSort(bson.M{"id": 1})
 
 		// if date range is today
 		if dateRange == "today" {
 			// query Database for uncompleted tasks
-			cursor, err := collection.Find(ctx, bson.M{"completed": "false"}, opts)
+			cursor, err := collection.Find(ctx, bson.M{"completed": false}, opts)
 			if err != nil {
 				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 				return
 			}
 
-			tasks := helpers.GetDocFromCursor(cursor, models.Task{})
+			tasks := helpers.GetDocFromCursor(cursor, &models.Task{})
 			// send result
 			c.JSON(http.StatusOK, tasks)
 		}
