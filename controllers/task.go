@@ -120,7 +120,11 @@ func CreateTask(client *mongo.Database) gin.HandlerFunc {
 		}
 
 		// assign timestamp
-		task.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		if task.IsTomorrow {
+			task.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().AddDate(0, 0, 1).Format(time.RFC3339))
+		} else {
+			task.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		}
 
 		// post to database
 		result, insertErr := collection.InsertOne(ctx, task)
