@@ -55,6 +55,7 @@ func main() {
 	router.POST("/api/login", controllers.LoginUser(clientDatabase))
 	router.PUT("/api/user", middlewares.IsAuthenticated, controllers.UpdateUser(clientDatabase))
 	router.PUT("/api/user/password", middlewares.IsAuthenticated, controllers.UpdateUserPassword(clientDatabase))
+	router.GET("/api/task", middlewares.IsAuthenticated, controllers.GetTasks(clientDatabase))
 	router.POST("/api/task", middlewares.IsAuthenticated, controllers.CreateTask(clientDatabase))
 
 	// @todo remove this request
