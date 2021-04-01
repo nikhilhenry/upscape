@@ -28,6 +28,11 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 		// get param from query
 		dateRange := c.Query("range")
 
+		if len(dateRange) < 1 {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "please specify date range"})
+			return
+		}
+
 		// sort all results by id
 		opts := options.Find().SetSort(bson.M{"id": 1})
 
@@ -43,6 +48,7 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 			tasks := getDocsFromCursor(cursor)
 			// send result
 			c.JSON(http.StatusOK, tasks)
+			return
 		}
 	}
 }
