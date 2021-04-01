@@ -37,6 +37,26 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 		// sort all results by id
 		opts := options.Find().SetSort(bson.M{"id": 1})
 
+		// @todo: query for completed_at instead of created_at
+
+		if dateRange == "tomorrow" {
+			// define filter
+			lowTime := time.Now()
+			filter := bson.D{{"created_at", bson.D{{"$gt", lowTime}}}}
+
+			// query Database for uncompleted tasks
+			cursor, err := collection.Find(ctx, filter, opts)
+			if err != nil {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+				return
+			}
+
+			tasks := getDocsFromCursor(cursor)
+			// send result
+			c.JSON(http.StatusOK, tasks)
+			return
+		}
+
 		// if date range is today
 		if dateRange == "today" {
 
@@ -59,7 +79,6 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 			return
 		}
 
-		// @todo: query for completed_at instead of created_at
 		// for custom date
 		fmt.Println(dateRange)
 		lowTime, _ := time.Parse("01/02/06", dateRange)
