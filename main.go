@@ -47,6 +47,9 @@ func main() {
 	// instantiate router
 	router := gin.Default()
 
+	// define middlewares
+	router.Use(middlewares.CORSMiddleware())
+
 	// declare routes
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "Welcome to Upscape!"})
