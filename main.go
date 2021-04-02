@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 	"time"
 	"upscape/controllers"
@@ -51,31 +50,27 @@ func main() {
 	router.Use(middlewares.CORSMiddleware())
 
 	// declare routes
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"message": "Welcome to Upscape!"})
-	})
-	router.POST("/api/user", controllers.CreateUser(clientDatabase))
+
 	router.POST("/api/login", controllers.LoginUser(clientDatabase))
+	// user routes
+	router.POST("/api/user", controllers.CreateUser(clientDatabase))
 	router.PUT("/api/user", middlewares.IsAuthenticated, controllers.UpdateUser(clientDatabase))
 	router.PUT("/api/user/password", middlewares.IsAuthenticated, controllers.UpdateUserPassword(clientDatabase))
+	// task routes
 	router.GET("/api/task", middlewares.IsAuthenticated, controllers.GetTasks(clientDatabase))
 	router.POST("/api/task", middlewares.IsAuthenticated, controllers.CreateTask(clientDatabase))
 	router.PUT("/api/task/:id", middlewares.IsAuthenticated, controllers.UpdateTask(clientDatabase))
 	router.DELETE("/api/task/:id", middlewares.IsAuthenticated, controllers.DeleteTask(clientDatabase))
+	// objective routes
 	router.GET("/api/objective", middlewares.IsAuthenticated, controllers.GetObjectives(clientDatabase))
 	router.POST("/api/objective", middlewares.IsAuthenticated, controllers.CreateObjective(clientDatabase))
 	router.PUT("/api/objective/:id", middlewares.IsAuthenticated, controllers.UpdateObjective(clientDatabase))
 	router.DELETE("/api/objective/:id", middlewares.IsAuthenticated, controllers.DeleteObjective(clientDatabase))
+	// tag routes
 	router.GET("/api/tag", middlewares.IsAuthenticated, controllers.GetTags(clientDatabase))
 	router.POST("/api/tag", middlewares.IsAuthenticated, controllers.CreateTag(clientDatabase))
 	router.PUT("/api/tag/:id", middlewares.IsAuthenticated, controllers.UpdateTag(clientDatabase))
 	router.DELETE("/api/tag/:id", middlewares.IsAuthenticated, controllers.DeleteTag(clientDatabase))
-
-	// @todo remove this request
-	router.GET("/howdy", middlewares.IsAuthenticated, func(c *gin.Context) {
-		user_id := c.MustGet("user_id").(string)
-		c.JSON(http.StatusOK, gin.H{"msg": "Hello!", "user_id": user_id})
-	})
 
 	router.Run()
 }
