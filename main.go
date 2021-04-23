@@ -56,6 +56,7 @@ func main() {
 	router.POST("/api/user", controllers.CreateUser(clientDatabase))
 	router.PUT("/api/user", middlewares.IsAuthenticated, controllers.UpdateUser(clientDatabase))
 	router.PUT("/api/user/password", middlewares.IsAuthenticated, controllers.UpdateUserPassword(clientDatabase))
+	router.GET("/api/user", middlewares.IsAuthenticated, controllers.GetUserMeta(clientDatabase))
 	// task routes
 	router.GET("/api/task", middlewares.IsAuthenticated, controllers.GetTasks(clientDatabase))
 	router.POST("/api/task", middlewares.IsAuthenticated, controllers.CreateTask(clientDatabase))

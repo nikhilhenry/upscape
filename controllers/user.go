@@ -205,3 +205,26 @@ func UpdateUserPassword(client *mongo.Database) gin.HandlerFunc {
 
 	}
 }
+
+type UserMeta struct {
+	Name   string `json:"name,omitempty" bson:"name,omitempty"`
+	ImgUrl string `json:"img_url,omitempty" bson:"img_url,omitempty"`
+}
+
+func GetUserMeta(client *mongo.Database) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// establish connection
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		collection := client.Collection("users")
+
+		// query Database
+		cursor := collection.FindOne(ctx, bson.M{})
+
+		var userMeta UserMeta
+		cursor.Decode(&userMeta)
+
+		c.JSON(http.StatusOK, userMeta)
+
+	}
+}
