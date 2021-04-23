@@ -3,13 +3,13 @@
     <div class="container">
       <div class="container__item">
         <form class="form">
-          <input type="email" class="form__field" placeholder="Your E-Mail Address" />
-          <button type="button" class="btn btn--primary btn--inside uppercase">Send</button>
+          <input type="password" class="form__field" placeholder="Enter Password" />
+          <button type="button" class="btn btn--primary btn--inside uppercase">Login</button>
         </form>
       </div>
       
       <div class="container__item container__item--bottom">
-        <p>Inspired by <a href="//dribbble.com/shots/2989456-Email-input-field" target="_blank">Daniel Luca</a>.</p>
+        <p>Built by <u>Nikhil Henry.</u></p>
       </div>
     </div>    
   </div>
@@ -23,36 +23,24 @@ export default {
 
 <style lang="scss" scoped>
 //** variables
-$background: #f5f6fa;
-$text: #9c9c9c;
 $input-bg-color: #fff;
 $input-text-color: #a3a3a3;
-$button-bg-color: #7f8ff4;
+$button-bg-color:$primary;
 $button-text-color: #fff;
+$border-radius: .2rem;
 
-//** root
-:root {
-	background: $background;
-	color: $text;
-	font: 1rem "PT Sans", sans-serif;
+
+.login {
+	height: 100vh;
+  width: 100vw;
 }
 
-html,
-body,
-.container {
-	height: 100%;
-}
 
-a {
-	color: inherit;
-	
-	&:hover {
-		color: $button-bg-color;
-	}
-}
 
 //** helper
 .container {
+  height: 100%;
+  width:100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -79,7 +67,7 @@ a {
 		background: $button-bg-color;
 		color: $button-text-color;
 		box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1);
-		border-radius: 2px;
+		border-radius: $border-radius;
 		padding: 12px 36px;
 		
 		&:hover {
@@ -108,6 +96,7 @@ a {
 		border: 0;
 		outline: 0;
 		padding: 22px 18px;
+    border-radius: $border-radius;
 	}
 }
 </style>
