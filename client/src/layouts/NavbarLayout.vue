@@ -19,7 +19,7 @@
       <!-- tasks -->
       <li class="nav-item">
         <router-link :to="{name:'Tasks'}" class="nav-link" :class="{'active-class':activeRoute=='Tasks'}">
-          <i class="las la-tasks icon"></i>
+          <i class="las la-briefcase icon"></i>
           <span class="link-text">Tasks</span>
         </router-link>
       </li>
