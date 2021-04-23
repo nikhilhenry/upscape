@@ -79,14 +79,15 @@ body{
 
 // active class
 .active-class{
-  background: $primary;
+  background: $nav-bg-secondary;
   filter:grayscale(0%)!important;
-  color: $text-primary;
+  background: $nav-bg-secondary;
+  color: $nav-text-secondary;
 }
 
 .navbar{
   position: fixed;
-  background-color: $nav-background;
+  background-color: $nav-bg-primary;
   transition: width 200ms ease;
   z-index: 5;
 }
@@ -112,15 +113,15 @@ body{
     display: flex;
     align-items: center;
     height: 5rem;
-    color: $text-primary;
+    color: $nav-text-primary;
     text-decoration: none;
     filter: grayscale(100%) opacity(0.7);
     transition: $transistion-speed;
 
     &:hover{
       filter:grayscale(0%);
-      background: $nav-background;
-      color: $text-primary;
+      background: $nav-bg-secondary;
+      color: $nav-text-secondary;
     }
 
     .link-text{
@@ -137,7 +138,7 @@ body{
 
 // nav-item colors
 .icon {
-  color: $primary;
+  color: $nav-icon-primary;
   font-size: 32px;
   transition: $transistion-speed;
   margin: 0 auto 0;
@@ -149,7 +150,7 @@ body{
   text-transform: uppercase;
   margin: 1rem 0 1rem;
   text-align: center;
-  color: $text-primary;
+  color: $nav-text-secondary;
   font-size: 1.5rem;
   letter-spacing: 0.3ch;
   width: 100%;
@@ -160,7 +161,6 @@ body{
     margin: 0 auto 0;
     width:70%;
     height:70%;
-    color:#fff;
     filter: brightness(0) invert(0.8);
   }
 }
@@ -183,7 +183,7 @@ body{
     bottom: 0;
     width: 100vw;
     height: 5rem;
-    border-top: 1px solid $nav-background;
+    border-top: 1px solid $nav-bg-secondary;
   }
 
   .logo{
@@ -210,7 +210,7 @@ body{
     top: 0;
     width:5rem;
     height: 100vh;
-    border-right: 1px solid $nav-background;
+    border-right: 1px solid $nav-bg-secondary;
     &:hover{
       width:16rem;
       .link-text{

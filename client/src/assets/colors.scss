@@ -4,6 +4,12 @@ $primary:#1890ff;
 $secondary: #25282c;
 $text-primary: rgba(216,219,226,1);
 $background:#25282c;
-$nav-background:#191c20;
 
 $transistion-speed: 600ms;
+
+// navbar colors
+$nav-bg-primary:#191c20;
+$nav-bg-secondary:#1f2225;
+$nav-icon-primary:$primary;
+$nav-text-primary:$text-primary;
+$nav-text-secondary:$text-primary;
