@@ -3,8 +3,8 @@
     <div class="container">
       <div class="container__item">
         <form class="form">
-          <input type="password" class="form__field" placeholder="Enter Password" />
-          <button type="button" class="btn btn--primary btn--inside uppercase">Login</button>
+          <input type="password" class="form__field" placeholder="Enter Password" v-model="password" />
+          <button type="button" class="btn btn--primary btn--inside uppercase" @click="login">Login</button>
         </form>
       </div>
       
@@ -17,7 +17,19 @@
 
 <script>
 export default {
-  name:"Login"
+  name:"Login",
+  data(){
+    return{
+      password:'',
+      success:null
+    }
+  },
+  methods:{
+    login:async function(){
+      const password = this.password
+      console.log(password)
+    }
+  }
 }
 </script>
 
