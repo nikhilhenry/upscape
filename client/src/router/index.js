@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 
+import NavbarLayout from '../layouts/NavbarLayout.vue'
+
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -13,7 +15,8 @@ const routes = [
     name: 'Home',
     component: Home,
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      layout:NavbarLayout
     }
   },
   {
