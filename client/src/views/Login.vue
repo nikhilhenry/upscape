@@ -21,6 +21,7 @@
 
 <script>
 import loginQuery from '@/api/login'
+import {mapActions} from 'vuex'
 
 export default {
   name:"Login",
@@ -39,6 +40,7 @@ export default {
 			if(password.length<8){
 				this.error = 'Incorrect password.'
 				this.isLoading=!this.isLoading
+				this.password = ''
 				return
 			} 
 			const response = await loginQuery(password)
@@ -47,10 +49,15 @@ export default {
 				this.error=response.error
 				return
 			}
-			console.log(response.token)
+			
+			// save token to store
+			this.storeToken(response.token)
 
-			// this.password = ''
-    }
+			this.password = ''
+    },
+		...mapActions({
+			storeToken:'user/storeAuthToken'
+		})
   }
 }
 </script>
