@@ -4,19 +4,24 @@
     <!-- title bar -->
     <div class="title-bar">
       <h1 class="title">{{greeting}}, <br> {{firstName}} 👋</h1>
-      <!-- <Avatar/> -->
+      <Avatar/>
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import Avatar from '@/components/Avatar'
+
 import metaQuery from '@/api/metaQuery'
 import { mapActions, mapGetters } from 'vuex'
 import getGreeting from '@/functions/getGreeting'
 
 export default {
   name: 'Home',
+  components:{
+    Avatar
+  },
   computed:{
     ...mapGetters({
       firstName:'user/getFirstName'
@@ -43,3 +48,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.title-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .title{
+    margin:0!important;
+    text-transform: capitalize;
+  }
+}
+</style>
