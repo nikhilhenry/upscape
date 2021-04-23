@@ -51,7 +51,7 @@ func main() {
 
 	// declare routes
 
-	router.POST("/api/login", controllers.LoginUser(clientDatabase))
+	router.POST("/api/auth/login", controllers.LoginUser(clientDatabase))
 	// user routes
 	router.POST("/api/user", controllers.CreateUser(clientDatabase))
 	router.PUT("/api/user", middlewares.IsAuthenticated, controllers.UpdateUser(clientDatabase))
