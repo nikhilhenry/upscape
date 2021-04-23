@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default{
   namespaced:true,
 
@@ -32,7 +34,8 @@ export default{
       
       context.commit('STORE_AUTH_TOKEN',userToken);
 
-      // @todo: set axios headers
+     // set header globally
+     axios.defaults.headers.common['auth_token'] = userToken
 
       // set authenticated status
       context.commit("SET_AUTHENTICATED",true);
