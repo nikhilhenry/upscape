@@ -49,11 +49,11 @@
 <script>
 export default {
   name:'NavbarLayout',
-  // computed:{
-  //   activeRoute(){
-  //     return this.$route.name
-  //   }
-  // }  
+  computed:{
+    activeRoute(){
+      return this.$route.name
+    }
+  }  
 }
 </script>
 
