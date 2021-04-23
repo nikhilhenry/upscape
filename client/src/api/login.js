@@ -9,7 +9,7 @@ export default async function(password){
     })
     .catch(error=>{
       response = error.response.data
-      throw error
+      // throw error
     })
 
     return response
