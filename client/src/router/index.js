@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
+import Tasks from '../views/Tasks.vue'
 
 import NavbarLayout from '../layouts/NavbarLayout.vue'
 
@@ -25,6 +26,15 @@ const routes = [
     component: Login,
     meta:{
       requiresGuest:true
+    }
+  },
+  {
+    path:'/tasks',
+    name:'Tasks',
+    component: Tasks,
+    meta:{
+      requiresAuth:true,
+      layout:NavbarLayout
     }
   },
   {
