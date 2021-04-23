@@ -38,6 +38,7 @@ export default {
 			const password = this.password
 			if(password.length<8){
 				this.error = 'Incorrect password.'
+				this.isLoading=!this.isLoading
 				return
 			} 
 			const response = await loginQuery(password)
@@ -119,6 +120,11 @@ $border-radius: .2rem;
 	
 	&--inside {
 		margin-left: -96px;
+	}
+
+	.fa-spinner{
+		margin:  0.1rem 0.5rem 0.1rem 0.5rem;
+		font-size: 1.2rem;
 	}
 }
 
