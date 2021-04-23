@@ -4,7 +4,7 @@
   <ul class="navbar-nav">
     <li class="logo">
       <a href="#" class="nav-link">
-        <span class="link-text logo-text">Reflect</span>
+        <span class="link-text logo-text">Upscape</span>
         <img src="../assets/bmo.svg">
       </a>
     </li>
@@ -16,27 +16,21 @@
           <span class="link-text">Home</span>
         </router-link>
       </li>
-      <!-- reflections -->
+      <!-- tasks -->
       <li class="nav-item">
-        <router-link :to="{name:'Reflections'}" class="nav-link" :class="{'active-class':activeRoute=='Reflections'}">
-          <i class="las la-calendar-plus icon"></i>
-          <span class="link-text">Reflections</span>
+        <router-link :to="{name:'Tasks'}" class="nav-link" :class="{'active-class':activeRoute=='Tasks'}">
+          <i class="las la-tasks icon"></i>
+          <span class="link-text">Tasks</span>
         </router-link>
       </li>
-      <!-- moments -->
+      <!-- objectives -->
       <li class="nav-item">
-        <router-link :to="{name:'Moments'}" class="nav-link" :class="{'active-class':activeRoute=='Moments'}">
-          <i class="las la-trophy icon"></i>
-          <span class="link-text">Moments</span>
+        <router-link :to="{name:'Objectives'}" class="nav-link" :class="{'active-class':activeRoute=='Objectives'}">
+          <i class="las la-certificate icon"></i>
+          <span class="link-text">Objectives</span>
         </router-link>
       </li>
-      <!-- mood synth -->
-      <li class="nav-item">
-        <router-link :to="{name:'MoodSynth'}" class="nav-link" :class="{'active-class':activeRoute=='MoodSynth'}">
-          <i class="las la-play-circle icon"></i>
-          <span class="link-text">Mood Synth</span>
-        </router-link>
-      </li>
+
       <!-- settings -->
       <li class="nav-item" >
         <router-link :to="{name:'Settings'}" class="nav-link" :class="{'active-class':activeRoute=='Settings'}">
