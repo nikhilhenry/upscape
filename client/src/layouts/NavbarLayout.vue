@@ -54,7 +54,12 @@
 
 <script>
 export default {
-  name:'NavbarLayout'
+  name:'NavbarLayout',
+  // computed:{
+  //   activeRoute(){
+  //     return this.$route.name
+  //   }
+  // }  
 }
 </script>
 
@@ -155,6 +160,8 @@ body{
     margin: 0 auto 0;
     width:70%;
     height:70%;
+    color:#fff;
+    filter: brightness(0) invert(0.8);
   }
 }
 
