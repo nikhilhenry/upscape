@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import loginQuery from '@/api/login'
+
 export default {
   name:"Login",
   data(){
@@ -27,7 +29,8 @@ export default {
   methods:{
     login:async function(){
       const password = this.password
-      console.log(password)
+			const response = await loginQuery(password)
+      console.log(response)
     }
   }
 }
