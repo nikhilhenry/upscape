@@ -12,35 +12,35 @@
       <!-- home -->
       <li class="nav-item">
         <router-link :to="{name:'Home'}" class="nav-link" :class="{'active-class':activeRoute=='Home'}">
-          <i class="fas fa-home icon"></i>
+          <i class="las la-home icon"></i>
           <span class="link-text">Home</span>
         </router-link>
       </li>
       <!-- reflections -->
       <li class="nav-item">
         <router-link :to="{name:'Reflections'}" class="nav-link" :class="{'active-class':activeRoute=='Reflections'}">
-          <i class="fas fa-calendar-plus icon"></i>
+          <i class="las la-calendar-plus icon"></i>
           <span class="link-text">Reflections</span>
         </router-link>
       </li>
       <!-- moments -->
       <li class="nav-item">
         <router-link :to="{name:'Moments'}" class="nav-link" :class="{'active-class':activeRoute=='Moments'}">
-          <i class="fas fa-trophy icon"></i>
+          <i class="las la-trophy icon"></i>
           <span class="link-text">Moments</span>
         </router-link>
       </li>
       <!-- mood synth -->
       <li class="nav-item">
         <router-link :to="{name:'MoodSynth'}" class="nav-link" :class="{'active-class':activeRoute=='MoodSynth'}">
-          <i class="fas fa-play-circle icon"></i>
+          <i class="las la-play-circle icon"></i>
           <span class="link-text">Mood Synth</span>
         </router-link>
       </li>
       <!-- settings -->
       <li class="nav-item" >
         <router-link :to="{name:'Settings'}" class="nav-link" :class="{'active-class':activeRoute=='Settings'}">
-          <i class="fas fa-cog icon"></i>
+          <i class="las la-cog icon"></i>
           <span class="link-text">Settings</span>
         </router-link>
       </li>
