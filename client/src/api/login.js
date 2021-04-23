@@ -3,7 +3,7 @@ import axios from 'axios';
 export default async function(password){
 
   let response
-  await axios.post('/api/auth/login',password)
+  await axios.post('/api/auth/login',{password})
     .then(res=>{
       response = res.data
     })
