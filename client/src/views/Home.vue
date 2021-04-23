@@ -1,18 +1,32 @@
 <template>
 <div class="home">
   <div class="container">
-    <h1>Good Morning, <br>
-    Nikhil 👋 </h1>
+    <!-- title bar -->
+    <div class="title-bar">
+      <h1 class="title">{{greeting}}, <br> {{firstName}} 👋</h1>
+      <!-- <Avatar/> -->
+    </div>
   </div>
 </div>
 </template>
 
 <script>
 import metaQuery from '@/api/metaQuery'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import getGreeting from '@/functions/getGreeting'
 
 export default {
   name: 'Home',
+  computed:{
+    ...mapGetters({
+      firstName:'user/getFirstName'
+    })
+  },
+  data(){
+    return{
+      greeting:''
+    }
+  },
   methods:{
     getMeta: async function(){
       const response = await metaQuery()
@@ -23,8 +37,9 @@ export default {
       storeMetaData:'user/storeMetaData'
     })
   },
-  created(){
-    this.getMeta()
+  mounted(){
+    this.greeting = getGreeting()
+    if(!this.$store.state['user/metaLoaded']) this.getMeta();
   }
 }
 </script>
