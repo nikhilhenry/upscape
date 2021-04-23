@@ -33,6 +33,14 @@ export default {
 			isLoading:false
     }
   },
+  mounted(){
+    // check if token present in store
+    const token = this.$store.state.user.auth_token;
+    if(token){
+      this.storeToken(token);
+      this.$router.push({name:'Home'})
+    }
+  },	
   methods:{
     login:async function(){
 			this.isLoading=!this.isLoading
