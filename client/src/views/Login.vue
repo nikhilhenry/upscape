@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <div class="container">
+    <div class="container-log">
       <div class="container__item">
 				<p class="error" v-if="error">{{error}}</p>
         <form class="form">
@@ -91,7 +91,7 @@ $border-radius: .2rem;
 
 
 //** helper
-.container {
+.container-log {
   height: 100%;
   width:100%;
 	display: flex;
