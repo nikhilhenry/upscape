@@ -2,9 +2,13 @@
   <div class="login">
     <div class="container">
       <div class="container__item">
+				<p class="error" v-if="error">{{error}}</p>
         <form class="form">
           <input type="password" class="form__field" placeholder="Enter Password" v-model="password" />
-          <button type="button" class="btn btn--primary btn--inside uppercase" @click="login">Login</button>
+          <button type="button" class="btn btn--primary btn--inside uppercase" @click="login">
+						<i class="fas fa-spinner fa-spin" v-if="isLoading"></i>
+						<div v-else>Login</div>
+					</button>
         </form>
       </div>
       
@@ -24,17 +28,27 @@ export default {
     return{
       password:'',
       success:null,
-			error:''
+			error:'',
+			isLoading:false
     }
   },
   methods:{
     login:async function(){
+			this.isLoading=!this.isLoading
 			const password = this.password
-			if(password.length<8) this.error = 'Incorrect password'
+			if(password.length<8){
+				this.error = 'Incorrect password.'
+				return
+			} 
 			const response = await loginQuery(password)
+			this.isLoading=!this.isLoading
       if(response.error){
 				this.error=response.error
+				return
 			}
+			console.log(response.token)
+
+			// this.password = ''
     }
   }
 }
@@ -52,6 +66,10 @@ $border-radius: .2rem;
 .login {
 	height: 100vh;
   width: 100vw;
+}
+
+.error{
+	color:hsl(348, 100%, 61%);
 }
 
 
