@@ -6,8 +6,9 @@ export default{
   state:{
     auth_token:localStorage.getItem('auth_token') || '',
     isAuthenticated:false,
-    profilePic:'',
-    fullname:''
+    profilePicUrl:'',
+    fullname:'',
+    metaLoaded:false
   },
 
   mutations:{
@@ -22,7 +23,10 @@ export default{
     },
     STORE_PROFILE_PIC:(state,userProfilePic)=>{
       state.profilePicUrl = userProfilePic
-    },    
+    },
+    SET_META_LOADED:(state,isloaded)=>{
+      state.metaLoaded = isloaded
+    },      
   },
 
   actions:{
@@ -39,7 +43,21 @@ export default{
 
       // set authenticated status
       context.commit("SET_AUTHENTICATED",true);
-    }
+    },
+
+
+    storeMetaData:(context,userMetaData)=>{
+      // deconstruct userMetaData obj
+      const fullName = userMetaData.name;
+      const profilePicUrl = userMetaData.img_url;
+
+      //commit to store
+      context.commit("STORE_FULL_NAME",fullName);
+      context.commit("STORE_PROFILE_PIC",profilePicUrl);
+
+      // set meta loaded to true
+      context.commit("SET_META_LOADED",true);
+    },    
   },
 
   getters:{
