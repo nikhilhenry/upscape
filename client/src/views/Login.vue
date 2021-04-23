@@ -23,14 +23,18 @@ export default {
   data(){
     return{
       password:'',
-      success:null
+      success:null,
+			error:''
     }
   },
   methods:{
     login:async function(){
-      const password = this.password
+			const password = this.password
+			if(password.length<8) this.error = 'Incorrect password'
 			const response = await loginQuery(password)
-      console.log(response)
+      if(response.error){
+				this.error=response.error
+			}
     }
   }
 }
