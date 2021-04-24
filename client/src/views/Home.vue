@@ -48,17 +48,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.title-bar{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  .title{
-    margin:0!important;
-    text-transform: capitalize;
-  }
-}
-</style>

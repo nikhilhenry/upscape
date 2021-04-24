@@ -8,6 +8,18 @@
   max-width:90vw;
 }
 
+.title-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .title{
+    margin:0!important;
+    text-transform: capitalize;
+  }
+}
+
 
 // responsive sizing
 
