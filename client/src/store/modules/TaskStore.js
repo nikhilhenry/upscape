@@ -1,11 +1,11 @@
 import Vue from 'vue'
 
 export default{
-  namespace:true,
+  namespaced:true,
 
   state:{
     tasks:[],
-    tasksLoaded:[],
+    tasksLoaded:false,
     totalDuration:false,
   },
 
@@ -57,7 +57,7 @@ export default{
   },
 
   getters:{
-    getTasks:state=>{
+    getTasks:(state)=>{
       return state.tasks
     },
     getTask:(state) => (taskId)=>{
