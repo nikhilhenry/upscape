@@ -42,7 +42,7 @@ export default {
   background-color:$secondary;
   padding:.5rem 1.5rem;
   border-bottom: 3px solid $background;
-  border-radius: 2rem;
+  border-radius: 1rem;
 
   margin-bottom: .5rem;
 
