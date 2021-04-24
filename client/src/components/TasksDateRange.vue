@@ -3,8 +3,8 @@
     <div class="wrapper">
       <i class="las la-angle-left"></i>
       <div class="content">
-      <h3 class="day">Today</h3>
-      <p>APR 24 2021</p>
+      <h3 class="day">{{formattedDate[0]}}</h3>
+      <p>{{formattedDate[1]}}</p>
       </div>
       <i class="las la-angle-right"></i>
     </div>
@@ -18,11 +18,13 @@ export default {
   name:'TasksDateRange',
   data(){
     return{
-      dateIndex:0
+      dateIndex:0,
+      formattedDate:[]
     }
   },
   mounted(){
-    console.log(getDate(this.dateIndex))
+    this.formattedDate = getDate(this.dateIndex)
+    console.log(this.formattedDate)
   }
 }
 </script>
@@ -44,6 +46,7 @@ export default {
     margin-bottom:5px;
     margin-top:0;
     font-size:24px;
+    text-transform: capitalize;
   }
 
   p{
@@ -52,6 +55,7 @@ export default {
     margin-left: 1rem;
     margin-right: 1rem;
     font-size: 18px;
+    text-transform: uppercase;
   }
 }
 </style>
