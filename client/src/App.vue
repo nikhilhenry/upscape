@@ -16,7 +16,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color:$text-primary;
-  background:$secondary;
+  background:$background;
   margin:0;
   padding:0;
 }
