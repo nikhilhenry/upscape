@@ -12,8 +12,18 @@
 </template>
 
 <script>
+import getDate from '@/functions/getDate'
+
 export default {
-  name:'TasksDateRange'
+  name:'TasksDateRange',
+  data(){
+    return{
+      dateIndex:0
+    }
+  },
+  mounted(){
+    console.log(getDate(this.dateIndex))
+  }
 }
 </script>
 
