@@ -12,7 +12,11 @@
       </div>
 
        <!-- tasks  -->
-      <TaskItem/>
+       <ul class="task-list">
+        <li>
+          <TaskItem/>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -53,5 +57,12 @@ export default {
     font-size: 24px;
     color:#0be881;
   }
+}
+
+.task-list{
+  margin-top: 3rem;
+  list-style: none;
+  margin-left:0;
+  padding:0;
 }
 </style>
