@@ -16,16 +16,16 @@ import getDate from '@/functions/getDate'
 
 export default {
   name:'TasksDateRange',
+  computed:{
+    formattedDate(){
+      return getDate(this.dateIndex)
+    }
+  },
   data(){
     return{
       dateIndex:0,
-      formattedDate:[]
     }
   },
-  mounted(){
-    this.formattedDate = getDate(this.dateIndex)
-    console.log(this.formattedDate)
-  }
 }
 </script>
 
