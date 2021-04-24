@@ -6,7 +6,7 @@
         <h1 class="title">Tasks</h1>
         <Avatar/>
       </div>
-      <TasksDateRange/>      
+      <TasksDateRange v-bind:queryDate.sync="queryDate"/>      
     </div>
   </div>
 </template>
@@ -19,7 +19,17 @@ export default {
   name:'Tasks',
   components:{
     Avatar,
-    TasksDateRange
+    TasksDateRange,
+  },
+  data(){
+    return{
+      queryDate:'today'    
+    }
+  },
+  methods:{
+    test:function(queryDate){
+      console.log(queryDate)
+    }
   }
 }
 </script>

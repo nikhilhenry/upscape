@@ -33,7 +33,7 @@ export default {
       dateIndex:0,
     }
   },
-  created(){
+  mounted(){
     this.$emit('update:query','today')
   }
 }
