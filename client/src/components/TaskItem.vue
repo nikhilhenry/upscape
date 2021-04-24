@@ -26,7 +26,7 @@ export default {
 .wrapper{
   display:flex;
   justify-content:space-between;
-  background-color:#1f2225;
+  background-color:$secondary;
   padding:1rem 1rem;
   border-bottom: 3px solid $background;
 
