@@ -1,13 +1,22 @@
 <template>
   <div class="tasks">
     <div class="container">
-      <h1>Tasks</h1>
+      <!-- title bar -->
+      <div class="title-bar">
+        <h1 class="title">Tasks</h1>
+        <Avatar/>
+      </div>      
     </div>
   </div>
 </template>
 
 <script>
+import Avatar from '@/components/Avatar'
+
 export default {
-  name:'Tasks'
+  name:'Tasks',
+  components:{
+    Avatar
+  }
 }
 </script>
