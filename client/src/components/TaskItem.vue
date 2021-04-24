@@ -2,13 +2,13 @@
   <div class="task">
     <div class="wrapper">
       <div class="left">
-        <p class="title">Eat Sushi</p>
+        <p class="title">{{task.name}}</p>
         <span class="date">1 hour ago</span>
       </div>
       <div class="right">
-        <span class="duration">60 MIN</span>
-        <i class="fas fa-star"></i>
-        <input id="c1" type="checkbox" class="complete">
+        <span class="duration">{{task.duration}} MIN</span>
+        <i class="fas fa-star" v-if="task.highlight"></i>
+        <input id="c1" type="checkbox" class="complete" v-model="task.completed">
       </div>
     </div>
   </div>
@@ -16,7 +16,8 @@
 
 <script>
 export default {
-  name:'TaskItem'
+  name:'TaskItem',
+  props: ['task']
 }
 </script>
 
