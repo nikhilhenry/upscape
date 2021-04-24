@@ -6,7 +6,10 @@
         <h1 class="title">Tasks</h1>
         <Avatar/>
       </div>
-      <TasksDateRange v-bind:queryDate.sync="queryDate"/>      
+      <div class="secondary-bar">
+      <TasksDateRange v-bind:queryDate.sync="queryDate"/>
+      <h3 class="total-duration">4.5 + 1 hrs</h3>
+      </div> 
     </div>
   </div>
 </template>
@@ -33,3 +36,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.secondary-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .total-duration{
+    font-size: 24px;
+    color:#0be881;
+  }
+}
+</style>
