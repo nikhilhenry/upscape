@@ -63,7 +63,7 @@ export default {
   methods:{
     queryTasks:async function(){
       const tasks = await getTasks(this.queryDate)
-      this.tasks = tasks
+      // this.tasks = tasks
       return tasks
     },
     saveTasksToStore:function(tasks){
