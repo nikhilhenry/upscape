@@ -1,12 +1,12 @@
 <template>
   <div class="date-range">
     <div class="wrapper">
-      <i class="fas fa-angle-left"></i>
+      <i class="las la-angle-left"></i>
       <div class="content">
       <h3 class="day">Today</h3>
       <p>APR 24 2021</p>
       </div>
-      <i class="fas fa-angle-right"></i>
+      <i class="las la-angle-right"></i>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   align-items: center;
   text-align: center;
 
-  .fas{
+  .las{
     font-size: 2.5rem;
   }
 
