@@ -20,7 +20,10 @@ const getDate = function(dateIndex){
   }
 
   // get date from index
-  const date = new Date().setDate(new Date().getDate + dateIndex)
+  const today = new Date()
+  const date = new Date(today)
+  
+  date.setDate(date.getDate() + dateIndex)
   
   formattedDate[0] = date.toLocaleString('default',{weekday:'long'})
   formattedDate[1] = getFormattedDate(date)
