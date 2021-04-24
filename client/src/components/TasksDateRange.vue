@@ -1,12 +1,12 @@
 <template>
   <div class="date-range">
     <div class="wrapper">
-      <i class="las la-angle-left"></i>
+      <i class="las la-angle-left" @click="dateIndex--"></i>
       <div class="content">
       <h3 class="day">{{formattedDate[0]}}</h3>
       <p>{{formattedDate[1]}}</p>
       </div>
-      <i class="las la-angle-right"></i>
+      <i class="las la-angle-right" @click="dateIndex++"></i>
     </div>
   </div>
 </template>
