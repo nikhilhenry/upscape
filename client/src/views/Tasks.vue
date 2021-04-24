@@ -22,8 +22,9 @@
       </ul>
     </div>
     <div class="fab">
-      <button class="create-task">Create Task</button>
+      <router-link to="/tasks/create" class="create-button" >Create Task</router-link>
     </div>
+     <router-view></router-view>
   </div>
 </template>
 
@@ -113,7 +114,7 @@ export default {
   // right: 50%;
 }
 
-.create-task{
+.create-button{
   color:#fff;
   background-color:$primary;
   border:none;
@@ -122,6 +123,7 @@ export default {
   padding: .5rem 1.2rem .5rem;
   border-radius: .2rem;
   margin:0;
+  text-decoration: none;
   transition: all 200ms ease-in;
   &:hover{
     // display:none;
