@@ -8,7 +8,7 @@
       <div class="right">
         <span class="duration">60 MIN</span>
         <i class="fas fa-star"></i>
-        <input id="c1" type="checkbox">
+        <input id="c1" type="checkbox" class="complete">
       </div>
     </div>
   </div>
@@ -26,30 +26,38 @@ export default {
 .wrapper{
   display:flex;
   justify-content:space-between;
+  align-items: center;
   background-color:$secondary;
-  padding:1rem 1rem;
+  padding:.5rem 1.5rem;
   border-bottom: 3px solid $background;
+  border-radius: 2rem;
 
   .title{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    margin:1rem 0 .5rem 0rem;
   }
 
   .date{
-    margin-right: 3rem;
-    font-size: .8rem;
-    color:rgba(#54666d, $alpha: .5);
+    font-size: 1em;
+    color:rgba($text-secondary, $alpha: .8);
     font-weight: 100;
+    display:block;
+    margin-bottom: .5rem;
   }
 
   .duration{
-    font-size: 1rem;
-    color: #54666d;
+    font-size: 1.2rem;
+    color: $text-secondary;
     font-weight: 400;
   }
 
   .fas{
     color:#ffd31d;
     font-size: 1.4rem;
+  }
+
+  .complete{
+    transform: scale(1.5);
   }
 
   .right{
