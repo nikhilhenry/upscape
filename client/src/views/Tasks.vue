@@ -22,7 +22,7 @@
       </ul>
     </div>
     <div class="fab">
-      <button class="add-task create-button">Add Task</button>
+      <button class="create-task">Create Task</button>
     </div>
   </div>
 </template>
@@ -113,7 +113,7 @@ export default {
   // right: 50%;
 }
 
-.add-task{
+.create-task{
   color:#fff;
   background-color:$primary;
   border:none;
