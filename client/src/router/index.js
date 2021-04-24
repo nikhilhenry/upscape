@@ -35,7 +35,15 @@ const routes = [
     meta:{
       requiresAuth:true,
       layout:NavbarLayout
-    }
+    },
+    children:[{
+      path:'create',
+      component:() => import('../views/CreateTask.vue'),
+      meta:{
+        requiresAuth:true,
+        layout:NavbarLayout
+      }
+    }]
   },
   {
     path: '/about',
