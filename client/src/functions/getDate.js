@@ -7,6 +7,7 @@
 
 const getDate = function(dateIndex){
   if (typeof dateIndex !="number") return null
+  if(dateIndex > 1) dateIndex = 1
 
   const formattedDate  =[]
 
@@ -14,15 +15,25 @@ const getDate = function(dateIndex){
   if(dateIndex == 0){
     formattedDate[0] = 'today'
     formattedDate[1] = getFormattedDate(new Date())
-    formattedDate[2] = getQueryDate(new Date())
+    formattedDate[2] = 'today'
+
+    return formattedDate
+  }
+
+  const today = new Date()
+  const date = new Date(today)
+
+  // tomorrow with index 1
+  if(dateIndex > 0){
+    formattedDate[0] = 'tomorrow'
+    date.setDate(date.getDate() + 1)
+    formattedDate[1] = getFormattedDate(date)
+    formattedDate[2] = 'tomorrow'
 
     return formattedDate
   }
 
   // get date from index
-  const today = new Date()
-  const date = new Date(today)
-  
   date.setDate(date.getDate() + dateIndex)
   
   formattedDate[0] = date.toLocaleString('default',{weekday:'long'})
