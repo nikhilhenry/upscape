@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div class="left">
         <p class="title">{{task.name}}</p>
-        <span class="date">1 hour ago</span>
+        <span class="date">{{timeAgo}}</span>
       </div>
       <div class="right">
         <span class="duration">{{task.duration}} MIN</span>
@@ -15,9 +15,20 @@
 </template>
 
 <script>
+import TimeAgo from 'javascript-time-ago'
+
 export default {
   name:'TaskItem',
-  props: ['task']
+  props: ['task'],
+  data(){
+    return{
+      timeAgo:''
+    }
+  },
+  mounted(){
+    const timeAgo = new TimeAgo('en-US')
+    this.timeAgo = timeAgo.format(new Date(this.task.created_at))
+  }
 }
 </script>
 
