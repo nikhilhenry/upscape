@@ -32,6 +32,8 @@ export default {
   border-bottom: 3px solid $background;
   border-radius: 2rem;
 
+  margin-bottom: .5rem;
+
   .title{
     font-size: 1.4rem;
     margin:1rem 0 .5rem 0rem;
