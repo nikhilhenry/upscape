@@ -53,6 +53,18 @@ function getFormattedDate(date){
 }
 
 function getQueryDate(date){
-  const queryDate = new Date(date).getDate() +'/'+new Date(date).getMonth()+1+'/'+new Date(date).getFullYear();
+  let month = new Date(date).getMonth()+1
+  let day = new Date(date).getDate() 
+  const year = new Date(date).getFullYear().toString().substr(-2)
+
+  if (day < 10){
+    day = '0' + day
+  }
+
+  if (month < 10){
+    month = '0' + month
+  }
+
+  const queryDate = month+'/'+day+'/'+year
   return queryDate
 }
