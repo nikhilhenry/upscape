@@ -7,7 +7,10 @@
         <Avatar/>
       </div>
       <div class="secondary-bar">
-      <TasksDateRange v-bind:queryDate.sync="queryDate"/>
+      <TasksDateRange
+        v-bind:queryDate="queryDate"
+        v-on:update:query="queryDate = $event"
+       />
       <h3 class="total-duration">4.5 + 1 hrs</h3>
       </div>
 
@@ -41,12 +44,20 @@ export default {
       tasks:[]   
     }
   },
+  watch:{
+    queryDate(){
+      // clear existing tasks
+      this.tasks = []
+      // query for new task
+      this.queryTasks()
+    }
+  },
   methods:{
     test:function(queryDate){
       console.log(queryDate)
     },
     queryTasks:async function(){
-      const tasks = await getTasks(this.dateQuery)
+      const tasks = await getTasks(this.queryDate)
       this.tasks = tasks
     }
   },
