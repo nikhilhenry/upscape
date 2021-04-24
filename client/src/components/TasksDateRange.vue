@@ -21,11 +21,21 @@ export default {
       return getDate(this.dateIndex)
     }
   },
+  watch:{
+    formattedDate: function(date){
+      // query date
+      console.log(date[2])
+      this.$emit('update:query',date[2])
+    }
+  },
   data(){
     return{
       dateIndex:0,
     }
   },
+  created(){
+    this.$emit('update:query','today')
+  }
 }
 </script>
 
