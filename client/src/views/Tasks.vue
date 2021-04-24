@@ -5,18 +5,21 @@
       <div class="title-bar">
         <h1 class="title">Tasks</h1>
         <Avatar/>
-      </div>      
+      </div>
+      <TasksDateRange/>      
     </div>
   </div>
 </template>
 
 <script>
 import Avatar from '@/components/Avatar'
+import TasksDateRange from '@/components/TasksDateRange'
 
 export default {
   name:'Tasks',
   components:{
-    Avatar
+    Avatar,
+    TasksDateRange
   }
 }
 </script>
