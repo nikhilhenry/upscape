@@ -23,8 +23,7 @@ export default {
   },
   watch:{
     formattedDate: function(date){
-      // query date
-      console.log(date[2])
+      // send query date to parent component
       this.$emit('update:query',date[2])
     }
   },
