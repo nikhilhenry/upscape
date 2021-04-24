@@ -30,6 +30,7 @@ import TasksDateRange from '@/components/TasksDateRange'
 import TaskItem from '@/components/TaskItem'
 
 import getTasks from '@/api/taskGet'
+import { mapGetters,mapActions } from 'vuex'
 
 export default {
   name:'Tasks',
@@ -38,31 +39,45 @@ export default {
     TasksDateRange,
     TaskItem
   },
+  computed:{
+    isLoaded(){
+      return this.$store.state.task.tasksLoaded;
+    },
+    ...mapGetters({
+      tasks:'task/getTasks'
+    })
+  },
   data(){
     return{
       queryDate:'today',
-      tasks:[]   
     }
   },
-  watch:{
-    queryDate(){
-      // clear existing tasks
-      this.tasks = []
-      // query for new task
-      this.queryTasks()
-    }
-  },
+  // watch:{
+  //   queryDate(){
+  //     // clear existing tasks
+  //     this.tasks = []
+  //     // query for new task
+  //     this.queryTasks()
+  //   }
+  // },
   methods:{
-    test:function(queryDate){
-      console.log(queryDate)
-    },
     queryTasks:async function(){
       const tasks = await getTasks(this.queryDate)
       this.tasks = tasks
-    }
+      return tasks
+    },
+    saveTasksToStore:function(tasks){
+      this.storeTasks(tasks)
+    },
+    ...mapActions({
+      storeTasks:'task/storeTasks'
+    })
   },
-  mounted(){
-    this.queryTasks()
+  async mounted(){
+    if(!this.isLoaded){
+     const tasks = await this.queryTasks()
+     this.saveTasksToStore(tasks)
+    }
   }
 }
 </script>
