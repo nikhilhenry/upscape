@@ -21,6 +21,9 @@
         </li>
       </ul>
     </div>
+    <div class="fab">
+      <button class="add-task create-button">Add Task</button>
+    </div>
   </div>
 </template>
 
@@ -83,6 +86,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .secondary-bar{
   display: flex;
   flex-direction: row;
@@ -101,4 +105,28 @@ export default {
   margin-left:0;
   padding:0;
 }
+
+.fab{
+  position: fixed;
+  bottom: 50px;
+  right:calc(50% - 4.5rem);
+  // right: 50%;
+}
+
+.add-task{
+  color:#fff;
+  background-color:$primary;
+  border:none;
+  font-size: 1.5rem;
+  font-family: "avenir";
+  padding: .5rem 1.2rem .5rem;
+  border-radius: .2rem;
+  margin:0;
+  transition: all 200ms ease-in;
+  &:hover{
+    // display:none;
+    background-color:darken($primary,5%)
+  }
+}
+
 </style>
