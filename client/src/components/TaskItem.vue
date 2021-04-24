@@ -21,5 +21,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/toggles.scss"
+@import "@/assets/toggles.scss";
+
+.wrapper{
+  display:flex;
+  justify-content:space-between;
+  background-color:#1f2225;
+  padding:1rem 1rem;
+  border-bottom: 3px solid $background;
+
+  .title{
+    font-size: 1.2rem;
+  }
+
+  .date{
+    margin-right: 3rem;
+    font-size: .8rem;
+    color:rgba(#54666d, $alpha: .5);
+    font-weight: 100;
+  }
+
+  .duration{
+    font-size: 1rem;
+    color: #54666d;
+    font-weight: 400;
+  }
+
+  .fas{
+    color:#ffd31d;
+    font-size: 1.4rem;
+  }
+
+  .right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 200px;    
+  }
+}
 </style>
