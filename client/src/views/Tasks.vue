@@ -11,7 +11,7 @@
         v-bind:queryDate="queryDate"
         v-on:update:query="queryDate = $event"
        />
-      <h3 class="total-duration">4.5 + 1 hrs</h3>
+      <h3 class="total-duration">{{totalDuration}} + 1 hrs</h3>
       </div>
 
        <!-- tasks  -->
@@ -42,7 +42,7 @@ import TaskItem from '@/components/TaskItem'
 import draggable from 'vuedraggable'
 
 import getTasks from '@/api/taskGet'
-import { mapActions } from 'vuex'
+import { mapGetters,mapActions } from 'vuex'
 
 export default {
   name:'Tasks',
@@ -69,7 +69,10 @@ export default {
       set(val){
         this.updateTaskList(val)
       }
-    }
+    },
+    ...mapGetters({
+      totalDuration:'task/getTotalTime'
+    })
   },
   data(){
     return{
