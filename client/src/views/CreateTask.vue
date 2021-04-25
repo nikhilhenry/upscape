@@ -112,7 +112,6 @@ export default {
 
       this.isLoading = true
       const savedTask = await postTask(task)
-      console.log(savedTask)
       this.isLoading = false
       // save to store
       this.storeTask(savedTask)

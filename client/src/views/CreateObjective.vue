@@ -81,7 +81,6 @@ export default {
 
       this.isLoading = true
       const savedObjective = await postObjective(objective)
-      console.log(savedObjective)
       this.isLoading = false
       // save to store
       this.storeObjective(savedObjective)

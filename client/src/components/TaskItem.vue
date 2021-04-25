@@ -65,7 +65,6 @@ export default {
       if (error) this.$store.dispatch('task/deleteTask',this.task._id)
     },
     completeTask:async function(){
-      console.log('updating task...')
       const updatedTask = await updateTaskById(this.task._id,{completed:this.completed})
       this.$store.dispatch('task/updateTask',updatedTask)
     }
