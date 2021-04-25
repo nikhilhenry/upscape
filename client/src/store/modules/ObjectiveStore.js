@@ -28,27 +28,27 @@ export default{
   },
 
   actions:{
-    storeTasks:(context,userTasks)=>{
-      context.commit("STORE_TASKS",userTasks)
+    storeObjectives:(context,userTasks)=>{
+      context.commit("STORE_OBJECTIVES",userTasks)
       if(userTasks.length){
-        context.commit("SET_TASKS_LOADED",true)
+        context.commit("SET_OBJECTIVES_LOADED",true)
       }
     },
 
-    updateTask:(context,updatedObjective)=>{
+    updateObjective:(context,updatedObjective)=>{
       if(updatedObjective){
         const index = context.state.objectives.findIndex(objective=>objective._id === updatedObjective._id)
         context.commit("UPDATE_OBJECTIVE",{index,updatedObjective})
       }
     },
 
-    storeTask:(context,newObjective)=>{
+    storeObjective:(context,newObjective)=>{
       if(newObjective){
         context.commit("STORE_OBJECTIVE",newObjective)
       }
     },
 
-    deleteTask:(context,objectiveId)=>{
+    deleteObjective:(context,objectiveId)=>{
       if(objectiveId){
         const index = context.state.objectives.findIndex(objective => objective._id === objectiveId)
         context.commit("DELETE_OBJECTIVE",index)
