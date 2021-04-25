@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default async function(payload){
-  const reponse = await axios.post('api/task/',payload)
+  const reponse = await axios.post('api/task',payload)
     .then(res=>{
       return res.data
     })
