@@ -1,3 +1,11 @@
+#ALL ARGS
+#Server
+ARG MONGODB_URI
+ARG DATABASE
+ARG PASSWORD_SECRET
+
+
+
 
 #client build
 
@@ -13,6 +21,11 @@ RUN npm run build
 
 #server build
 FROM golang:alpine AS server
+#Set arg to env
+ENV MONGODB_URI=${MONGODB_URI}
+ENV DATABASE=${DATABASE}
+ENV PASSWORD_SECRET=${PASSWORD_SECRET}
+
 # create app directtory
 
 WORKDIR /usr/src/app/server
