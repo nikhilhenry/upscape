@@ -87,12 +87,28 @@ export default {
 /deep/ .theme-dark .vdatetime-popup__header,
 /deep/.theme-dark .vdatetime-calendar__month__day--selected > span > span,
 /deep/ .theme-dark .vdatetime-calendar__month__day--selected:hover > span > span {
-  background: #FF9800;
+  background: $background;
 }
+
+/deep/ .theme-dark .vdatetime-popup{
+  background:$secondary;
+}
+
+/deep/ .theme-dark .vdatetime-popup__body{
+  color:$text-secondary;
+}
+
+/deep/ .theme-dark .vdatetime-calendar__month__day--selected > span > span{
+  color:$primary
+}
+
+/deep/ .theme-dark .vdatetime-calendar__month__day:hover > span > span{
+  background:$background
+} 
 
 /deep/ .theme-dark .vdatetime-year-picker__item--selected,
 /deep/ .theme-dark .vdatetime-time-picker__item--selected,
 /deep/ .theme-dark .vdatetime-popup__actions__button {
-  color: #ff9800;
+  color: $primary;
 }
 </style>
