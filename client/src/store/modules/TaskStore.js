@@ -21,7 +21,7 @@ export default{
       Vue.set(state.tasks,payload.index,payload.updatedTask)
     },
     STORE_TASK:(state,newTask)=>{
-      state.tasks.unshift(newTask)
+      state.tasks.push(newTask)
     },
     DELETE_TASK:(state,taskIndex)=>{
       state.tasks.splice(taskIndex,1)
