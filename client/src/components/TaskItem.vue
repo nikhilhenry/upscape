@@ -1,5 +1,5 @@
 <template>
-  <div class="task">
+  <div class="task" @dblclick="deleteTask()">
     <div class="wrapper">
       <div class="left">
         <p class="title">{{task.name}}</p>
@@ -17,6 +17,8 @@
 <script>
 import TimeAgo from 'javascript-time-ago'
 
+import deleteTaskById from '@/api/taskDelete.js'
+
 export default {
   name:'TaskItem',
   props: ['task'],
@@ -28,6 +30,13 @@ export default {
   mounted(){
     const timeAgo = new TimeAgo('en-US')
     this.timeAgo = timeAgo.format(new Date(this.task.created_at))
+  },
+  methods: {
+    deleteTask:async function(){
+      const error = await deleteTaskById(this.task._id)
+      console.log(error)
+      if (error) this.$store.dispatch('task/deleteTask',this.task._id)
+    }
   }
 }
 </script>
