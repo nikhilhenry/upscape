@@ -20,6 +20,9 @@
 <script>
 import Avatar from '@/components/Avatar'
 import ObjectiveItem from '@/components/ObjectiveItem'
+import {mapActions,mapGetters} from 'vuex'
+
+import getObjectives from '@/api/objectiveGet.js'
 
 export default {
   name:'Objectives',
@@ -27,24 +30,30 @@ export default {
     Avatar,
     ObjectiveItem
   },
-  data(){
-    return{
-      objectives:[
-        {
-          "_id": "6065deaa354032982e90599a",
-          "name": "Go to the beach",
-          "completed": false,
-          "scheduled_for": "2021-04-05T14:52:26Z",
-          "created_at": "2021-04-01T14:54:34Z"
-        },
-        {
-          "_id": "6065e38cd6972255cb13038d",
-          "name": "should be completed",
-          "completed": false,
-          "scheduled_for": "2021-04-07T14:52:26Z",
-          "created_at": "2021-04-01T15:15:24Z"
-        }
-      ]
+  computed:{
+    isLoaded(){
+      return this.$store.state.objective.objectivesLoaded;
+    },
+    ...mapGetters({
+      objectives:'objective/getObjectives'
+    })
+  },
+  methods:{
+    queryObjectives:async function(){
+      const objectives = await getObjectives()
+      return objectives
+    },
+    saveObjectivesToStore:function(objectives){
+      this.storeObjectives(objectives)
+    },
+    ...mapActions({
+      storeObjectives:'objective/storeObjectives'
+    })
+  },
+  async mounted(){
+    if(!this.isLoaded){
+      const objectives = await this.queryObjectives()
+      this.saveObjectivesToStore(objectives)
     }
   }
 }
