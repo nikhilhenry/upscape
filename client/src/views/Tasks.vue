@@ -11,7 +11,7 @@
         v-bind:queryDate="queryDate"
         v-on:update:query="queryDate = $event"
        />
-      <h3 class="total-duration">{{totalDuration}} + 1 hrs</h3>
+      <h3 class="total-duration" :class="colorClass">{{totalDuration}} + 1 hrs</h3>
       </div>
 
        <!-- tasks  -->
@@ -70,6 +70,13 @@ export default {
         this.updateTaskList(val)
       }
     },
+    colorClass(){
+        if(this.totalDuration<2) return 'light'
+        if(this.totalDuration<4.5) return 'medium'
+        if(this.totalDuration<6) return 'medium-heavy'
+        if(this.totalDuration>=6) return 'heavy'
+        return 'none'
+    },    
     ...mapGetters({
       totalDuration:'task/getTotalTime'
     })
@@ -114,6 +121,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/time-color-classes.scss";
 
 .secondary-bar{
   display: flex;
@@ -123,7 +131,6 @@ export default {
 
   .total-duration{
     font-size: 24px;
-    color:#0be881;
   }
 }
 
