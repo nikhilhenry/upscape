@@ -19,7 +19,7 @@
         <div class="field">
           <label class="label">Scheduled Date</label>
           <div class="control">
-            <input type="number" class="input" v-model="duration" required placeholder="0 MIN">
+            <datetime v-model="scheduledFor" type="date"/>
           </div>
         </div>
 
@@ -27,7 +27,7 @@
         <div class="field">
           <label class="label">Body</label>
           <div class="control">
-            <textarea class="textarea" placeholder="Textarea"></textarea>
+            <textarea class="textarea" placeholder="Textarea" v-model="body"></textarea>
           </div>
         </div>
 
@@ -37,7 +37,7 @@
             <button class="button is-primary" :class="{'is-loading':isLoading}">Create</button>
           </div>
           <div class="control">
-            <button class="button is-primary is-light" @click="$router.push({name:'Tasks'})">Back</button>
+            <button class="button is-primary is-light" @click="$router.push({name:'Objectives'})">Back</button>
           </div>
         </div>
 
@@ -51,10 +51,23 @@
 <script>
 import ModalView from '@/components/ModalView'
 
+import {Datetime} from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
+
 export default {
   name:'CreateObjective',
   components:{
-    ModalView
+    ModalView,
+    Datetime,
+  },
+  data(){
+    return {
+      name:'',
+      scheduledFor:'',
+      completed:false,
+      body:'',
+      isLoading:false
+    }
   }
 }
 </script>
