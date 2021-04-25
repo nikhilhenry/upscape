@@ -69,10 +69,15 @@ export default {
   },
   methods:{
     createTask:async function(){
-      const task = {
+      let task = {
         name:this.name,
         duration:parseInt(this.duration) || 0,
         highlight:this.highlight
+      }
+
+      // check if task is for tomorrow
+      if(this.$route.query.range=='tomorrow'){
+        task.is_tomorrow = true
       }
 
       this.isLoading = true
