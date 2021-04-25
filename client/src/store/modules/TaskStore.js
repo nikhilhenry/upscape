@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+import updateTaskById from '@/api/taskPost.js'
+
 export default{
   namespaced:true,
 
@@ -60,6 +62,20 @@ export default{
     setNewTaskList:(context,taskList)=>{
       context.commit("SET_TASKS_LOADED",false)
       context.commit("SET_TASKS",taskList)
+    },
+    updateTaskList:(context,taskList)=>{
+
+      taskList.forEach(async (task,index)=>{
+
+        // set task api id to index of ordered taskList
+        task.id = index
+
+        // send to api
+        await updateTaskById(task._id,{id:task.id})
+      })
+
+      context.commit("SET_TASKS",taskList)
+
     }
   },
 
