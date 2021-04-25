@@ -90,10 +90,19 @@ export default {
   },
   methods:{
     createTask:async function(){
+
+      let tagIds
+
+      // only get tagIds
+      if(this.selectedTags.length){
+        tagIds = this.selectedTags.map(tag=>{return tag._id})
+      }
+
       let task = {
         name:this.name,
         duration:parseInt(this.duration) || 0,
-        highlight:this.highlight
+        highlight:this.highlight,
+        tag_ids:tagIds
       }
 
       // check if task is for tomorrow
