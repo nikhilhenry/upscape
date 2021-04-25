@@ -14,6 +14,11 @@
       </li>
     </ul>
   </div>
+    <!-- create objective objective -->
+  <div class="fab">
+    <router-link :to="{path:'objectives/create'}" class="create-button">Create Objective</router-link>
+  </div>
+  <router-view></router-view>  
 </div>
 </template>
 
@@ -65,5 +70,29 @@ export default {
   list-style: none;
   margin-left:0;
   padding:0;
+}
+
+.fab{
+  position: fixed;
+  bottom: 50px;
+  right:calc(50% - 7rem);
+  // right: 50%;
+}
+
+.create-button{
+  color:#fff;
+  background-color:$primary;
+  border:none;
+  font-size: 1.5rem;
+  font-family: "avenir";
+  padding: .5rem 1.2rem .5rem;
+  border-radius: .2rem;
+  margin:0;
+  text-decoration: none;
+  transition: all 200ms ease-in;
+  &:hover{
+    // display:none;
+    background-color:darken($primary,5%)
+  }
 }
 </style>
