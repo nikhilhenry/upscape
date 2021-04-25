@@ -31,6 +31,7 @@
           v-model="tags" track-by="_id" label="name" 
           :options="tagOptions" :allow-empty="true"
           :multiple="true" :taggable="true"
+          @tag="createTag"
           placeholder="Select tags">
             <template slot="singleLabel" slot-scope="{ option }">{{ option.name }}</template>
           </multiselect>   
