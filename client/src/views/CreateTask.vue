@@ -28,7 +28,7 @@
         <label class="label">Tags</label>
         <div class="control">
           <multiselect 
-          v-model="tags" track-by="_id" label="name" 
+          v-model="selectedTags" track-by="_id" label="name" 
           :options="tagOptions" :allow-empty="true"
           :multiple="true" :taggable="true"
           @tag="createTag"
@@ -85,7 +85,7 @@ export default {
       duration:'',
       highlight:false,
       isLoading:false,
-      tags:[]
+      selectedTags:[]
     }
   },
   methods:{
