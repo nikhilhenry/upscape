@@ -23,6 +23,16 @@
           </div>
         </div>
 
+      <!--tags -->
+      <div class="field">
+        <label class="label">Tags</label>
+        <div class="control">
+          <multiselect v-model="tags" deselect-label="Can't remove this value" track-by="_id" label="name" placeholder="Select one" :options="tagOptions" :searchable="false" :allow-empty="true">
+            <template slot="singleLabel" slot-scope="{ option }">{{ option.name }}</template>
+          </multiselect>   
+        </div>   
+      </div>
+
         <!--highlight  -->
         <div class="field" id="checkbox">
           <label class="checkbox">
@@ -51,20 +61,26 @@
 <script>
 import ModalView from '@/components/ModalView'
 import {mapActions} from 'vuex'
+import loadTags from '@/mixins/loadTags'
+
+import Multiselect from 'vue-multiselect'
 
 import postTask from '@/api/taskPost'
 
 export default {
   name:'CreateTask',
   components:{
-    ModalView
+    ModalView,
+    Multiselect
   },
+  mixins:[loadTags],
   data(){
     return{
       name:'',
       duration:'',
       highlight:false,
       isLoading:false,
+      tags:[]
     }
   },
   methods:{
@@ -93,6 +109,8 @@ export default {
   }
 }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style lang="scss" scoped>
 @import '~bulma';
