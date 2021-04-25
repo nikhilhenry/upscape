@@ -6,6 +6,11 @@
         <span class="date">{{timeAgo}}</span>
       </div>
       <div class="right">
+        <ul class="tags">
+          <li v-for="(tag,index) in tags" :key="index">
+            <span>{{tag.name}}</span>
+          </li>
+        </ul>
         <span class="duration">{{task.duration}} MIN</span>
         <i class="fas fa-star" v-if="task.highlight"></i>
         <input id="c1" type="checkbox" class="complete" v-model="completed">
