@@ -6,7 +6,7 @@
         <span class="time-ago">{{timeAgo}}</span>
       </div>
       <div class="right">
-        <span class="date">{{objective.scheduled_for}}</span>
+        <span class="date">{{scheduledFor}}</span>
         <input id="c1" type="checkbox" class="complete" v-model="completed">
       </div>
     </div>
@@ -22,14 +22,25 @@ export default {
   data(){
     return{
       timeAgo:'',
-      completed:false
+      completed:false,
+      scheduledFor:''
+    }
+  },
+  methods:{
+    formateDate:function(date){
+      const formattedDate = date.toLocaleString('default',{month:'short'}).toUpperCase()+' '+new Date(date).getDate()+' '+ new Date(date).getFullYear()
+      return formattedDate
     }
   },
   created(){
     const timeAgo = new TimeAgo('en-US')
     this.timeAgo = timeAgo.format(new Date(this.objective.created_at))
 
-    this.completed = this.objective.completed    
+    this.completed = this.objective.completed
+    
+    // format scheduled_for
+    const formattedDate = this.formateDate(new Date(this.objective.scheduled_for))
+    this.scheduledFor = formattedDate
   }
 }
 </script>
