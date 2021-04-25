@@ -3,7 +3,7 @@ import getTags from '@/api/tagGet.js'
 export default{
   async mounted(){
     // check if tags isLoaded
-    if(!this.$store.tags.tagsLoaded){
+    if(!this.$store.state.tag.tagsLoaded){
       // query tags
       const tags = await getTags()
 
