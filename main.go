@@ -9,6 +9,7 @@ import (
 	"upscape/controllers"
 	"upscape/middlewares"
 
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -50,6 +51,15 @@ func main() {
 	router.Use(middlewares.CORSMiddleware())
 
 	// declare routes
+
+	// if app is in production
+	if os.Getenv("GIN_MODE") == "release" {
+		// handle production
+		fmt.Println(os.Getenv("GIN_MODE"))
+		// static folder
+		// Serve the frontend
+		router.Use(static.Serve("/", static.LocalFile("./public", true)))
+	}
 
 	router.POST("/api/auth/login", controllers.LoginUser(clientDatabase))
 	// user routes
