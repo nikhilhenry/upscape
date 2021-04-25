@@ -8,7 +8,7 @@
       <div class="right">
         <ul class="tags">
           <li v-for="(tag,index) in tags" :key="index">
-            <span>{{tag.name}}</span>
+            <span class="tag" :style="{background:tag.color}">{{tag.name}}</span>
           </li>
         </ul>
         <span class="duration">{{task.duration}} MIN</span>
@@ -119,7 +119,21 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-width: 200px;    
+    min-width: 300px;   
+  }
+}
+
+.tags{
+  list-style: none;
+  margin:0;
+  padding:0;
+  display: flex;
+  flex-direction: row;
+  .tag{
+    color: #fff;
+    padding: .1rem .5rem .1rem;
+    margin-left: .5rem;
+    border-radius: .3rem;
   }
 }
 
