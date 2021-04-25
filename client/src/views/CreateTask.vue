@@ -1,7 +1,49 @@
 <template>
-<div class="create-task">
+<div class="create-task is-clipped">
   <ModalView>
-  <h1>Hello World</h1>
+  <div class="card is-v-center">
+    <div class="card-content">
+      <h1 class="title">Create Task</h1>
+
+      <!-- form elements -->
+      <form id="create-task" @submit.prevent="createTask">
+        <!-- name -->
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input type="text" class="input" v-model="name" required placeholder="Eat Sushi">
+          </div>
+        </div>
+
+        <!-- duration -->
+        <div class="field">
+          <label class="label">Duration</label>
+          <div class="control">
+            <input type="number" class="input" v-model="duration" required placeholder="0 MIN">
+          </div>
+        </div>
+
+        <!--highlight  -->
+        <div class="field" id="checkbox">
+          <label class="checkbox">
+            <input type="checkbox">
+            Highlight of the Day
+          </label>
+        </div>
+
+        <!-- submit -->
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-primary" :class="{'is-loading':isLoading}">Create</button>
+          </div>
+          <div class="control">
+            <button class="button is-primary is-light" @click="$router.push({name:'Tasks'})">Back</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div> 
   </ModalView>
 </div>  
 </template>
@@ -13,6 +55,37 @@ export default {
   name:'CreateTask',
   components:{
     ModalView
+  },
+  data(){
+    return{
+      name:'',
+      duration:'',
+      highlight:false,
+      isLoading:false,
+    }
+  },
+  methods:{
+    createTask:async function(){
+      const task = {
+        name:this.name,
+        duration:this.duration,
+        highlight:this.false
+      }
+
+      console.log(task)
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~bulma';
+
+.card{
+  width: 30vw!important;
+}
+
+.field:last-child{
+  margin-top: 2rem;
+}
+</style>
