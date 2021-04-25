@@ -57,7 +57,20 @@ export default{
 
       // set meta loaded to true
       context.commit("SET_META_LOADED",true);
-    },    
+    },
+    logout:async(context)=>{
+      // remove local storage token
+      await localStorage.removeItem('auth_token')
+
+      // remove auth token from store
+      context.commit("STORE_AUTH_TOKEN","")
+
+      // remove axios headers
+      await delete axios.defaults.headers.common['auth_token']
+
+      // set authenticated to false
+      context.commit("SET_AUTHENTICATED",false)
+    }    
   },
 
   getters:{

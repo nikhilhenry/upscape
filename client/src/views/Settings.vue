@@ -38,7 +38,7 @@
         </div>        
 
         <div class="option logout">
-          <button class="button is-danger">
+          <button class="button is-danger" @click="logoutUser">
             <span>Logout</span>
             <span class="icon">
               <i class="fas fa-sign-out-alt"></i>
@@ -52,11 +52,24 @@
 
 <script>
 import Avatar from '@/components/Avatar'
+import {mapActions} from 'vuex'
 
 export default {
   name:'Settings',
-  component:{
+  components:{
     Avatar
+  },
+  methods:{
+    logoutUser:async function(){
+      // run store action
+      await this.logout()
+      
+      // route user to login page
+      this.$router.push({name:'Login'})
+    },
+    ...mapActions({
+      logout:'user/logout'
+    })
   }
 }
 </script>
