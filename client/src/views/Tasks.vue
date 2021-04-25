@@ -19,7 +19,7 @@
         <draggable v-model="tasks" ghost-class="ghost">
           <transition-group type="transistion" name="flip-list">
             <li v-for="task in tasks" :key="task._id">
-              <TaskItem :task="task" :key="index"/>
+              <TaskItem :task="task"/>
             </li>
           </transition-group> 
         </draggable>
