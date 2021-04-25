@@ -46,6 +46,15 @@ const routes = [
     }]
   },
   {
+    path:'/settings',
+    name:'Settings',
+    component: () => import('../views/Settings.vue'),
+    meta:{
+      requriesAuth:true,
+      layout:NavbarLayout
+    }
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
