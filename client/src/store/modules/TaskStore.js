@@ -14,6 +14,9 @@ export default{
       const tasks = state.tasks.concat(taskList);
       state.tasks = tasks
     },
+    SET_TASKS:(state,taskList)=>{
+      state.tasks = taskList
+    },
     SET_TASKS_LOADED:(state,isLoaded)=>{
       state.tasksLoaded = isLoaded
     },
@@ -53,6 +56,9 @@ export default{
         const index = context.state.tasks.findIndex(task => task._id === taskId)
         context.commit("DELETE_TASK",index)
       }
+    },
+    setNewTaskList:(context,taskList)=>{
+      context.commit("SET_TASKS",taskList)
     }
   },
 
