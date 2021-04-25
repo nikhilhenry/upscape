@@ -27,7 +27,7 @@
       <div class="field">
         <label class="label">Tags</label>
         <div class="control">
-          <multiselect v-model="tags" deselect-label="Can't remove this value" track-by="_id" label="name" placeholder="Select one" :options="tagOptions" :searchable="false" :allow-empty="true">
+          <multiselect v-model="tags" track-by="_id" label="name" placeholder="Select one" :options="tagOptions" :allow-empty="true">
             <template slot="singleLabel" slot-scope="{ option }">{{ option.name }}</template>
           </multiselect>   
         </div>   
