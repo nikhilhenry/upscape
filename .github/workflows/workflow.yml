@@ -30,7 +30,7 @@ jobs:
       - name: Build and push
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web --arg DATABASE=${{DATABASE}} MONGODB_URI=${{MONGODB_URI}} PASSWORD_SECRET=${{PASSWORD_SECRET}}
+        run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web --arg DATABASE=${{secrets.DATABASE}} MONGODB_URI=${{secrets.MONGODB_URI}} PASSWORD_SECRET=${{secrets.PASSWORD_SECRET}}
       - name: Release
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
