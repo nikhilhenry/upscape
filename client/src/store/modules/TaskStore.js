@@ -48,7 +48,7 @@ export default{
       }
     },
 
-    deleteReflection:(context,taskId)=>{
+    deleteTask:(context,taskId)=>{
       if(taskId){
         const index = context.state.taks.findIndex(task => task._id === taskId)
         context.commit("DELETE_TASK",index)
