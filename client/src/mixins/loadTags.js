@@ -5,7 +5,7 @@ export default{
 
   computed:{
     ...mapGetters({
-      tags:'tag/getTags'
+      tagOptions:'tag/getTags'
     })
   },
   async mounted(){
