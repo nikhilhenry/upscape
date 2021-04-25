@@ -35,7 +35,30 @@
               </a>
             </div>
           </div>
-        </div>        
+        </div>
+
+
+        <!-- update password-->
+        <div class="option">
+          <h3 class="title is-4">Update Password</h3>
+          <!-- old password -->
+          <div class="field">
+            <div class="control old-password">
+              <input type="text" class="input" required placeholder="old password">
+            </div>
+          </div>          
+          <!-- new password -->
+          <div class="field has-addons">
+            <div class="control">
+              <input class="input" type="password" required placeholder="new password">
+            </div>
+            <div class="control">
+              <a class="button is-info">
+                Update
+              </a>
+            </div>
+          </div>
+        </div>                 
 
         <div class="option logout">
           <button class="button is-danger" @click="logoutUser">
@@ -100,6 +123,10 @@ export default {
   &::placeholder{
     color:darken($text-primary,20%);
   }
+}
+
+.old-password{
+  width:21%;
 }
 
 .logout{
