@@ -86,6 +86,18 @@ export default{
     getTask:(state) => (taskId)=>{
       const task = state.tasks.find(task => task._id === taskId)
       return task
+    },
+    getTotalTime:(state)=>{
+      const tasks = state.tasks
+
+      let totalTime = 0
+
+      // loop through all tasks and add time
+      tasks.forEach(task=>{
+        totalTime+=task.duration
+      })
+
+      return (totalTime/60).toFixed(2)
     }
   }
 }
