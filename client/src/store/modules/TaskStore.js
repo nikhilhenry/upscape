@@ -90,6 +90,10 @@ export default{
     getTotalTime:(state)=>{
       const tasks = state.tasks
 
+      if(!tasks){
+        return 0
+      }
+
       let totalTime = 0
 
       // loop through all tasks and add time
