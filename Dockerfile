@@ -15,6 +15,7 @@ WORKDIR /usr/src/app/client
 COPY ./client/package*.json ./
 ENV NODE_ENV=production
 RUN npm install --also=dev
+RUN ls
 COPY ./client .
 ENV NODE_ENV=production
 RUN npm run build
