@@ -9,7 +9,7 @@ ARG PASSWORD_SECRET
 
 #client build
 
-FROM node:alpine AS client
+FROM node:lts-alpine AS client
 
 WORKDIR /usr/src/app/client
 COPY ./client/package*.json ./
