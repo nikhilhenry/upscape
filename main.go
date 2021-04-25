@@ -58,7 +58,7 @@ func main() {
 		fmt.Println(os.Getenv("GIN_MODE"))
 		// static folder
 		// Serve the frontend
-		router.Use(static.Serve("/", static.LocalFile("./public", true)))
+		router.Use(static.Serve("/", static.LocalFile("./public/index.html", true)))
 	}
 
 	router.POST("/api/auth/login", controllers.LoginUser(clientDatabase))
