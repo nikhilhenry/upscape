@@ -8,7 +8,7 @@ export default{
 
   mutations:{
     STORE_TAGS:(state,tagList)=>{
-      const tags = state.tags.concat(tags)
+      const tags = state.tags.concat(tagList)
       state.tags = tags
     },
     STORE_TAG:(state,newTag)=>{
