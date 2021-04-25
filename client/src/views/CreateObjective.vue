@@ -50,6 +50,8 @@
 
 <script>
 import ModalView from '@/components/ModalView'
+import postObjective from '@/api/objectivePost.js'
+import {mapActions} from 'vuex'
 
 import {Datetime} from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
@@ -68,6 +70,25 @@ export default {
       body:'',
       isLoading:false
     }
+  },
+  methods:{
+    createObjective:async function(){
+      const objective = {
+        name:this.name,
+        scheduled_for:this.scheduledFor,
+        body:this.body,
+      }
+
+      this.isLoading = true
+      const savedObjective = await postObjective(objective)
+      console.log(savedObjective)
+      this.isLoading = false
+      // save to store
+      this.storeObjective(savedObjective)
+    },
+    ...mapActions({
+      storeObjective:'objective/storeObjective'
+    })
   }
 }
 </script>
