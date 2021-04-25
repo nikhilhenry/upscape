@@ -2,20 +2,35 @@
   <div class="objective">
     <div class="wrapper">
       <div class="left">
-        <p class="title">Deploy App</p>
-        <span class="time-ago">1 hour ago</span>
+        <p class="title">{{objective.name}}</p>
+        <span class="time-ago">{{timeAgo}}</span>
       </div>
       <div class="right">
-        <span class="date">APR 26 21</span>
-        <input id="c1" type="checkbox" class="complete">
+        <span class="date">{{objective.scheduled_for}}</span>
+        <input id="c1" type="checkbox" class="complete" v-model="completed">
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import TimeAgo from 'javascript-time-ago'
+
 export default {
-  name:'ObjectiveItem'
+  name:'ObjectiveItem',
+  props:['objective'],
+  data(){
+    return{
+      timeAgo:'',
+      completed:false
+    }
+  },
+  created(){
+    const timeAgo = new TimeAgo('en-US')
+    this.timeAgo = timeAgo.format(new Date(this.objective.created_at))
+
+    this.completed = this.objective.completed    
+  }
 }
 </script>
 
