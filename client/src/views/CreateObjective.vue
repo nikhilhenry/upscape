@@ -19,7 +19,7 @@
         <div class="field">
           <label class="label">Scheduled Date</label>
           <div class="control">
-            <datetime v-model="scheduledFor" type="date"/>
+            <datetime v-model="scheduledFor" type="date" class="theme-dark"></datetime>
           </div>
         </div>
 
@@ -81,5 +81,18 @@ export default {
 
 .field:last-child{
   margin-top: 2rem;
+}
+
+// datetime theme
+/deep/ .theme-dark .vdatetime-popup__header,
+/deep/.theme-dark .vdatetime-calendar__month__day--selected > span > span,
+/deep/ .theme-dark .vdatetime-calendar__month__day--selected:hover > span > span {
+  background: #FF9800;
+}
+
+/deep/ .theme-dark .vdatetime-year-picker__item--selected,
+/deep/ .theme-dark .vdatetime-time-picker__item--selected,
+/deep/ .theme-dark .vdatetime-popup__actions__button {
+  color: #ff9800;
 }
 </style>
