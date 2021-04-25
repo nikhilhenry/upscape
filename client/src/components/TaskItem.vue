@@ -6,13 +6,13 @@
         <span class="date">{{timeAgo}}</span>
       </div>
       <div class="right">
+        <i class="fas fa-star" v-if="task.highlight"></i>
         <ul class="tags">
           <li v-for="(tag,index) in tags" :key="index">
             <span class="tag" :style="{background:tag.color}">{{tag.name}}</span>
           </li>
         </ul>
         <span class="duration">{{task.duration}} MIN</span>
-        <i class="fas fa-star" v-if="task.highlight"></i>
         <input id="c1" type="checkbox" class="complete" v-model="completed">
       </div>
     </div>
@@ -76,6 +76,8 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/toggles.scss";
 
+$flex-gap:2rem;
+
 .wrapper{
   display:flex;
   justify-content:space-between;
@@ -104,21 +106,24 @@ export default {
     font-size: 1.2rem;
     color: $text-secondary;
     font-weight: 400;
+    margin-left: $flex-gap;
   }
 
   .fas{
     color:#ffd31d;
     font-size: 1.4rem;
+    margin-left: $flex-gap;
   }
 
   .complete{
+    margin-left: $flex-gap;
     transform: scale(1.5);
   }
 
   .right{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     min-width: 300px;   
   }
 }
@@ -126,6 +131,7 @@ export default {
 .tags{
   list-style: none;
   margin:0;
+  margin-left: $flex-gap;
   padding:0;
   display: flex;
   flex-direction: row;
