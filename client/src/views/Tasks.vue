@@ -88,8 +88,10 @@ export default {
   },
   async mounted(){
     if(!this.isLoaded){
-     const tasks = await this.queryTasks()
-     this.saveTasksToStore(tasks)
+      //  clear if anything present in store
+      this.$store.dispatch('task/setNewTaskList',[])
+      const tasks = await this.queryTasks()
+      this.saveTasksToStore(tasks)
     }
   }
 }

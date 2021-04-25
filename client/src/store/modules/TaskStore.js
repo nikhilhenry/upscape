@@ -58,6 +58,7 @@ export default{
       }
     },
     setNewTaskList:(context,taskList)=>{
+      context.commit("SET_TASKS_LOADED",false)
       context.commit("SET_TASKS",taskList)
     }
   },
