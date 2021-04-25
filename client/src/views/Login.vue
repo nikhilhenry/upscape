@@ -62,6 +62,9 @@ export default {
 			this.storeToken(response.token)
 
 			this.password = ''
+
+			// route to homepage
+			this.$router.push({name:'Home'})
     },
 		...mapActions({
 			storeToken:'user/storeAuthToken'
