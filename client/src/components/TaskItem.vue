@@ -26,7 +26,8 @@ export default {
   data(){
     return{
       timeAgo:'',
-      completed:false
+      completed:false,
+      tags:[]
     }
   },
   watch:{
@@ -39,6 +40,18 @@ export default {
     this.timeAgo = timeAgo.format(new Date(this.task.created_at))
 
     this.completed = this.task.completed
+
+    // fetching tags
+    if(this.task.tag_ids){
+      let tags = []
+      this.task.tag_ids.forEach(tagId=>{
+        const tagObject = this.$store.getters['tag/getTagById'](tagId)
+        tags.push(tagObject)
+      })
+
+      // save tags to component
+      this.tags = tags
+    }
   },
   methods: {
     deleteTask:async function(){
