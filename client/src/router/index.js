@@ -51,7 +51,15 @@ const routes = [
     meta:{
       requiresAuth:true,
       layout:NavbarLayout
-    }
+    },
+    children:[{
+      path:'create',
+      component:() => import('../views/CreateObjective.vue'),
+      meta:{
+        requiresAuth:true,
+        layout:NavbarLayout
+      }
+    }]    
   },
   {
     path:'/settings',
