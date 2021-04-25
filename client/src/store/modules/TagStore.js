@@ -41,6 +41,10 @@ export default{
   getters:{
     getTags:(state)=>{
       return state.tags
-    }
+    },
+    getTagById:(state) => (tagId)=>{
+      const task = state.tags.find(tag => tag._id === tagId)
+      return task
+    },    
   }
 }
