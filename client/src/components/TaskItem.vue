@@ -1,5 +1,5 @@
 <template>
-  <div class="task" @dblclick="deleteTask()">
+  <div class="task" v-bind:class="{'is-completed':completed}" @dblclick="deleteTask()">
     <div class="wrapper">
       <div class="left">
         <p class="title">{{task.name}}</p>
@@ -103,5 +103,9 @@ export default {
     justify-content: space-between;
     min-width: 200px;    
   }
+}
+
+.is-completed{
+  filter: opacity(.5)
 }
 </style>
