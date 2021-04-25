@@ -56,14 +56,14 @@ export default {
       queryDate:'today',
     }
   },
-  // watch:{
-  //   queryDate(){
-  //     // clear existing tasks
-  //     this.tasks = []
-  //     // query for new task
-  //     this.queryTasks()
-  //   }
-  // },
+  watch:{
+    async queryDate(){
+      // query for new task
+      const newTaskList = await this.queryTasks()
+      // set newTaskList in store
+      this.setNewTaskList(newTaskList)
+    }
+  },
   methods:{
     queryTasks:async function(){
       const tasks = await getTasks(this.queryDate)
@@ -74,7 +74,8 @@ export default {
       this.storeTasks(tasks)
     },
     ...mapActions({
-      storeTasks:'task/storeTasks'
+      storeTasks:'task/storeTasks',
+      setNewTaskList:'task/setNewTaskList'
     })
   },
   async mounted(){
