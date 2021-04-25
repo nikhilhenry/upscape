@@ -17,11 +17,11 @@
        <!-- tasks  -->
        <ul class="task-list">
         <draggable v-model="tasks" ghost-class="ghost">
-          <li v-for="(task,index) in tasks" :key="index">
-            <transition-group type="transistion" name="flip-list">
+          <transition-group type="transistion" name="flip-list">
+            <li v-for="task in tasks" :key="task._id">
               <TaskItem :task="task" :key="index"/>
-            </transition-group> 
-          </li>
+            </li>
+          </transition-group> 
         </draggable>
       </ul>
     </div>
