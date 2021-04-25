@@ -22,7 +22,9 @@
       </ul>
     </div>
     <div class="fab">
-      <router-link to="/tasks/create" class="create-button" >Create Task</router-link>
+      <div v-if="canCreate">
+      <router-link :to="{path:'tasks/create',query:{range:queryDate}}" class="create-button">Create Task</router-link>
+      </div>
     </div>
      <router-view></router-view>
   </div>
@@ -46,6 +48,12 @@ export default {
   computed:{
     isLoaded(){
       return this.$store.state.task.tasksLoaded;
+    },
+    canCreate(){
+      if(this.queryDate == 'today' || this.queryDate == 'tomorrow'){
+        return true
+      }
+      return false
     },
     ...mapGetters({
       tasks:'task/getTasks'
