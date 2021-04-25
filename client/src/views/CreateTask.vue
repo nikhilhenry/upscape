@@ -26,7 +26,7 @@
         <!--highlight  -->
         <div class="field" id="checkbox">
           <label class="checkbox">
-            <input type="checkbox">
+            <input type="checkbox" v-model="highlight">
             Highlight of the Day
           </label>
         </div>
@@ -72,7 +72,7 @@ export default {
       const task = {
         name:this.name,
         duration:parseInt(this.duration),
-        highlight:this.false
+        highlight:this.highlight
       }
 
       this.isLoading = true
