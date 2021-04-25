@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import updateTaskById from '@/api/taskPost.js'
+import updateTaskById from '@/api/taskPut.js'
 
 export default{
   namespaced:true,
