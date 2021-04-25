@@ -44,6 +44,14 @@ const routes = [
         layout:NavbarLayout
       }
     }]
+  },{
+    path:'/objectives',
+    name:'Objectives',
+    component:() => import('../views/Objectives.vue'),
+    meta:{
+      requiresAuth:true,
+      layout:NavbarLayout
+    }
   },
   {
     path:'/settings',
