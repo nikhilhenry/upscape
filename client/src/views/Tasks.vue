@@ -38,7 +38,7 @@
 import Avatar from '@/components/Avatar'
 import TasksDateRange from '@/components/TasksDateRange'
 import TaskItem from '@/components/TaskItem'
-import loadTags from '@/mixins/loadTags.js'
+import tags from '@/mixins/tags.js'
 
 import draggable from 'vuedraggable'
 
@@ -53,7 +53,7 @@ export default {
     TaskItem,
     draggable
   },
-  mixins:[loadTags],
+  mixins:[tags],
   computed:{
     isLoaded(){
       return this.$store.state.task.tasksLoaded;

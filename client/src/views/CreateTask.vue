@@ -65,7 +65,7 @@
 <script>
 import ModalView from '@/components/ModalView'
 import {mapActions} from 'vuex'
-import loadTags from '@/mixins/loadTags'
+import tags from '@/mixins/tags'
 
 import Multiselect from 'vue-multiselect'
 
@@ -77,7 +77,7 @@ export default {
     ModalView,
     Multiselect
   },
-  mixins:[loadTags],
+  mixins:[tags],
   data(){
     return{
       name:'',
