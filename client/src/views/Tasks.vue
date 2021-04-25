@@ -16,9 +16,13 @@
 
        <!-- tasks  -->
        <ul class="task-list">
-        <li v-for="(task,index) in tasks" :key="index">
-          <TaskItem :task="task"/>
-        </li>
+        <draggable v-model="tasks" ghost-class="ghost">
+          <li v-for="(task,index) in tasks" :key="index">
+            <transition-group type="transistion" name="flip-list">
+              <TaskItem :task="task" :key="index"/>
+            </transition-group> 
+          </li>
+        </draggable>
       </ul>
     </div>
     <div class="fab">
@@ -35,15 +39,18 @@ import Avatar from '@/components/Avatar'
 import TasksDateRange from '@/components/TasksDateRange'
 import TaskItem from '@/components/TaskItem'
 
+import draggable from 'vuedraggable'
+
 import getTasks from '@/api/taskGet'
-import { mapGetters,mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name:'Tasks',
   components:{
     Avatar,
     TasksDateRange,
-    TaskItem
+    TaskItem,
+    draggable
   },
   computed:{
     isLoaded(){
@@ -55,9 +62,14 @@ export default {
       }
       return false
     },
-    ...mapGetters({
-      tasks:'task/getTasks'
-    })
+    tasks:{
+      get(){
+        return this.$store.state.task.tasks
+      },
+      set(val){
+        this.updateTaskList(val)
+      }
+    }
   },
   data(){
     return{
@@ -83,7 +95,8 @@ export default {
     },
     ...mapActions({
       storeTasks:'task/storeTasks',
-      setNewTaskList:'task/setNewTaskList'
+      setNewTaskList:'task/setNewTaskList',
+      updateTaskList:'task/updateTaskList'
     })
   },
   async mounted(){
@@ -140,6 +153,16 @@ export default {
     // display:none;
     background-color:darken($primary,5%)
   }
+}
+
+// draggable
+.flip-list-move{
+  transition: transform 0.5s;
+}
+
+.ghost{
+  box-shadow: 5px 5px 2.5px -1px rgba(0,0,0,0.14);
+  opacity: 0.7;
 }
 
 </style>
