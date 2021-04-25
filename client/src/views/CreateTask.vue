@@ -27,7 +27,11 @@
       <div class="field">
         <label class="label">Tags</label>
         <div class="control">
-          <multiselect v-model="tags" track-by="_id" label="name" placeholder="Select one" :options="tagOptions" :allow-empty="true">
+          <multiselect 
+          v-model="tags" track-by="_id" label="name" 
+          :options="tagOptions" :allow-empty="true"
+          :multiple="true" :taggable="true"
+          placeholder="Select tags">
             <template slot="singleLabel" slot-scope="{ option }">{{ option.name }}</template>
           </multiselect>   
         </div>   
