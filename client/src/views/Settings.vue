@@ -12,10 +12,10 @@
           <h3 class="title is-4">Change Name</h3>
           <div class="field has-addons">
             <div class="control">
-              <input class="input" type="text" placeholder="New Name">
+              <input class="input" type="text" placeholder="New Name" v-model="name">
             </div>
             <div class="control">
-              <a class="button is-info">
+              <a class="button is-info" @click="updateName">
                 Update
               </a>
             </div>
@@ -77,12 +77,24 @@
 import Avatar from '@/components/Avatar'
 import {mapActions} from 'vuex'
 
+import updateUser from '@/api/userPut.js'
+
 export default {
   name:'Settings',
   components:{
     Avatar
   },
+  data(){
+    return {
+      name:''
+    }
+  },
   methods:{
+    updateName:async function(){
+      if(!this.name) return  null
+      const response = await updateUser({name:this.name})
+      this.$store.dispatch('user/storeMetaData',response)
+    },
     logoutUser:async function(){
       // run store action
       await this.logout()
