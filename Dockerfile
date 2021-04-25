@@ -4,10 +4,11 @@
 FROM node:alpine AS client
 
 WORKDIR /usr/src/app/client
-COPY package*.json .
+COPY ./client/package*.json ./
 ENV NODE_ENV=production
 RUN npm install --also=dev
 COPY ./client .
+ENV NODE_ENV=production
 RUN npm run build
 RUN ls
 
@@ -25,8 +26,8 @@ FROM alpine:latest
 WORKDIR /root/
 RUN mkdir /public
 COPY --from=server /usr/src/app/server .
-COPY --from=client /usr/src/app/client/public ./public
-RUN ls
+COPY --from=client /usr/src/app/client/dist ./public
+RUN cd public && ls
 
 #run server executable
 CMD ["./main"]
