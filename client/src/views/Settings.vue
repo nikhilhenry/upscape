@@ -44,16 +44,16 @@
           <!-- old password -->
           <div class="field">
             <div class="control old-password">
-              <input type="text" class="input" required placeholder="old password">
+              <input type="password" class="input" required placeholder="old password" v-model="oldPassword">
             </div>
           </div>          
           <!-- new password -->
           <div class="field has-addons">
             <div class="control">
-              <input class="input" type="password" required placeholder="new password">
+              <input class="input" type="password" required placeholder="new password" v-model="newPassword">
             </div>
             <div class="control">
-              <a class="button is-info">
+              <a class="button is-info" @click="updateUserPassword">
                 Update
               </a>
             </div>
@@ -78,6 +78,7 @@ import Avatar from '@/components/Avatar'
 import {mapActions} from 'vuex'
 
 import updateUser from '@/api/userPut.js'
+import updatePassword from '@/api/passwordUpdate.js'
 
 export default {
   name:'Settings',
@@ -86,7 +87,9 @@ export default {
   },
   data(){
     return {
-      name:''
+      name:'',
+      oldPassword:'',
+      newPassword:''
     }
   },
   methods:{
@@ -101,6 +104,12 @@ export default {
       
       // route user to login page
       this.$router.push({name:'Login'})
+    },
+    updateUserPassword:async function(){
+      const payload = {current_password:this.oldPassword,new_password:this.newPassword}
+      await updatePassword(payload)
+
+      await this.logoutUser()
     },
     ...mapActions({
       logout:'user/logout'
