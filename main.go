@@ -19,7 +19,7 @@ import (
 func main() {
 	// load env file
 	if err := godotenv.Load(); err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 
 	fmt.Println("Starting the application")
