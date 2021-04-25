@@ -71,7 +71,7 @@ export default {
     createTask:async function(){
       const task = {
         name:this.name,
-        duration:parseInt(this.duration),
+        duration:parseInt(this.duration) || 0,
         highlight:this.highlight
       }
 
