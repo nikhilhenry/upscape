@@ -50,6 +50,9 @@
 
 <script>
 import ModalView from '@/components/ModalView'
+import {mapActions} from 'vuex'
+
+import postTask from '@/api/taskPost'
 
 export default {
   name:'CreateTask',
@@ -68,12 +71,20 @@ export default {
     createTask:async function(){
       const task = {
         name:this.name,
-        duration:this.duration,
+        duration:parseInt(this.duration),
         highlight:this.false
       }
 
-      console.log(task)
-    }
+      this.isLoading = true
+      const savedTask = await postTask(task)
+      console.log(savedTask)
+      this.isLoading = false
+      // save to store
+      this.storeTask(savedTask)
+    },
+    ...mapActions({
+      storeTask:'task/storeTask'
+    })
   }
 }
 </script>
