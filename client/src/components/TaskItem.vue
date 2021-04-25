@@ -8,7 +8,7 @@
       <div class="right">
         <span class="duration">{{task.duration}} MIN</span>
         <i class="fas fa-star" v-if="task.highlight"></i>
-        <input id="c1" type="checkbox" class="complete" v-model="task.completed">
+        <input id="c1" type="checkbox" class="complete" v-model="completed">
       </div>
     </div>
   </div>
@@ -18,24 +18,38 @@
 import TimeAgo from 'javascript-time-ago'
 
 import deleteTaskById from '@/api/taskDelete.js'
+import updateTaskById from '@/api/taskPut.js'
 
 export default {
   name:'TaskItem',
   props: ['task'],
   data(){
     return{
-      timeAgo:''
+      timeAgo:'',
+      completed:false
+    }
+  },
+  watch:{
+    completed(){
+      this.completeTask()
     }
   },
   mounted(){
     const timeAgo = new TimeAgo('en-US')
     this.timeAgo = timeAgo.format(new Date(this.task.created_at))
+
+    this.completed = this.task.completed
   },
   methods: {
     deleteTask:async function(){
       const error = await deleteTaskById(this.task._id)
       console.log(error)
       if (error) this.$store.dispatch('task/deleteTask',this.task._id)
+    },
+    completeTask:async function(){
+      console.log('updating task...')
+      const updatedTask = await updateTaskById(this.task._id,{completed:this.completed})
+      this.$store.dispatch('task/updateTask',updatedTask)
     }
   }
 }
