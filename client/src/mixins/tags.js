@@ -22,7 +22,7 @@ export default{
   },
   methods:{
     createTag: async function(newTagName){
-      const randomColor = Math.floor(Math.random()*16777215).toString(16);
+      const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
 
       // create tag 
       const tag = {name:newTagName,color:randomColor}
@@ -32,6 +32,12 @@ export default{
 
       // save tag to store
       this.storeTag(savedTag)
+
+
+      // if used in multiselect
+      if(this.selectedTags){
+        this.selectedTags.push(savedTag)
+      }
     },
     ...mapActions({
       storeTag:'tag/storeTag'
