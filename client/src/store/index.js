@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import user from './modules/UserStore'
 import task from './modules/TaskStore'
 import tag from './modules/TagStore'
+import objective from './modules/ObjectiveStore'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
   modules: {
     user,
     task,
-    tag
+    tag,
+    objective
   }
 })
