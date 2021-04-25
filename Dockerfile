@@ -4,9 +4,10 @@
 FROM node:alpine AS client
 
 WORKDIR /usr/src/app/client
-COPY ./client .
+COPY package*.json .
 ENV NODE_ENV=production
 RUN npm install --also=dev
+COPY ./client .
 RUN npm run build
 RUN ls
 
