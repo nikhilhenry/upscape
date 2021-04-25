@@ -1,5 +1,7 @@
 import getTags from '@/api/tagGet.js'
-import  {mapGetters} from 'vuex'
+import addTag from '@/api/tagPost.js'
+
+import  {mapActions, mapGetters} from 'vuex'
 
 export default{
 
@@ -17,5 +19,22 @@ export default{
       // save tags to store
       this.$store.dispatch('tag/storeTags',tags)
     }
+  },
+  methods:{
+    createTag: async function(newTagName){
+      const randomColor = Math.floor(Math.random()*16777215).toString(16);
+
+      // create tag 
+      const tag = {name:newTagName,color:randomColor}
+
+      // send tag to api
+      const savedTag = await addTag(tag)
+
+      // save tag to store
+      this.storeTag(savedTag)
+    },
+    ...mapActions({
+      storeTag:'tag/storeTag'
+    })
   }
 }
