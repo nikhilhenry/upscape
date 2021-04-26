@@ -22,6 +22,10 @@ RUN npm run build
 
 #server build
 FROM golang:alpine AS server
+
+ARG MONGODB_URI
+ARG DATABASE
+ARG PASSWORD_SECRET
 #Set arg to env
 ENV MONGODB_URI=${MONGODB_URI}
 ENV DATABASE=${DATABASE}
@@ -37,6 +41,10 @@ RUN go build -o main
 
 
 FROM alpine:latest
+ARG MONGODB_URI
+ARG DATABASE
+ARG PASSWORD_SECRET
+
 WORKDIR /root/
 RUN mkdir /public
 COPY --from=server /usr/src/app/server .
