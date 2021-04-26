@@ -38,6 +38,13 @@ func GetObjectives(client *mongo.Database) gin.HandlerFunc {
 			objectives = append(objectives, objective)
 		}
 
+		if objectives == nil {
+			myslice := make([]string, 0)
+			c.JSON(http.StatusOK, myslice)
+
+			return
+		}
+
 		// send objectives
 		c.JSON(http.StatusOK, objectives)
 	}

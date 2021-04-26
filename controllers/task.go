@@ -227,5 +227,11 @@ func getDocsFromCursor(cursor *mongo.Cursor) []models.Task {
 		tasks = append(tasks, task)
 	}
 
+	if tasks == nil {
+		myslice := make([]models.Task, 0)
+
+		return myslice
+	}
+
 	return tasks
 }

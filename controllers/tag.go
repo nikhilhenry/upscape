@@ -39,7 +39,7 @@ func GetTags(client *mongo.Database) gin.HandlerFunc {
 		}
 
 		if tags == nil {
-			var myslice []int
+			myslice := make([]string, 0)
 			c.JSON(http.StatusOK, myslice)
 
 			return
