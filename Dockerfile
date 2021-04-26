@@ -47,5 +47,7 @@ ENV DATABASE=${DATABASE}
 ENV PASSWORD_SECRET=${PASSWORD_SECRET}
 ENV GIN_MODE=release
 
+RUN echo ${MONGODB_URI}
+
 #run server executable
 CMD ["./main"]
