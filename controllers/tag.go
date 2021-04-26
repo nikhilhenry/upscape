@@ -38,6 +38,13 @@ func GetTags(client *mongo.Database) gin.HandlerFunc {
 			tags = append(tags, tag)
 		}
 
+		if tags == nil {
+			var myslice []int
+			c.JSON(http.StatusOK, myslice)
+
+			return
+		}
+
 		// send tags
 		c.JSON(http.StatusOK, tags)
 	}
