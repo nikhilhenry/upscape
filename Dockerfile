@@ -26,7 +26,7 @@ FROM golang:alpine AS server
 ENV MONGODB_URI=${MONGODB_URI}
 ENV DATABASE=${DATABASE}
 ENV PASSWORD_SECRET=${PASSWORD_SECRET}
-ENV GIN_MODE = release
+ENV GIN_MODE=release
 
 # create app directtory
 
