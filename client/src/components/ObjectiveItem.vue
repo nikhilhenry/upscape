@@ -1,5 +1,5 @@
 <template>
-  <div class="objective" v-bind:class="{'is-completed':completed}" @dblclick="deleteTask()">
+  <div class="objective" v-bind:class="{'is-completed':completed}" @dblclick="deleteObjective()">
     <div class="wrapper">
       <div class="left">
         <p class="title">{{objective.name}}</p>
@@ -16,6 +16,7 @@
 <script>
 import TimeAgo from 'javascript-time-ago'
 import updateObjectiveById from '@/api/objectivePut.js'
+import deleteObjectiveById from '@/api/objectiveDelete.js'
 
 export default {
   name:'ObjectiveItem',
@@ -40,6 +41,10 @@ export default {
     completeObjective:async function(){
       const updatedObjective = await updateObjectiveById(this.objective._id,{completed:this.completed})
       this.$store.dispatch('objective/updateObjective',updatedObjective)
+    },
+    deleteObjective:async function(){
+      const error = await deleteObjectiveById(this.objective._id)
+      if(error) this.$store.dispatch('objective/deleteObjective',this.objective._id)
     }
   },
   created(){
