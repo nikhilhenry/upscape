@@ -45,7 +45,7 @@ COPY --from=client /usr/src/app/client/dist ./public
 ENV MONGODB_URI=${MONGODB_URI}
 ENV DATABASE=${DATABASE}
 ENV PASSWORD_SECRET=${PASSWORD_SECRET}
-ENV GIN_MODE = release
+ENV GIN_MODE=release
 
 #run server executable
 CMD ["./main"]
