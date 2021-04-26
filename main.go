@@ -29,6 +29,8 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	// connect to DB
+	fmt.Println("mongo uri is")
+	fmt.Println(os.Getenv("MONGODB_URI"))
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGODB_URI")))
 	if err != nil {
 		log.Fatal(err.Error())
