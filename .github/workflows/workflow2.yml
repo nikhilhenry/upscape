@@ -39,9 +39,12 @@ jobs:
         with:
           push: true
           tags: registry.heroku.com/upscape-nikhil/web
-          build-args: MONGODB_URI=${{secrets.MONGODB_URI}},DATABASE=${{secrets.DATABASE}},PASSWORD_SECRET=${{secrets.PASSWORD_SECRET}}
           timeout-minutes: 10
-
+          build-args: | 
+            MONGODB_URI=${{secrets.MONGODB_URI}}
+            DATABASE=${{secrets.DATABASE}}
+            PASSWORD_SECRET=${{secrets.PASSWORD_SECRET}}
+  
       - name: Login to Heroku Container registry
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
