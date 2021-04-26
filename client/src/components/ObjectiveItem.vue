@@ -1,5 +1,5 @@
 <template>
-  <div class="objective">
+  <div class="objective" v-bind:class="{'is-completed':completed}" @dblclick="deleteTask()">
     <div class="wrapper">
       <div class="left">
         <p class="title">{{objective.name}}</p>
@@ -15,6 +15,7 @@
 
 <script>
 import TimeAgo from 'javascript-time-ago'
+import updateObjectiveById from '@/api/objectivePut.js'
 
 export default {
   name:'ObjectiveItem',
@@ -26,10 +27,19 @@ export default {
       scheduledFor:''
     }
   },
+  watch:{
+    completed(){
+      this.completeObjective()
+    }
+  },
   methods:{
     formateDate:function(date){
       const formattedDate = date.toLocaleString('default',{month:'short'}).toUpperCase()+' '+new Date(date).getDate()+' '+ new Date(date).getFullYear()
       return formattedDate
+    },
+    completeObjective:async function(){
+      const updatedObjective = await updateObjectiveById(this.objective._id,{completed:this.completed})
+      this.$store.dispatch('objective/updateObjective',updatedObjective)
     }
   },
   created(){
