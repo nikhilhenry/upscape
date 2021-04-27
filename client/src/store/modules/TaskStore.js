@@ -96,8 +96,12 @@ export default{
 
       let totalTime = 0
 
-      // loop through all tasks and add time
-      tasks.forEach(task=>{
+      // filter tasks for uncompleted
+      const uncompletedTasks = tasks.filter(task=>{return !task.completed})
+
+      // loop through all uncompleted tasks and add time
+      uncompletedTasks.forEach(task=>{
+
         totalTime+=task.duration
       })
 
