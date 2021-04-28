@@ -7,7 +7,7 @@
       </div>
       <div class="right">
         <span class="date">{{scheduledFor}}</span>
-        <input id="c1" type="checkbox" class="complete" v-model="completed">
+        <input id="c1" type="checkbox" class="complete" v-model="completed" @click="completeObjective">
       </div>
     </div>
   </div>
@@ -28,18 +28,13 @@ export default {
       scheduledFor:''
     }
   },
-  watch:{
-    completed(){
-      this.completeObjective()
-    }
-  },
   methods:{
     formateDate:function(date){
       const formattedDate = date.toLocaleString('default',{month:'short'}).toUpperCase()+' '+new Date(date).getDate()+' '+ new Date(date).getFullYear()
       return formattedDate
     },
     completeObjective:async function(){
-      const updatedObjective = await updateObjectiveById(this.objective._id,{completed:this.completed})
+      const updatedObjective = await updateObjectiveById(this.objective._id,{completed:!this.completed})
       this.$store.dispatch('objective/updateObjective',updatedObjective)
     },
     deleteObjective:async function(){
