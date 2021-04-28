@@ -35,6 +35,12 @@ export default {
   methods:{
     getMeta: async function(){
       const response = await metaQuery()
+      // token invalid
+      if(response.error){
+        console.log('invalid token')
+        // log out the user
+        this.$store.dispatch('user/logout')
+      }
       this.storeMetaData(response)
       
     },
