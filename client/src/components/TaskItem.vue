@@ -13,7 +13,7 @@
           </li>
         </ul>
         <span class="duration">{{task.duration}} MIN</span>
-        <input id="c1" type="checkbox" class="complete" v-model="completed">
+        <input id="c1" type="checkbox" class="complete" v-model="completed" @click="completeTask">
       </div>
     </div>
   </div>
@@ -33,11 +33,6 @@ export default {
       timeAgo:'',
       completed:false,
       tags:[]
-    }
-  },
-  watch:{
-    completed(){
-      this.completeTask()
     }
   },
   mounted(){
@@ -65,7 +60,7 @@ export default {
       if (error) this.$store.dispatch('task/deleteTask',this.task._id)
     },
     completeTask:async function(){
-      const updatedTask = await updateTaskById(this.task._id,{completed:this.completed})
+      const updatedTask = await updateTaskById(this.task._id,{completed:!this.task.completed})
       this.$store.dispatch('task/updateTask',updatedTask)
     }
   }
