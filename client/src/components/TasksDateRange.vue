@@ -61,7 +61,8 @@ export default {
   }
 
   .is-disabled{
-    color:rgba(darken($text-primary,20%),.5)
+    color:rgba(darken($text-primary,20%),.5);
+    cursor:not-allowed;
   }
 
   h3{
