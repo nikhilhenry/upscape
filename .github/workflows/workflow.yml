@@ -29,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: registry.heroku.com/upscape-nikhil/web
+          tags: registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
           timeout-minutes: 10
           build-args: | 
             MONGODB_URI=${{secrets.MONGODB_URI}}
