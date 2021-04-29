@@ -155,6 +155,7 @@ export default {
   background-color:$primary;
   border:none;
   font-size: 1.5rem;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   padding: .5rem 1.2rem .5rem;
   border-radius: .2rem;
   margin:0;
