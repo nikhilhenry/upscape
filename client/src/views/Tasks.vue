@@ -11,10 +11,7 @@
         v-bind:queryDate="queryDate"
         v-on:update:query="queryDate = $event"
        />
-      <h3 class="total-duration" :class="colorClass" @click="showRemaining=!showRemaining">
-        <span v-if="showRemaining">{{totalRemainingDuration}} + 1 hrs</span>
-        <span v-else>{{totalDuration}} + 1 hrs</span>
-      </h3>
+      <h3 class="total-duration" :class="colorClass" @click="showRemaining=!showRemaining">{{totalDuration}} + 1 hrs</h3>
       </div>
 
        <!-- tasks  -->
@@ -75,6 +72,13 @@ export default {
         this.updateTaskList(val)
       }
     },
+    totalDuration(){
+      // if need to show remaining
+      if(this.showRemaining) return this.totalRemainingDuration
+      // else show total completed 
+      else return this.totalCompletedDuration
+
+    },
     colorClass(){
         if(this.totalDuration<2) return 'light'
         if(this.totalDuration<4.5) return 'medium'
@@ -84,7 +88,7 @@ export default {
     },    
     ...mapGetters({
       totalRemainingDuration:'task/getRemainingTime',
-      totalDuration:'task/getTotalTime'
+      totalCompletedDuration:'task/getTotalTime'
     })
   },
   data(){
@@ -99,6 +103,10 @@ export default {
       const newTaskList = await this.queryTasks()
       // set newTaskList in store
       this.setNewTaskList(newTaskList)
+    },
+    canCreate(){
+      // if user cannot create then show completed time
+      this.showRemaining = false
     }
   },
   methods:{
