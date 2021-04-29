@@ -6,7 +6,7 @@
       <h3 class="day">{{formattedDate[0]}}</h3>
       <p>{{formattedDate[1]}}</p>
       </div>
-      <i class="las la-angle-right" @click="dateIndex++"></i>
+      <i class="las la-angle-right" @click="incrementDate" :class="{'is-disabled':isDisabled}"></i>
     </div>
   </div>
 </template>
@@ -19,6 +19,10 @@ export default {
   computed:{
     formattedDate(){
       return getDate(this.dateIndex)
+    },
+    isDisabled(){
+      // disabled when dateIndex is greater than 0
+      return this.dateIndex > 0 ? true:false
     }
   },
   watch:{
@@ -30,6 +34,13 @@ export default {
   data(){
     return{
       dateIndex:0,
+    }
+  },
+  methods:{
+    incrementDate:function(){
+      // limit range to 1
+      if(this.dateIndex>=1) return
+      this.dateIndex++
     }
   },
   mounted(){
@@ -47,6 +58,10 @@ export default {
 
   .las{
     font-size: 2.5rem;
+  }
+
+  .is-disabled{
+    color:rgba(darken($text-primary,20%),.5)
   }
 
   h3{
