@@ -4,6 +4,9 @@ name: build and push to heroku
 
 # Controls when the action will run. 
 on:
+  #Triggers workflow when release is created
+  release:
+    types: [published]
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
