@@ -11,7 +11,10 @@
         v-bind:queryDate="queryDate"
         v-on:update:query="queryDate = $event"
        />
-      <h3 class="total-duration" :class="colorClass">{{totalDuration}} + 1 hrs</h3>
+      <h3 class="total-duration" :class="colorClass" @click="showRemaining=!showRemaining">
+        <span v-if="showRemaining">{{totalRemainingDuration}} + 1 hrs</span>
+        <span v-else>{{totalDuration}} + 1 hrs</span>
+      </h3>
       </div>
 
        <!-- tasks  -->
@@ -51,7 +54,7 @@ export default {
     Avatar,
     TasksDateRange,
     TaskItem,
-    draggable
+    draggable,
   },
   mixins:[tags],
   computed:{
@@ -80,12 +83,14 @@ export default {
         return 'none'
     },    
     ...mapGetters({
+      totalRemainingDuration:'task/getRemainingTime',
       totalDuration:'task/getTotalTime'
     })
   },
   data(){
     return{
       queryDate:'today',
+      showRemaining:true,      
     }
   },
   watch:{
@@ -133,6 +138,7 @@ export default {
 
   .total-duration{
     font-size: 24px;
+    cursor: pointer;
   }
 }
 
