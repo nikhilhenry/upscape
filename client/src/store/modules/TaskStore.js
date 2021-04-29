@@ -87,7 +87,7 @@ export default{
       const task = state.tasks.find(task => task._id === taskId)
       return task
     },
-    getTotalTime:(state)=>{
+    getRemainingTime:(state)=>{
       const tasks = state.tasks
 
       if(!tasks){
@@ -105,6 +105,22 @@ export default{
         totalTime+=task.duration
       })
 
+      return (totalTime/60).toFixed(2)      
+    },
+    getTotalTime:(state)=>{
+      const tasks = state.tasks
+
+      if(!tasks){
+        return 0
+      }
+
+      let totalTime = 0
+
+      tasks.forEach(task=>{
+
+        totalTime+=task.duration
+      })
+      // round time to 2 dp in hours
       return (totalTime/60).toFixed(2)
     }
   }
