@@ -3,8 +3,19 @@
     <component :is="this.$route.meta.layout || 'div'">
       <router-view/>
     </component>
+    <Notification :notification="{message:'Hello World'}"/>
   </div>
 </template>
+
+<script>
+import Notification from '@/components/Notification'
+
+export default {
+  components:{
+    Notification
+  }
+}
+</script>
 
 <style lang="scss">
 :root{
