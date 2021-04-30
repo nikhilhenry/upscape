@@ -9,14 +9,17 @@ export default{
     STORE_NOTIFICATION:(state,newNotification)=>{
       state.notification = newNotification
     },
-    DELETE_TAG:(state)=>{
-      state.notifications = {}
+    DELETE_NOTIFICATION:(state)=>{
+      state.notification = {}
     },
   },
 
   actions:{
     storeNotification:(context,newNotification)=>{
       if(newNotification) context.commit("STORE_NOTIFICATION",newNotification)
+
+      // set timeout for notification
+      setTimeout(()=>context.commit("DELETE_NOTIFICATION"),3000)
     },
     deleteNotification:(context)=>{
         context.commit("DELETE_NOTIFICATION")
