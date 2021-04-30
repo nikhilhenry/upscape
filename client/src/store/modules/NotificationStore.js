@@ -2,7 +2,7 @@ export default{
   namespaced:true,
 
   state:{
-    notification:{},
+    notification:null,
   },
 
   mutations:{
@@ -10,7 +10,7 @@ export default{
       state.notification = newNotification
     },
     DELETE_NOTIFICATION:(state)=>{
-      state.notification = {}
+      state.notification = null
     },
   },
 
