@@ -157,7 +157,7 @@ func UpdateTask(client *mongo.Database) gin.HandlerFunc {
 			return
 		}
 
-		if *taskUpdate.Completed {
+		if taskUpdate.Completed != nil {
 			taskUpdate.CompletedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		}
 
