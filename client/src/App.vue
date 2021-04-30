@@ -22,11 +22,6 @@ export default {
       notification:'notification/getNotification'
     })
   },
-  mounted(){
-    const notification = {message:'Sucess!!',sucess:true}
-
-    this.$store.dispatch('notification/storeNotification',notification)
-  }
 }
 </script>
 
