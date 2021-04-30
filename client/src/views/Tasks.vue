@@ -104,9 +104,11 @@ export default {
       // set newTaskList in store
       this.setNewTaskList(newTaskList)
     },
-    canCreate(){
+    canCreate:function(val){
       // if user cannot create then show completed time
-      this.showRemaining = false
+      if(val)
+      this.showRemaining = true
+      else this.showRemaining = false
     }
   },
   methods:{
