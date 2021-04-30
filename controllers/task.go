@@ -149,7 +149,7 @@ func UpdateTask(client *mongo.Database) gin.HandlerFunc {
 		// get task ID
 		id, _ := primitive.ObjectIDFromHex(c.Param("id"))
 
-		var taskUpdate models.Task
+		var taskUpdate models.TaskUpdate
 
 		// bind oject
 		if err := c.BindJSON(&taskUpdate); err != nil {
