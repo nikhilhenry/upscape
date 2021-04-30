@@ -18,3 +18,12 @@ type Task struct {
 	CreatedAt   time.Time          `json:"created_at,omitempty" bson:"created_at,omitempty"`
 	CompletedAt time.Time          `json:"completed_at,omitempty" bson:"completed_at,omitempty"`
 }
+
+type TaskUpdate struct {
+	Oid         int       `json:"id,omitempty" bson:"id,omitempty"`
+	Name        string    `json:"name,omitempty" validate:"required,max=20" bson:"name,omitempty"`
+	Duration    int       `json:"duration,omitempty" bson:"duration,omitempty"`
+	Completed   bool      `json:"completed,omitempty" bson:"completed,omitempty"`
+	Highlight   bool      `json:"highlight,omitempty" bson:"highlight,omitempty"`
+	CompletedAt time.Time `json:"completed_at,omitempty" bson:"completed_at,omitempty"`
+}
