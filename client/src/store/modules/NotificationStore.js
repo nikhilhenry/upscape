@@ -15,8 +15,8 @@ export default{
   },
 
   actions:{
-    storeNotification:(context,newTag)=>{
-      if(newTag) context.commit("STORE_NOTIFICATION",newNotification)
+    storeNotification:(context,newNotification)=>{
+      if(newNotification) context.commit("STORE_NOTIFICATION",newNotification)
     },
     deleteNotification:(context)=>{
         context.commit("DELETE_NOTIFICATION")
