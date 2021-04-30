@@ -3,16 +3,29 @@
     <component :is="this.$route.meta.layout || 'div'">
       <router-view/>
     </component>
-    <Notification :notification="{message:'Hello World'}"/>
+    <div class="notificatinons" v-if="notification">
+      <Notification :notification="notification"/>
+    </div>
   </div>
 </template>
 
 <script>
 import Notification from '@/components/Notification'
+import {mapGetters} from 'vuex'
 
 export default {
   components:{
     Notification
+  },
+  computed:{
+    ...mapGetters({
+      notification:'notification/getNotification'
+    })
+  },
+  mounted(){
+    const notification = {message:'Sucess!!',sucess:true}
+
+    this.$store.dispatch('notification/storeNotification',notification)
   }
 }
 </script>
