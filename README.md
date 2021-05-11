@@ -9,7 +9,7 @@
 
 ### The App for Do-ers
 
-Built for a productivity enthusiasts. 
+Built for productivity enthusiasts. 
 
 >Latest release version: **April 2021 / Production v1.0.0**
 ## Stack
