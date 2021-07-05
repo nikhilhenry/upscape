@@ -61,6 +61,12 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 		// if date range is today
 		if dateRange == "today" {
 
+
+		// Set location
+		location,err:= time.LoadLocation("Asia/Kolkata")
+		if err != nil {
+			fmt.Println(err)
+		}
 			// define filter
 			t := time.Now().In(location)
 
