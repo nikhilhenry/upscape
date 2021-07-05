@@ -10,13 +10,13 @@
         <span class="date">{{ timeAgo }}</span>
       </div>
       <div class="right">
+        <i class="fas fa-star" v-if="task.highlight"></i>
         <i
           class="las la-step-forward"
           :class="{ active: isActive }"
           @click="startTimer"
           v-if="!completed"
         ></i>
-        <i class="fas fa-star" v-if="task.highlight"></i>
         <ul class="tags">
           <li v-for="(tag, index) in tags" :key="index">
             <span class="tag" :style="{ background: tag.color }">{{
