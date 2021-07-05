@@ -13,7 +13,7 @@
       <div class="icon retry" @click="retryTimer">
         <i class="las la-undo-alt"></i>
       </div>
-      <div class="icon stop">
+      <div class="icon stop" @click="stopTimer">
         <i class="las la-stop"></i>
       </div>
     </section>
@@ -93,6 +93,13 @@ export default {
       this.isPaused = false;
       // start timer
       this.startTimer();
+    },
+    stopTimer: function() {
+      // clear timer
+      this.clearTimer();
+
+      // emit
+      this.$emit("stop");
     },
     clearTimer: function() {
       clearInterval(this.timerInterval);
