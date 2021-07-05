@@ -4,8 +4,11 @@
       <div class="icon meta">
         <i class="las la-braille"></i>
       </div>
-      <div class="icon pause">
+      <div v-if="!isPaused" class="icon pause">
         <i class="las la-pause"></i>
+      </div>
+      <div v-else class="icon">
+        <i class="las la-play"></i>
       </div>
       <div class="icon retry" @click="retryTimer">
         <i class="las la-undo-alt"></i>
@@ -51,6 +54,7 @@ export default {
       timerInterval: null,
       timePassed: 0,
       timeLimit: 450,
+      isPaused: false,
     };
   },
   mounted() {
