@@ -72,6 +72,8 @@ export default {
       return this.$store.state.task.tasksLoaded;
     },
     canCreate() {
+      if (this.timerActive) return false;
+
       if (this.queryDate == "today" || this.queryDate == "tomorrow") {
         return true;
       }
