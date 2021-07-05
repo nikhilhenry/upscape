@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     startTimer: function() {
-      this.timerInterval = setInterval(() => {
+      this.timerInterval = setInterval(async () => {
         this.timePassed += 1;
         if (this.timeRemaining < 1) {
           this.clearTimer();
@@ -77,9 +77,7 @@ export default {
             "http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3"
           );
 
-          audio.play();
-
-          audio.play();
+          await audio.play();
         }
       }, 1000);
     },
