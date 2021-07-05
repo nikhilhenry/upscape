@@ -120,11 +120,16 @@ func CreateTask(client *mongo.Database) gin.HandlerFunc {
 			return
 		}
 
+
+		// Set location
+		location,_ := time.LoadLocation("Asia/Kolkata")
+		t := time.Now().In(location)
+
 		// assign timestamp
 		if task.IsTomorrow {
-			task.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().AddDate(0, 0, 1).Format(time.RFC3339))
+			task.CreatedAt = time.Date(t.Year(),t.Month(),t.Day()+1,0,0,0,0,location).UTC()
 		} else {
-			task.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+			task.CreatedAt, _ = time.Parse(time.RFC3339, t.Format(time.RFC3339))
 		}
 
 		// post to database
