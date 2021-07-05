@@ -87,6 +87,7 @@ export default {
 
       // reset values
       this.timePassed = 0;
+      this.isPaused = false;
 
       // start timer
       this.startTimer();
