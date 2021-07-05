@@ -3,7 +3,7 @@
     <div class="container-log">
       <div class="container__item">
         <p class="error" v-if="error">{{ error }}</p>
-        <form class="form">
+        <form class="form" @submit.prevent="login">
           <input
             type="password"
             class="form__field"
