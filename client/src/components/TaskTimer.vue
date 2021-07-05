@@ -7,7 +7,7 @@
       <div v-if="!isPaused" @click="pauseTimer" class="icon pause">
         <i class="las la-pause"></i>
       </div>
-      <div v-else class="icon play">
+      <div v-else class="icon play" @click="resumeTimer">
         <i class="las la-play"></i>
       </div>
       <div class="icon retry" @click="retryTimer">
@@ -88,6 +88,11 @@ export default {
       this.isPaused = true;
       // clear timerInterval
       this.clearTimer();
+    },
+    resumeTimer: function() {
+      this.isPaused = false;
+      // start timer
+      this.startTimer();
     },
     clearTimer: function() {
       clearInterval(this.timerInterval);
