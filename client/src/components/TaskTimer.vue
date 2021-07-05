@@ -53,7 +53,7 @@ export default {
     return {
       timerInterval: null,
       timePassed: 0,
-      timeLimit: 450,
+      timeLimit: 0,
       isPaused: false,
     };
   },
