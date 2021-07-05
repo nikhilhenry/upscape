@@ -31,7 +31,7 @@
         </draggable>
       </ul>
     </div>
-    <TaskTimer :taskTime="10" />
+    <TaskTimer v-if="timerActive" :taskTime="1" @stop="closeTimer" />
     <div class="fab">
       <div v-if="canCreate">
         <router-link
@@ -107,6 +107,7 @@ export default {
     return {
       queryDate: "today",
       showRemaining: true,
+      timerActive: false,
     };
   },
   watch: {
@@ -123,6 +124,13 @@ export default {
     },
   },
   methods: {
+    openTimer: function() {
+      this.timerActive = true;
+    },
+    closeTimer: function() {
+      console.log("close");
+      this.timerActive = false;
+    },
     queryTasks: async function() {
       const tasks = await getTasks(this.queryDate);
       // this.tasks = tasks
