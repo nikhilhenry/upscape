@@ -7,10 +7,10 @@
       <div class="icon pause">
         <i class="las la-pause"></i>
       </div>
-      <div class="icon retry">
+      <div class="icon retry" @click="retryTimer">
         <i class="las la-undo-alt"></i>
       </div>
-      <div class="icon stop" @click="stopTimer">
+      <div class="icon stop">
         <i class="las la-stop"></i>
       </div>
     </section>
@@ -70,12 +70,15 @@ export default {
         }
       }, 1000);
     },
-    stopTimer: function() {
+    retryTimer: function() {
       // clear timerInterval
       this.clearTimer();
 
       // reset values
       this.timePassed = 0;
+
+      // start timer
+      this.startTimer();
     },
     clearTimer: function() {
       clearInterval(this.timerInterval);
