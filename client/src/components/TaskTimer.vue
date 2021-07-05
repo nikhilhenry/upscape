@@ -71,6 +71,15 @@ export default {
         this.timePassed += 1;
         if (this.timeRemaining < 1) {
           this.clearTimer();
+
+          // play timer sound
+          const audio = new Audio(
+            "http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3"
+          );
+
+          audio.play();
+
+          audio.play();
         }
       }, 1000);
     },
