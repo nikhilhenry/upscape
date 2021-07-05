@@ -36,7 +36,9 @@ ENV GIN_MODE=release
 
 WORKDIR /usr/src/app/server
 COPY . .
-RUN go build -o main
+RUN go get -d -v ./...
+RUN go install -v ./...
+# RUN go build -o main
 
 
 
@@ -56,6 +58,8 @@ ENV PASSWORD_SECRET=${PASSWORD_SECRET}
 ENV GIN_MODE=release
 
 RUN echo ${MONGODB_URI}
+
+RUN ls
 
 #run server executable
 CMD ["./main"]
