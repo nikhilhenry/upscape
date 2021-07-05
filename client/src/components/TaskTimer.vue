@@ -14,6 +14,11 @@
         <i class="las la-stop"></i>
       </div>
     </section>
+    <section class="time">
+      <div class="display">
+        <p>04:56</p>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -26,6 +31,8 @@
   transform: translate(-50%, 0);
   background-color: $nav-bg-primary;
   border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .icons {
@@ -40,6 +47,15 @@
     &:hover {
       background: $nav-bg-secondary;
     }
+  }
+}
+
+.time {
+  margin: 0 1rem 0;
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 0;
   }
 }
 
