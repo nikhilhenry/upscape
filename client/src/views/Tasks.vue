@@ -31,7 +31,7 @@
         </draggable>
       </ul>
     </div>
-    <TaskTimer />
+    <TaskTimer :taskTime="10" />
     <div class="fab">
       <div v-if="canCreate">
         <router-link
