@@ -25,13 +25,13 @@
         <draggable v-model="tasks" ghost-class="ghost">
           <transition-group type="transistion" name="flip-list">
             <li v-for="task in tasks" :key="task._id">
-              <TaskItem :task="task" />
+              <TaskItem :task="task" @startTimer="openTimer" />
             </li>
           </transition-group>
         </draggable>
       </ul>
     </div>
-    <TaskTimer v-if="timerActive" :taskTime="1" @stop="closeTimer" />
+    <TaskTimer v-if="timerActive" :taskTime="taskTime" @stop="closeTimer" />
     <div class="fab">
       <div v-if="canCreate">
         <router-link
@@ -124,7 +124,8 @@ export default {
     },
   },
   methods: {
-    openTimer: function() {
+    openTimer: function(time) {
+      this.taskTime = time;
       this.timerActive = true;
     },
     closeTimer: function() {
