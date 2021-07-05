@@ -1,143 +1,157 @@
 <template>
-  <div class="task" v-bind:class="{'is-completed':completed}" @dblclick="deleteTask()">
+  <div
+    class="task"
+    v-bind:class="{ 'is-completed': completed }"
+    @dblclick="deleteTask()"
+  >
     <div class="wrapper">
       <div class="left">
-        <p class="title">{{task.name}}</p>
-        <span class="date">{{timeAgo}}</span>
+        <p class="title">{{ task.name }}</p>
+        <span class="date">{{ timeAgo }}</span>
       </div>
       <div class="right">
         <i class="fas fa-star" v-if="task.highlight"></i>
         <ul class="tags">
-          <li v-for="(tag,index) in tags" :key="index">
-            <span class="tag" :style="{background:tag.color}">{{tag.name}}</span>
+          <li v-for="(tag, index) in tags" :key="index">
+            <span class="tag" :style="{ background: tag.color }">{{
+              tag.name
+            }}</span>
           </li>
         </ul>
-        <span class="duration">{{task.duration}} MIN</span>
-        <input id="c1" type="checkbox" class="complete" v-model="completed" @click="completeTask">
+        <span class="duration">{{ task.duration }} MIN</span>
+        <input
+          id="c1"
+          type="checkbox"
+          class="complete"
+          v-model="completed"
+          @click="completeTask"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import TimeAgo from 'javascript-time-ago'
+import TimeAgo from "javascript-time-ago";
 
-import deleteTaskById from '@/api/taskDelete.js'
-import updateTaskById from '@/api/taskPut.js'
+import deleteTaskById from "@/api/taskDelete.js";
+import updateTaskById from "@/api/taskPut.js";
 
 export default {
-  name:'TaskItem',
-  props: ['task'],
-  data(){
-    return{
-      timeAgo:'',
-      completed:false,
-      tags:[]
-    }
+  name: "TaskItem",
+  props: ["task"],
+  data() {
+    return {
+      timeAgo: "",
+      completed: false,
+      tags: [],
+    };
   },
-  mounted(){
-    const timeAgo = new TimeAgo('en-US')
-    this.timeAgo = timeAgo.format(new Date(this.task.created_at))
+  mounted() {
+    const timeAgo = new TimeAgo("en-US");
+    this.timeAgo = timeAgo.format(new Date(this.task.created_at));
 
-    this.completed = this.task.completed
+    this.completed = this.task.completed;
 
     // fetching tags
-    if(this.task.tag_ids){
-      let tags = []
-      this.task.tag_ids.forEach(tagId=>{
-        const tagObject = this.$store.getters['tag/getTagById'](tagId)
-        tags.push(tagObject)
-      })
+    if (this.task.tag_ids) {
+      let tags = [];
+      this.task.tag_ids.forEach((tagId) => {
+        const tagObject = this.$store.getters["tag/getTagById"](tagId);
+        tags.push(tagObject);
+      });
 
       // save tags to component
-      this.tags = tags
+      this.tags = tags;
     }
   },
   methods: {
-    deleteTask:async function(){
-      const error = await deleteTaskById(this.task._id)
-      console.log(error)
-      if (error) this.$store.dispatch('task/deleteTask',this.task._id)
+    deleteTask: async function() {
+      const error = await deleteTaskById(this.task._id);
+      console.log(error);
+      if (error) this.$store.dispatch("task/deleteTask", this.task._id);
     },
-    completeTask:async function(){
-      const updatedTask = await updateTaskById(this.task._id,{completed:!this.task.completed})
-      this.$store.dispatch('task/updateTask',updatedTask)
-    }
-  }
-}
+    completeTask: async function() {
+      const updatedTask = await updateTaskById(this.task._id, {
+        completed: !this.task.completed,
+      });
+      this.$store.dispatch("task/updateTask", updatedTask);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/toggles.scss";
 
-$flex-gap:2rem;
+$flex-gap: 2rem;
 
-.wrapper{
-  display:flex;
-  justify-content:space-between;
+.wrapper {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  background-color:$secondary;
-  padding:.5rem 1.5rem;
+  background-color: $secondary;
+  padding: 0.5rem 1.5rem;
   border-bottom: 3px solid $background;
   border-radius: 1rem;
 
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 
-  .title{
+  .title {
     font-size: 1.4rem;
-    margin:1rem 0 .5rem 0rem;
+    margin: 1rem 0 0.5rem 0rem;
   }
 
-  .date{
+  .date {
     font-size: 1em;
-    color:rgba($text-secondary, $alpha: .8);
+    color: rgba($text-secondary, $alpha: 0.8);
     font-weight: 100;
-    display:block;
-    margin-bottom: .5rem;
+    display: block;
+    margin-bottom: 0.5rem;
   }
 
-  .duration{
+  .duration {
     font-size: 1.2rem;
     color: $text-secondary;
     font-weight: 400;
     margin-left: $flex-gap;
   }
 
-  .fas{
-    color:#ffd31d;
+  .fas {
+    color: #ffd31d;
     font-size: 1.4rem;
     margin-left: $flex-gap;
   }
 
-  .complete{
+  .complete {
     margin-left: $flex-gap;
     transform: scale(1.5);
   }
 
-  .right{
+  .right {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    min-width: 300px;   
+    min-width: 300px;
   }
 }
 
-.tags{
+.tags {
   list-style: none;
-  margin:0;
+  margin: 0;
   margin-left: $flex-gap;
-  padding:0;
+  padding: 0;
   display: flex;
   flex-direction: row;
-  .tag{
+  .tag {
     color: #fff;
-    padding: .1rem .5rem .1rem;
-    margin-left: .5rem;
-    border-radius: .3rem;
+    padding: 0.1rem 0.5rem 0.1rem;
+    margin-left: 0.5rem;
+    border-radius: 0.3rem;
   }
 }
 
-.is-completed{
-  filter: opacity(.5)
+.is-completed {
+  filter: opacity(0.5);
 }
 </style>
