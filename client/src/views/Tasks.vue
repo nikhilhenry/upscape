@@ -31,6 +31,7 @@
         </draggable>
       </ul>
     </div>
+    <TaskTimer />
     <div class="fab">
       <div v-if="canCreate">
         <router-link
@@ -49,6 +50,7 @@ import Avatar from "@/components/Avatar";
 import TasksDateRange from "@/components/TasksDateRange";
 import TaskItem from "@/components/TaskItem";
 import tags from "@/mixins/tags.js";
+import TaskTimer from "@/components/TaskTimer";
 
 import draggable from "vuedraggable";
 
@@ -61,6 +63,7 @@ export default {
     Avatar,
     TasksDateRange,
     TaskItem,
+    TaskTimer,
     draggable,
   },
   mixins: [tags],
@@ -170,7 +173,8 @@ export default {
 .fab {
   position: fixed;
   bottom: 50px;
-  right: calc(50% - 4.5rem);
+  left: 50%;
+  transform: translate(-50%, 0);
   // right: 50%;
 }
 
