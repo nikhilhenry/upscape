@@ -21,7 +21,7 @@ ENV NODE_ENV=production
 RUN npm run build
 
 #server build
-FROM golang:alpine AS server
+FROM golang:1.16 AS server
 
 ARG MONGODB_URI
 ARG DATABASE
