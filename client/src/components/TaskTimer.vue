@@ -46,6 +46,7 @@
     padding: 1rem 1.5rem;
     &:hover {
       background: $nav-bg-secondary;
+      transition: background 200ms ease-in;
     }
   }
 }
