@@ -16,11 +16,55 @@
     </section>
     <section class="time">
       <div class="display">
-        <p>04:56</p>
+        <p>{{ formattedTimeRemaining }}</p>
       </div>
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  name: "TaskTimer",
+  props: {
+    taskTime: {
+      required: true,
+      type: Number,
+    },
+  },
+  computed: {
+    formattedTimeRemaining() {
+      const timeLeft = this.timeRemaining;
+      const minutes = Math.floor(timeLeft / 60);
+      let seconds = timeLeft % 60;
+      if (seconds < 10) {
+        seconds = `0${seconds}`;
+      }
+      // The output in MM:SS format
+      return `${minutes}:${seconds}`;
+    },
+    timeRemaining() {
+      return this.timeLimit - this.timePassed;
+    },
+  },
+  data() {
+    return {
+      timerInterval: null,
+      timePassed: 0,
+      timeLimit: 450,
+    };
+  },
+  mounted() {
+    this.timeLimit = this.taskTime * 60;
+
+    this.startTimer();
+  },
+  methods: {
+    startTimer: function() {
+      this.timerInterval = setInterval(() => (this.timePassed += 1), 1000);
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .task-timer {
