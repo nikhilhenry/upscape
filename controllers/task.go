@@ -38,7 +38,7 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 
 
 		// Set location
-		location,_ := time.LoadLocation("Asia/Kolkata")
+		location,_ := time.LoadLocation("Asia/Calcutta")
 
 		if dateRange == "tomorrow" {
 			// define filter
@@ -63,7 +63,7 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 
 
 		// Set location
-		location,err:= time.LoadLocation("Asia/Kolkata")
+		location,err:= time.LoadLocation("Asia/Calcutta")
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -131,7 +131,7 @@ func CreateTask(client *mongo.Database) gin.HandlerFunc {
 
 
 		// Set location
-		location,_ := time.LoadLocation("Asia/Kolkata")
+		location,_ := time.LoadLocation("Asia/Calcutta")
 		t := time.Now().In(location)
 
 		// assign timestamp
