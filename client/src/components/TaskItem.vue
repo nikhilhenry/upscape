@@ -14,6 +14,7 @@
           class="las la-step-forward"
           :class="{ active: isActive }"
           @click="startTimer"
+          v-if="!completed"
         ></i>
         <i class="fas fa-star" v-if="task.highlight"></i>
         <ul class="tags">
