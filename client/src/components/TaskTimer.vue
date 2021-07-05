@@ -58,9 +58,20 @@ export default {
 
     this.startTimer();
   },
+  beforeDestroy() {
+    this.clearTimer();
+  },
   methods: {
     startTimer: function() {
-      this.timerInterval = setInterval(() => (this.timePassed += 1), 1000);
+      this.timerInterval = setInterval(() => {
+        this.timePassed += 1;
+        if (this.timeRemaining < 0) {
+          this.clearTimer();
+        }
+      }, 1000);
+    },
+    clearTimer: function() {
+      clearInterval(this.timerInterval);
     },
   },
 };
