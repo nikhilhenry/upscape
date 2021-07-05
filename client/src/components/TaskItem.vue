@@ -10,6 +10,11 @@
         <span class="date">{{ timeAgo }}</span>
       </div>
       <div class="right">
+        <i
+          class="las la-step-forward"
+          :class="{ active: isActive }"
+          @click="startTimer"
+        ></i>
         <i class="fas fa-star" v-if="task.highlight"></i>
         <ul class="tags">
           <li v-for="(tag, index) in tags" :key="index">
@@ -45,6 +50,7 @@ export default {
       timeAgo: "",
       completed: false,
       tags: [],
+      isActive: false,
     };
   },
   mounted() {
@@ -76,6 +82,10 @@ export default {
         completed: !this.task.completed,
       });
       this.$store.dispatch("task/updateTask", updatedTask);
+    },
+    startTimer: function() {
+      this.isActive = !this.isActive;
+      this.$emit("startTimer", this.task.duration);
     },
   },
 };
@@ -117,7 +127,22 @@ $flex-gap: 2rem;
     margin-left: $flex-gap;
   }
 
-  .fas {
+  .la-step-forward {
+    color: $primary;
+    font-size: 2rem;
+    margin-left: $flex-gap;
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 200ms ease-in;
+    &:hover {
+      filter: none;
+    }
+  }
+
+  .active {
+    filter: none;
+  }
+
+  .fa-star {
     color: #ffd31d;
     font-size: 1.4rem;
     margin-left: $flex-gap;
