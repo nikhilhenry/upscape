@@ -4,10 +4,10 @@
       <div class="icon meta">
         <i class="las la-braille"></i>
       </div>
-      <div v-if="!isPaused" class="icon pause">
+      <div v-if="!isPaused" @click="pauseTimer" class="icon pause">
         <i class="las la-pause"></i>
       </div>
-      <div v-else class="icon">
+      <div v-else class="icon play">
         <i class="las la-play"></i>
       </div>
       <div class="icon retry" @click="retryTimer">
@@ -84,6 +84,11 @@ export default {
       // start timer
       this.startTimer();
     },
+    pauseTimer: function() {
+      this.isPaused = true;
+      // clear timerInterval
+      this.clearTimer();
+    },
     clearTimer: function() {
       clearInterval(this.timerInterval);
     },
@@ -135,6 +140,9 @@ export default {
   filter: grayscale(100%) opacity(0.7);
 }
 .pause {
+  color: $primary;
+}
+.play {
   color: $primary;
 }
 .retry {
