@@ -32,14 +32,12 @@ ENV DATABASE=${DATABASE}
 ENV PASSWORD_SECRET=${PASSWORD_SECRET}
 ENV GIN_MODE=release
 
-# Add timezone package
-RUN apk --no-cache add tzdata
 
 # create app directtory
 
 WORKDIR /usr/src/app/server
 COPY . .
-RUN go build -o  main -tags netgo -a -v
+RUN  CGO_ENABLED=0 GOOS=linux go build -o  main -tags netgo -a -v
 
 
 
@@ -48,12 +46,11 @@ ARG MONGODB_URI
 ARG DATABASE
 ARG PASSWORD_SECRET
 
-# Add timezone package
-RUN apk --no-cache add tzdata
-
 WORKDIR /root/
 RUN mkdir /public
 COPY --from=server /usr/src/app/server .
+COPY --from=server /usr/local/go/lib/time/zoneinfo.zip /
+ENV ZONEINFO=/zoneinfo.zip
 COPY --from=client /usr/src/app/client/dist ./public
 
 ENV MONGODB_URI=${MONGODB_URI}
