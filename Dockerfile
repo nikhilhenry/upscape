@@ -32,6 +32,9 @@ ENV DATABASE=${DATABASE}
 ENV PASSWORD_SECRET=${PASSWORD_SECRET}
 ENV GIN_MODE=release
 
+# Add timezone package
+RUN apk --no-cache add tzdata
+
 # create app directtory
 
 WORKDIR /usr/src/app/server
@@ -44,6 +47,9 @@ FROM alpine:latest
 ARG MONGODB_URI
 ARG DATABASE
 ARG PASSWORD_SECRET
+
+# Add timezone package
+RUN apk --no-cache add tzdata
 
 WORKDIR /root/
 RUN mkdir /public
