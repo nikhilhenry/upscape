@@ -21,7 +21,7 @@ ENV NODE_ENV=production
 RUN npm run build
 
 #server build
-FROM golang:1.16 AS server
+FROM golang:latest AS server
 
 ARG MONGODB_URI
 ARG DATABASE
@@ -36,9 +36,7 @@ ENV GIN_MODE=release
 
 WORKDIR /usr/src/app/server
 COPY . .
-RUN go get -d -v ./...
-RUN go install -v ./...
-# RUN go build -o main
+RUN go build -o  main -tags netgo -a -v
 
 
 
@@ -58,8 +56,6 @@ ENV PASSWORD_SECRET=${PASSWORD_SECRET}
 ENV GIN_MODE=release
 
 RUN echo ${MONGODB_URI}
-
-RUN ls
 
 #run server executable
 CMD ["./main"]
