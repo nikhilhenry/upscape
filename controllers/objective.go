@@ -26,7 +26,16 @@ func GetObjectives(client *mongo.Database) gin.HandlerFunc {
 		// initialize find options
 		findOptions := options.Find()
 
-		// get page
+		// get sort key and type
+		if sort := c.Query("sort"); sort != "" {
+			if sort == "asc"{
+				findOptions.SetSort(bson.D{{"created_at",1}})
+			}else{
+				findOptions.SetSort(bson.D{{"created_at",-1}})
+			}
+		}
+
+		// get page and limit
 		page,_ := strconv.Atoi(c.Query("page"))
 		limit,_ := strconv.Atoi(c.Query("limit"))
 
