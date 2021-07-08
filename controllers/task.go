@@ -74,9 +74,6 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 			lowTime := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, location).UTC()
 			filter := bson.D{{"created_at", bson.D{{"$gte", lowTime}, {"$lt", highTime}}}}
 
-			fmt.Printf("hightime is %s",highTime)
-			fmt.Printf("lowtime is %s", lowTime)
-
 			// query Database for uncompleted tasks
 			cursor, err := collection.Find(ctx, filter, opts)
 			if err != nil {
