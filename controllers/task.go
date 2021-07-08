@@ -43,7 +43,7 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 		if dateRange == "tomorrow" {
 			// define filter
 			lowTime := time.Now()
-			filter := bson.D{{"created_at", bson.D{{"$gt", lowTime}}}}
+			filter := bson.D{{"created_at", bson.D{{"$gte", lowTime}}}}
 
 			// query Database for uncompleted tasks
 			cursor, err := collection.Find(ctx, filter, opts)
@@ -92,7 +92,7 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 		lowTime, _ := time.ParseInLocation("01/02/06", dateRange, location)
 		highTime := lowTime.Add(time.Hour*23 + time.Minute*59 + time.Second*59)
 		fmt.Println(lowTime)
-		filter := bson.D{{"created_at", bson.D{{"$gt", lowTime.UTC()}, {"$lt", highTime.UTC()}}}}
+		filter := bson.D{{"created_at", bson.D{{"$gte", lowTime.UTC()}, {"$lt", highTime.UTC()}}}}
 		cursor, err := collection.Find(ctx, filter, opts)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
