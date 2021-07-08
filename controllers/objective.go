@@ -26,12 +26,21 @@ func GetObjectives(client *mongo.Database) gin.HandlerFunc {
 		// initialize find options
 		findOptions := options.Find()
 
-		// get sort key and type
+		// get sort key and field
 		if sort := c.Query("sort"); sort != "" {
-			if sort == "asc"{
-				findOptions.SetSort(bson.D{{"created_at",1}})
-			}else{
-				findOptions.SetSort(bson.D{{"created_at",-1}})
+			
+			if field := c.Query("field"); field == "created_at" {
+				if sort == "asc"{
+					findOptions.SetSort(bson.D{{"created_at",1}})
+				}else{
+					findOptions.SetSort(bson.D{{"created_at",-1}})
+				}
+			}else if field == "scheduled_for"{
+				if sort == "asc"{
+					findOptions.SetSort(bson.D{{"scheduled_for",1}})
+				}else{
+					findOptions.SetSort(bson.D{{"scheduled_for",-1}})
+				}
 			}
 		}
 
