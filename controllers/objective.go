@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	"net/http"
+	"strconv"
 	"time"
 	"upscape/helpers"
 	"upscape/models"
@@ -22,9 +23,23 @@ func GetObjectives(client *mongo.Database) gin.HandlerFunc {
 		defer cancel()
 		collection := client.Collection("objectives")
 
+		// initialize find options
+		findOptions := options.Find()
+
+		// get page
+		page,_ := strconv.Atoi(c.Query("page"))
+		limit,_ := strconv.Atoi(c.Query("limit"))
+
+		if page==0 || limit ==0 {
+			page = 1
+			limit = 0
+		}
+		findOptions.SetSkip(int64((page-1)*limit))
+		findOptions.SetLimit(int64(limit))
+
 		// query database
 		// todo:add pagination and sort by ID for results
-		cursor, err := collection.Find(ctx, bson.M{})
+		cursor, err := collection.Find(ctx, bson.M{},findOptions)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
