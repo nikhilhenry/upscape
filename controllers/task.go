@@ -72,7 +72,7 @@ func GetTasks(client *mongo.Database) gin.HandlerFunc {
 
 			highTime := time.Date(t.Year(), t.Month(), t.Day(), 23, 59, 59, 0, location).UTC()
 			lowTime := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, location).UTC()
-			filter := bson.D{{"created_at", bson.D{{"$gt", lowTime}, {"$lt", highTime}}}}
+			filter := bson.D{{"created_at", bson.D{{"$gte", lowTime}, {"$lt", highTime}}}}
 
 			fmt.Printf("hightime is %s",highTime)
 			fmt.Printf("lowtime is %s", lowTime)
