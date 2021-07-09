@@ -50,7 +50,7 @@
           aria-haspopup="true"
           aria-controls="dropdown-menu"
         >
-          <span>{{ formattedOption }}</span>
+          <span class="order">{{ selectedOrder }}</span>
           <span class="icon is-small">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
@@ -60,17 +60,17 @@
         <div class="dropdown-content">
           <span
             class="dropdown-item"
-            @click="selectOption('created_at')"
-            :class="{ 'is-active': selectedOption == 'created_at' }"
+            @click="selectOption('desc')"
+            :class="{ 'is-active': selectedOption == 'desc' }"
           >
-            Created At
+            Desc
           </span>
           <span
             class="dropdown-item"
-            @click="selectOption('scheduled_for')"
-            :class="{ 'is-active': selectedOption == 'scheduled_for' }"
+            @click="selectOrder('asc')"
+            :class="{ 'is-active': selectedOption == 'asc' }"
           >
-            Scheduled For
+            Asc
           </span>
         </div>
       </div>
@@ -97,12 +97,15 @@ export default {
     return {
       isActive: false,
       selectedOption: "created_at",
+      selectedOrder: "desc",
     };
   },
   methods: {
     selectOption: function(option) {
-      console.log(option);
       this.selectedOption = option;
+    },
+    selectOrder: function(order) {
+      this.selectedOrder = order;
     },
   },
 };
@@ -117,6 +120,10 @@ export default {
   width: 100%;
   align-items: center;
   margin: 1rem 0;
+}
+
+.order {
+  text-transform: capitalize;
 }
 
 .button {
