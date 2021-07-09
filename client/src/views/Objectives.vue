@@ -8,7 +8,7 @@
       </div>
 
       <div class="secondary-bar">
-        <ObjectiveSort />
+        <ObjectiveSort @selected="modifySort" />
       </div>
 
       <!-- objectives -->
@@ -57,6 +57,8 @@ export default {
       observer: null,
       options: { root: null, threshold: 0 },
       page: 1,
+      field: "created_at",
+      order: "desc",
     };
   },
   methods: {
@@ -71,6 +73,20 @@ export default {
       this.page++;
       const newObjectives = await getObjectives(this.page);
       this.storeObjectives(newObjectives);
+    },
+    async modifySort(options) {
+      this.field = options.field;
+      this.order = options.order;
+      // reset page
+      this.page = 1;
+      // query for new objectives
+      const newObjectives = await getObjectives(
+        this.page,
+        this.order,
+        this.field
+      );
+
+      console.log(newObjectives);
     },
     ...mapActions({
       storeObjectives: "objective/storeObjectives",
