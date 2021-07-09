@@ -61,6 +61,11 @@ export default {
     saveObjectivesToStore: function(objectives) {
       this.storeObjectives(objectives);
     },
+    loadMore: async function() {
+      this.page++;
+      const newObjectives = await getObjectives(this.page);
+      this.storeObjectives(newObjectives);
+    },
     ...mapActions({
       storeObjectives: "objective/storeObjectives",
     }),
