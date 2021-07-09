@@ -1,5 +1,44 @@
 <template>
   <div class="sort-wrapper">
+    <!-- sort field -->
+    <div
+      class="dropdown"
+      :class="{ 'is-active': isActive }"
+      @click="isActive = !isActive"
+    >
+      <div class="dropdown-trigger">
+        <button
+          class="button"
+          aria-haspopup="true"
+          aria-controls="dropdown-menu"
+        >
+          <span>{{ formattedOption }}</span>
+          <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+          <span
+            class="dropdown-item"
+            @click="selectOption('created_at')"
+            :class="{ 'is-active': selectedOption == 'created_at' }"
+          >
+            Created At
+          </span>
+          <span
+            class="dropdown-item"
+            @click="selectOption('scheduled_for')"
+            :class="{ 'is-active': selectedOption == 'scheduled_for' }"
+          >
+            Scheduled For
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- sort order -->
     <div
       class="dropdown"
       :class="{ 'is-active': isActive }"
@@ -71,6 +110,14 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bulma";
+
+.sort-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin: 1rem 0;
+}
 
 .button {
   background-color: $secondary;
