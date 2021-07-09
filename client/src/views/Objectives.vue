@@ -12,6 +12,7 @@
         <li v-for="(objective, index) in objectives" :key="index">
           <ObjectiveItem :objective="objective" />
         </li>
+        <div ref="divAsTarget"></div>
       </ul>
     </div>
     <!-- create objective objective -->
@@ -45,6 +46,13 @@ export default {
       objectives: "objective/getObjectives",
     }),
   },
+  data() {
+    return {
+      observer: null,
+      options: { root: null, threshold: 0 },
+      page: 1,
+    };
+  },
   methods: {
     queryObjectives: async function() {
       const objectives = await getObjectives();
@@ -62,6 +70,10 @@ export default {
       const objectives = await this.queryObjectives();
       this.saveObjectivesToStore(objectives);
     }
+
+    // intersection observer
+    this.observer = new IntersectionObserver(this.loadMore, this.options);
+    this.observer.observe(this.$refs.divAsTarget);
   },
 };
 </script>
