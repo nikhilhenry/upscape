@@ -54,4 +54,14 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bulma";
+
+.button {
+  background-color: $secondary;
+  color: $text-secondary;
+  border-color: $nav-bg-primary;
+  &:hover {
+    color: $text-primary;
+    border-color: $nav-bg-secondary;
+  }
+}
 </style>
