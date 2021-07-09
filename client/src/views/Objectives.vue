@@ -86,10 +86,11 @@ export default {
         this.field
       );
 
-      console.log(newObjectives);
+      this.setObjectives(newObjectives);
     },
     ...mapActions({
       storeObjectives: "objective/storeObjectives",
+      setObjectives: "objective/setObjectives",
     }),
   },
   async mounted() {
