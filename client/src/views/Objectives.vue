@@ -16,8 +16,8 @@
         <li v-for="(objective, index) in objectives" :key="index">
           <ObjectiveItem :objective="objective" />
         </li>
-        <div ref="divAsTarget"></div>
       </ul>
+      <div ref="divAsTarget"></div>
     </div>
     <!-- create objective objective -->
     <div class="fab">
