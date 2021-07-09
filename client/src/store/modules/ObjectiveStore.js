@@ -37,6 +37,12 @@ export default {
         context.commit("SET_OBJECTIVES_LOADED", true);
       }
     },
+    setObjectives: (context, userTasks) => {
+      context.commit("SET_OBJECTIVES", userTasks);
+      if (userTasks.length) {
+        context.commit("SET_OBJECTIVES_LOADED", true);
+      }
+    },
 
     updateObjective: (context, updatedObjective) => {
       if (updatedObjective) {
