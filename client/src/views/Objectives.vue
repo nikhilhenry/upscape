@@ -79,6 +79,9 @@ export default {
       this.storeObjectives(newObjectives);
     },
     async modifySort(options) {
+      // clear objectives
+      this.setObjectives([]);
+
       this.field = options.field;
       this.sort = options.sort;
       // reset page
@@ -98,10 +101,8 @@ export default {
     }),
   },
   async mounted() {
-    if (!this.isLoaded) {
-      const objectives = await this.queryObjectives();
-      this.saveObjectivesToStore(objectives);
-    }
+    const objectives = await this.queryObjectives();
+    this.setObjectives(objectives);
 
     // intersection observer
     this.observer = new IntersectionObserver(this.loadMore, this.options);
