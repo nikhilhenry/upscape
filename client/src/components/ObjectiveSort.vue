@@ -11,7 +11,7 @@
           aria-haspopup="true"
           aria-controls="dropdown-menu"
         >
-          <span>{{ selectedOption }}</span>
+          <span>{{ formattedOption }}</span>
           <span class="icon is-small">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
@@ -42,10 +42,22 @@
 <script>
 export default {
   name: "ObjectiveSort",
+  computed: {
+    formattedOption() {
+      //sort options
+      let sortOptions = {
+        created_at: "Created At",
+        scheduled_for: "Scheduled For",
+        default: "Created At",
+      };
+      //Return the formatted option
+      return sortOptions[this.selectedOption] || sortOptions["default"];
+    },
+  },
   data() {
     return {
       isActive: false,
-      selectedOption: "",
+      selectedOption: "created_at",
     };
   },
   methods: {
