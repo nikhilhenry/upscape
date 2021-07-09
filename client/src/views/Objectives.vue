@@ -7,6 +7,10 @@
         <Avatar />
       </div>
 
+      <div class="secondary-bar">
+        <ObjectiveSort />
+      </div>
+
       <!-- objectives -->
       <ul class="objective-list">
         <li v-for="(objective, index) in objectives" :key="index">
@@ -28,6 +32,7 @@
 <script>
 import Avatar from "@/components/Avatar";
 import ObjectiveItem from "@/components/ObjectiveItem";
+import ObjectiveSort from "@/components/ObjectiveSort";
 import { mapActions, mapGetters } from "vuex";
 
 import getObjectives from "@/api/objectiveGet.js";
@@ -37,6 +42,7 @@ export default {
   components: {
     Avatar,
     ObjectiveItem,
+    ObjectiveSort,
   },
   computed: {
     isLoaded() {
