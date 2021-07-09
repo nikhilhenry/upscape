@@ -31,10 +31,6 @@
           <a href="#" class="dropdown-item">
             Other dropdown item
           </a>
-          <hr class="dropdown-divider" />
-          <a href="#" class="dropdown-item">
-            With a divider
-          </a>
         </div>
       </div>
     </div>
@@ -62,6 +58,19 @@ export default {
   &:hover {
     color: $text-primary;
     border-color: $nav-bg-secondary;
+  }
+}
+
+.dropdown-content {
+  background-color: $secondary;
+  .dropdown-item {
+    color: $text-primary;
+    width: auto;
+    padding-right: 0rem;
+    &:hover {
+      background-color: darken($secondary, 0.8);
+      color: $text-secondary;
+    }
   }
 }
 </style>
