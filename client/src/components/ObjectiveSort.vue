@@ -117,7 +117,7 @@ export default {
       this.selectedOrder = order;
     },
     emitOptions: function() {
-      const options = { sort: this.selectedOption, field: this.selectedOrder };
+      const options = { sort: this.selectedOrder, field: this.selectedOption };
       this.$emit("selected", options);
     },
   },
