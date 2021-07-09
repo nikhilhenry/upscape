@@ -23,7 +23,8 @@ export default {
       Vue.set(state.objectives, payload.index, payload.updatedObjective);
     },
     STORE_OBJECTIVE: (state, newObjective) => {
-      state.objectives.push(newObjective);
+      const oldObjectives = state.objectives;
+      state.objectives = [newObjective, ...oldObjectives];
     },
     DELETE_OBJECTIVE: (state, objectiveIndex) => {
       state.objectives.splice(objectiveIndex, 1);
