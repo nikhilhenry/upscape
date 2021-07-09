@@ -58,7 +58,7 @@ export default {
       options: { root: null, threshold: 0 },
       page: 1,
       field: "created_at",
-      order: "desc",
+      sort: "desc",
     };
   },
   methods: {
@@ -71,18 +71,22 @@ export default {
     },
     loadMore: async function() {
       this.page++;
-      const newObjectives = await getObjectives(this.page);
+      const newObjectives = await getObjectives(
+        this.page,
+        this.sort,
+        this.field
+      );
       this.storeObjectives(newObjectives);
     },
     async modifySort(options) {
       this.field = options.field;
-      this.order = options.order;
+      this.sort = options.sort;
       // reset page
       this.page = 1;
       // query for new objectives
       const newObjectives = await getObjectives(
         this.page,
-        this.order,
+        this.sort,
         this.field
       );
 
