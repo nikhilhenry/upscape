@@ -3,8 +3,8 @@
     <!-- sort field -->
     <div
       class="dropdown"
-      :class="{ 'is-active': isActive }"
-      @click="isActive = !isActive"
+      :class="{ 'is-active': isActiveField }"
+      @click="isActiveField = !isActiveField"
     >
       <div class="dropdown-trigger">
         <button
@@ -41,8 +41,8 @@
     <!-- sort order -->
     <div
       class="dropdown"
-      :class="{ 'is-active': isActive }"
-      @click="isActive = !isActive"
+      :class="{ 'is-active': isActiveOrder }"
+      @click="isActiveOrder = !isActiveOrder"
     >
       <div class="dropdown-trigger">
         <button
@@ -60,15 +60,15 @@
         <div class="dropdown-content">
           <span
             class="dropdown-item"
-            @click="selectOption('desc')"
-            :class="{ 'is-active': selectedOption == 'desc' }"
+            @click="selectOrder('desc')"
+            :class="{ 'is-active': selectedOrder == 'desc' }"
           >
             Desc
           </span>
           <span
             class="dropdown-item"
             @click="selectOrder('asc')"
-            :class="{ 'is-active': selectedOption == 'asc' }"
+            :class="{ 'is-active': selectedOrder == 'asc' }"
           >
             Asc
           </span>
@@ -95,7 +95,8 @@ export default {
   },
   data() {
     return {
-      isActive: false,
+      isActiveField: false,
+      isActiveOrder: false,
       selectedOption: "created_at",
       selectedOrder: "desc",
     };
