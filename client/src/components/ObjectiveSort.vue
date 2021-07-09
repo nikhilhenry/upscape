@@ -101,12 +101,24 @@ export default {
       selectedOrder: "desc",
     };
   },
+  watch: {
+    selectedOption: function() {
+      this.emitOptions();
+    },
+    selectedOrder: function() {
+      this.emitOptions();
+    },
+  },
   methods: {
     selectOption: function(option) {
       this.selectedOption = option;
     },
     selectOrder: function(order) {
       this.selectedOrder = order;
+    },
+    emitOptions: function() {
+      const options = { sort: this.selectedOption, field: this.selectedOrder };
+      this.$emit("selected", options);
     },
   },
 };
