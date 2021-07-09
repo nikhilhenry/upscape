@@ -1,6 +1,10 @@
 <template>
   <div class="sort-wrapper">
-    <div class="dropdown is-active">
+    <div
+      class="dropdown"
+      :class="{ 'is-active': isActive }"
+      @click="isActive = !isActive"
+    >
       <div class="dropdown-trigger">
         <button
           class="button"
@@ -40,6 +44,11 @@
 <script>
 export default {
   name: "ObjectiveSort",
+  data() {
+    return {
+      isActive: false,
+    };
+  },
 };
 </script>
 
