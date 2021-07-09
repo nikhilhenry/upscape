@@ -13,6 +13,9 @@ export default {
       const objectives = state.objectives.concat(objectivesList);
       state.objectives = objectives;
     },
+    SET_OBJECTIVES: (state, objectivesList) => {
+      state.objectives = objectivesList;
+    },
     SET_OBJECTIVES_LOADED: (state, isLoaded) => {
       state.objectivesLoaded = isLoaded;
     },
