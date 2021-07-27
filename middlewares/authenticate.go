@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt"
 )
 
 type Header struct {
