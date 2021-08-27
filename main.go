@@ -63,6 +63,8 @@ func main() {
 		)
 	}))
 
+	router.Use(gin.Recovery())
+
 	// define middlewares
 	router.Use(middlewares.CORSMiddleware())
 
