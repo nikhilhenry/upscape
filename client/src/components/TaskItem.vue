@@ -85,7 +85,7 @@ $flex-gap: 2rem;
   justify-content: space-between;
   align-items: center;
   background-color: $secondary;
-  padding: 0.5rem 1.5rem;
+  padding: 1rem 1.5rem;
   border-bottom: 3px solid $background;
   border-radius: 1rem;
 
