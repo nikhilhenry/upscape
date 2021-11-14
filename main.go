@@ -90,11 +90,6 @@ func main() {
 	router.POST("/api/task", middlewares.IsAuthenticated, controllers.CreateTask(clientDatabase))
 	router.PUT("/api/task/:id", middlewares.IsAuthenticated, controllers.UpdateTask(clientDatabase))
 	router.DELETE("/api/task/:id", middlewares.IsAuthenticated, controllers.DeleteTask(clientDatabase))
-	// objective routes
-	router.GET("/api/objective", middlewares.IsAuthenticated, controllers.GetObjectives(clientDatabase))
-	router.POST("/api/objective", middlewares.IsAuthenticated, controllers.CreateObjective(clientDatabase))
-	router.PUT("/api/objective/:id", middlewares.IsAuthenticated, controllers.UpdateObjective(clientDatabase))
-	router.DELETE("/api/objective/:id", middlewares.IsAuthenticated, controllers.DeleteObjective(clientDatabase))
 	// tag routes
 	router.GET("/api/tag", middlewares.IsAuthenticated, controllers.GetTags(clientDatabase))
 	router.POST("/api/tag", middlewares.IsAuthenticated, controllers.CreateTag(clientDatabase))
