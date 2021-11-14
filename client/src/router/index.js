@@ -48,25 +48,6 @@ const routes = [
     ],
   },
   {
-    path: "/objectives",
-    name: "Objectives",
-    component: () => import("../views/Objectives.vue"),
-    meta: {
-      requiresAuth: true,
-      layout: NavbarLayout,
-    },
-    children: [
-      {
-        path: "create",
-        component: () => import("../views/CreateObjective.vue"),
-        meta: {
-          requiresAuth: true,
-          layout: NavbarLayout,
-        },
-      },
-    ],
-  },
-  {
     path: "/settings",
     name: "Settings",
     component: () => import("../views/Settings.vue"),
