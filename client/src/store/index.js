@@ -5,7 +5,6 @@ import Vuex from "vuex";
 import user from "./modules/UserStore";
 import task from "./modules/TaskStore";
 import tag from "./modules/TagStore";
-import objective from "./modules/ObjectiveStore";
 import notification from "./modules/NotificationStore";
 
 Vue.use(Vuex);
@@ -18,7 +17,6 @@ export default new Vuex.Store({
     user,
     task,
     tag,
-    objective,
     notification,
   },
 });
