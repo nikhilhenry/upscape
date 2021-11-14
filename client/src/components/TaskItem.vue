@@ -7,7 +7,6 @@
     <div class="wrapper">
       <div class="left">
         <p class="title">{{ task.name }}</p>
-        <span class="date">{{ timeAgo }}</span>
       </div>
       <div class="right">
         <i class="fas fa-star" v-if="task.highlight"></i>
@@ -32,8 +31,6 @@
 </template>
 
 <script>
-import TimeAgo from "javascript-time-ago";
-
 import deleteTaskById from "@/api/taskDelete.js";
 import updateTaskById from "@/api/taskPut.js";
 
@@ -42,16 +39,12 @@ export default {
   props: ["task"],
   data() {
     return {
-      timeAgo: "",
       completed: false,
       tags: [],
       isActive: false,
     };
   },
   mounted() {
-    const timeAgo = new TimeAgo("en-US");
-    this.timeAgo = timeAgo.format(new Date(this.task.created_at));
-
     this.completed = this.task.completed;
 
     // fetching tags
