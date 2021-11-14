@@ -11,12 +11,6 @@
       </div>
       <div class="right">
         <i class="fas fa-star" v-if="task.highlight"></i>
-        <i
-          class="las la-step-forward"
-          :class="{ active: isActive }"
-          @click="startTimer"
-          v-if="!completed"
-        ></i>
         <ul class="tags">
           <li v-for="(tag, index) in tags" :key="index">
             <span class="tag" :style="{ background: tag.color }">{{
@@ -83,10 +77,6 @@ export default {
         completed: !this.task.completed,
       });
       this.$store.dispatch("task/updateTask", updatedTask);
-    },
-    startTimer: function() {
-      this.isActive = !this.isActive;
-      this.$emit("startTimer", this.task.duration);
     },
   },
 };

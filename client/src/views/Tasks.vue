@@ -25,13 +25,12 @@
         <draggable v-model="tasks" ghost-class="ghost">
           <transition-group type="transistion" name="flip-list">
             <li v-for="task in tasks" :key="task._id">
-              <TaskItem :task="task" @startTimer="openTimer" />
+              <TaskItem :task="task" />
             </li>
           </transition-group>
         </draggable>
       </ul>
     </div>
-    <TaskTimer v-if="timerActive" :taskTime="taskTime" @stop="closeTimer" />
     <div class="fab">
       <div v-if="canCreate">
         <router-link
@@ -50,7 +49,6 @@ import Avatar from "@/components/Avatar";
 import TasksDateRange from "@/components/TasksDateRange";
 import TaskItem from "@/components/TaskItem";
 import tags from "@/mixins/tags.js";
-import TaskTimer from "@/components/TaskTimer";
 
 import draggable from "vuedraggable";
 
@@ -63,7 +61,6 @@ export default {
     Avatar,
     TasksDateRange,
     TaskItem,
-    TaskTimer,
     draggable,
   },
   mixins: [tags],
@@ -72,8 +69,6 @@ export default {
       return this.$store.state.task.tasksLoaded;
     },
     canCreate() {
-      if (this.timerActive) return false;
-
       if (this.queryDate == "today" || this.queryDate == "tomorrow") {
         return true;
       }
@@ -109,7 +104,6 @@ export default {
     return {
       queryDate: "today",
       showRemaining: true,
-      timerActive: false,
     };
   },
   watch: {
@@ -126,14 +120,6 @@ export default {
     },
   },
   methods: {
-    openTimer: function(time) {
-      this.taskTime = time;
-      this.timerActive = true;
-    },
-    closeTimer: function() {
-      console.log("close");
-      this.timerActive = false;
-    },
     queryTasks: async function() {
       const tasks = await getTasks(this.queryDate);
       // this.tasks = tasks
