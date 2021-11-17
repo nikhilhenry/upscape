@@ -45,20 +45,19 @@ func main() {
 	}()
 
 	// instantiate router
-	router := gin.Default()
+	router := gin.New()
 
 
 	// define go logger
 	router.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
 		// your custom format
-		return fmt.Sprintf("[%s] \"%s %s %s %d %s \"%s\" %s\"\n",
+		return fmt.Sprintf("[%s] \"%s %s %s %d %s \" %s\"\n",
 				param.TimeStamp.Format(time.RFC1123),
 				param.Method,
 				param.Path,
 				param.Request.Proto,
 				param.StatusCode,
 				param.Latency,
-				param.Request.UserAgent(),
 				param.ErrorMessage,
 		)
 	}))
