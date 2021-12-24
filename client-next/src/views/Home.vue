@@ -20,6 +20,9 @@ import userStore from "../stores/user";
 import TheAvatar from "../components/TheAvatar.vue";
 
 export default defineComponent({
+  components: {
+    TheAvatar,
+  },
   setup() {
     const firstName = computed(() => {
       return userStore.getters.getName;
