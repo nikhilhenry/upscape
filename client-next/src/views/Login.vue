@@ -3,7 +3,7 @@
     <div class="container-log">
       <div class="container__item">
         <p class="error" v-if="error">{{ error }}</p>
-        <form class="form" @submit.prevent="login">
+        <form class="form" @submit.prevent="loginUser">
           <input
             type="password"
             class="form__field"
@@ -13,7 +13,7 @@
           <button
             type="button"
             class="btn btn--primary btn--inside uppercase"
-            @click="login"
+            @click="loginUser"
           >
             <i class="fas fa-spinner fa-spin" v-if="isLoading"></i>
             <div v-else>Login</div>
@@ -27,6 +27,45 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import { login } from "../services/userService";
+import { Form, Response } from "../types/userTypes.interface";
+import userStore from "../stores/user";
+import { useRouter } from "vue-router";
+
+export default defineComponent({
+  setup() {
+    const router = useRouter();
+    const password = ref("");
+    const isLoading = ref(false);
+    const error = ref("");
+
+    async function loginUser(): Promise<void> {
+      isLoading.value = !isLoading.value;
+      const form: Form = { password: password.value };
+      const response: Response = await login(form);
+      if (response.success) {
+        // store token to user store
+        userStore.storeToken(response.token);
+        router.push({ name: "Home" });
+      } else {
+        console.log(response);
+        error.value = response.message;
+      }
+      isLoading.value = !isLoading.value;
+    }
+
+    return {
+      password,
+      isLoading,
+      error,
+      loginUser,
+    };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 //** variables
