@@ -16,12 +16,12 @@ const getters = reactive({
   getToken: () => {
     return state.token;
   },
-  getAvatarURL: () => {
+  getAvatarURL: computed(() => {
     return state.avatarURL;
-  },
-  getName: () => {
+  }),
+  getName: computed(() => {
     return state.name;
-  },
+  }),
 });
 
 const actions = {
