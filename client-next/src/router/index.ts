@@ -17,6 +17,18 @@ const routes: RouteRecordRaw[] = [
     component: Home,
     meta: { requiresAuth: true },
   },
+  {
+    path: "/",
+    name: "Tasks",
+    component: Home,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/",
+    name: "Settings",
+    component: Home,
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({
