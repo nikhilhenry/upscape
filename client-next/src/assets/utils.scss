@@ -1,0 +1,55 @@
+
+// global scss styling
+
+.container{
+  width:100%;
+  height: 100%;
+  margin:1rem auto 1rem;
+  max-width:90vw;
+}
+
+.title-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .title{
+    margin:0!important;
+    text-transform: capitalize;
+  }
+}
+
+
+// responsive sizing
+
+/* SMARTPHONES PORTRAIT */
+@media only screen and (min-width: 300px) {
+
+
+}
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (min-width: 480px) {
+
+
+}
+
+/* TABLETS PORTRAIT */
+@media only screen and (min-width: 768px) {
+
+  .container{
+    width:90%!important;
+  }
+
+}
+
+
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (min-width: 1024px) {
+
+  .container{
+    width:85%!important;
+  }
+
+} 
