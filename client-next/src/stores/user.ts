@@ -4,6 +4,7 @@ import { computed, reactive } from "vue";
 const state = reactive({
   token: localStorage.getItem("access_token"),
   error: "",
+  avatarURL: "",
 });
 
 const getters = reactive({
@@ -13,9 +14,15 @@ const getters = reactive({
   getToken: () => {
     return state.token;
   },
+  getAvatarURL: () => {
+    return state.avatarURL;
+  },
 });
 
 const actions = {
+  storeAvatarURL: (avatarURL: string) => {
+    state.avatarURL = avatarURL;
+  },
   storeToken: async (token: string) => {
     // store token in localStorage
     localStorage.setItem("access_token", token);
