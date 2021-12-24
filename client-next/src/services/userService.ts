@@ -21,7 +21,6 @@ export const login = async (form: Form): Promise<Response> => {
 export const getMeta = async (): Promise<User> => {
   try {
     const userMeta: User = await (await axios.get("/api/user")).data;
-
     return userMeta;
   } catch (error) {
     console.log(error);
