@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Form, Response } from "../types/userTypes.interface";
+import { Form, Response, User } from "../types/userTypes.interface";
 
 export const login = async (form: Form): Promise<Response> => {
   try {
@@ -15,5 +15,16 @@ export const login = async (form: Form): Promise<Response> => {
     };
 
     return response;
+  }
+};
+
+export const getMeta = async (): Promise<User> => {
+  try {
+    const userMeta: User = await (await axios.get("/api/user")).data;
+
+    return userMeta;
+  } catch (error) {
+    console.log(error);
+    return { name: "", imgUrl: "" };
   }
 };
