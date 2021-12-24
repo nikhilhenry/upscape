@@ -10,5 +10,5 @@ export interface Response {
 
 export interface User {
   name: string;
-  imgUrl: string;
+  img_url: string;
 }
