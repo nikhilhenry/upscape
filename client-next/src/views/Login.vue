@@ -46,7 +46,7 @@ export default defineComponent({
       isLoading.value = !isLoading.value;
       const form: Form = { password: password.value };
       const response: Response = await login(form);
-      if (response.success) {
+      if (response.token) {
         // store token to user store
         userStore.storeToken(response.token || "");
         router.push({ name: "Home" });
