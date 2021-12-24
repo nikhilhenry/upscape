@@ -7,3 +7,8 @@ export interface Response {
   message: string;
   success: boolean;
 }
+
+export interface User {
+  name: string;
+  img_url: string;
+}
