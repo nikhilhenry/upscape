@@ -1,0 +1,16 @@
+// main colors
+
+$background:#25282c;
+$primary:#1890ff;
+$secondary: lighten($background,3%);
+$text-primary: rgba(216,219,226,1);
+$text-secondary:#F1F7ED;
+
+$transistion-speed: 600ms;
+
+// navbar colors
+$nav-bg-primary:#191c20;
+$nav-bg-secondary:#1f2225;
+$nav-icon-primary:$primary;
+$nav-text-primary:$text-primary;
+$nav-text-secondary:$text-primary;
