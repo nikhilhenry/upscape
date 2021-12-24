@@ -26,7 +26,7 @@ const getters = reactive({
 
 const actions = {
   storeUserMeta: (userMeta: User) => {
-    state.avatarURL = userMeta.imgUrl;
+    state.avatarURL = userMeta.img_url;
     state.name = userMeta.name;
   },
   storeToken: async (token: string) => {
