@@ -39,6 +39,24 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
+import { getMeta } from "../services/userService";
+import userStore from "../stores/user";
+
+export default defineComponent({
+  setup() {
+    // load meta details on mount
+    onMounted(async () => {
+      if (userStore.getters.isLoggedIn) {
+        const userMeta = await getMeta();
+        userStore.storeUserMeta(userMeta);
+      }
+    });
+  },
+});
+</script>
+
 <style lang="scss" scoped>
 body {
   color: black;
