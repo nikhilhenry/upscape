@@ -48,7 +48,7 @@ export default defineComponent({
       const response: Response = await login(form);
       if (response.success) {
         // store token to user store
-        userStore.storeToken(response.token);
+        userStore.storeToken(response.token || "");
         router.push({ name: "Home" });
       } else {
         console.log(response);
