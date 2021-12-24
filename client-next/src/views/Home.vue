@@ -7,7 +7,7 @@
           {{ greeting }}, <br />
           {{ firstName }} 👋
         </h1>
-        <Avatar />
+        <TheAvatar />
       </div>
     </div>
   </div>
@@ -17,6 +17,7 @@
 import { computed, defineComponent, onMounted, ref } from "vue";
 import getGreeting from "../functions/getGreeting";
 import userStore from "../stores/user";
+import TheAvatar from "../components/TheAvatar.vue";
 
 export default defineComponent({
   setup() {
