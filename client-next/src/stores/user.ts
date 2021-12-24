@@ -1,5 +1,6 @@
 import axios from "axios";
 import { computed, reactive } from "vue";
+import { User } from "../types/userTypes.interface";
 
 const state = reactive({
   token: localStorage.getItem("access_token"),
@@ -24,11 +25,9 @@ const getters = reactive({
 });
 
 const actions = {
-  storeAvatarURL: (avatarURL: string) => {
-    state.avatarURL = avatarURL;
-  },
-  storeUserName: (name: string) => {
-    state.name = name;
+  storeUserMeta: (userMeta: User) => {
+    state.avatarURL = userMeta.imgUrl;
+    state.name = userMeta.name;
   },
   storeToken: async (token: string) => {
     // store token in localStorage
