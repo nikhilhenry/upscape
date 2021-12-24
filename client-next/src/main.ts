@@ -8,7 +8,7 @@ import EmptyLayout from "./layouts/EmptyLayout.vue";
 // axios defaults
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 axios.defaults.headers.common["auth_token"] =
-  localStorage.getItem("access_token") || "";
+  localStorage.getItem("auth_token") || "";
 
 const app = createApp(App);
 

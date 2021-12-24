@@ -3,7 +3,7 @@ import { computed, reactive } from "vue";
 import { User } from "../types/userTypes.interface";
 
 const state = reactive({
-  token: localStorage.getItem("access_token"),
+  token: localStorage.getItem("auth_token"),
   error: "",
   avatarURL: "",
   name: "",
@@ -31,17 +31,17 @@ const actions = {
   },
   storeToken: async (token: string) => {
     // store token in localStorage
-    localStorage.setItem("access_token", token);
+    localStorage.setItem("auth_token", token);
 
     // set axios token
     // set header globally
-    axios.defaults.headers.common["access_token"] = token;
+    axios.defaults.headers.common["auth_token"] = token;
 
     state.token = token;
   },
   logout: async () => {
     // remove token from localStorage
-    localStorage.removeItem("access_token");
+    localStorage.removeItem("auth_token");
     state.token = "";
   },
 };
