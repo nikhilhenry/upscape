@@ -8,14 +8,14 @@
 import { defineComponent, computed } from "vue";
 import { useRouter } from "vue-router";
 
-const defaultLayout = "default";
+const defaultLayout = "Sidebar";
 
 export default defineComponent({
   setup() {
     const { currentRoute } = useRouter();
 
     const layout = computed(
-      () => `${currentRoute.value.meta.layout || defaultLayout}-layout`
+      () => `${currentRoute.value.meta.layout || defaultLayout}Layout`
     );
 
     return {
