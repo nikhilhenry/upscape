@@ -5,8 +5,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { getMeta } from "./services/userService";
+import userStore from "./stores/user";
 
 const defaultLayout = "default";
 
@@ -17,6 +19,12 @@ export default defineComponent({
     const layout = computed(
       () => `${currentRoute.value.meta.layout || defaultLayout}-layout`
     );
+
+    // load metad details on mount
+    onMounted(async () => {
+      const userMeta = await getMeta();
+      userStore.storeUserMeta(userMeta);
+    });
 
     return {
       layout,
