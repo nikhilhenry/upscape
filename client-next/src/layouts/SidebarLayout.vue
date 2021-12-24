@@ -11,22 +11,14 @@
         <!-- navbar items -->
         <!-- home -->
         <li class="nav-item">
-          <router-link
-            :to="{ name: 'Home' }"
-            class="nav-link"
-            :class="{ 'active-class': activeRoute == 'Home' }"
-          >
+          <router-link :to="{ name: 'Home' }" class="nav-link">
             <i class="las la-home icon"></i>
             <span class="link-text">Home</span>
           </router-link>
         </li>
         <!-- tasks -->
         <li class="nav-item">
-          <router-link
-            :to="{ name: 'Tasks' }"
-            class="nav-link"
-            :class="{ 'active-class': activeRoute == 'Tasks' }"
-          >
+          <router-link :to="{ name: 'Tasks' }" class="nav-link">
             <i class="las la-briefcase icon"></i>
             <span class="link-text">Tasks</span>
           </router-link>
@@ -34,11 +26,7 @@
 
         <!-- settings -->
         <li class="nav-item">
-          <router-link
-            :to="{ name: 'Settings' }"
-            class="nav-link"
-            :class="{ 'active-class': activeRoute == 'Settings' }"
-          >
+          <router-link :to="{ name: 'Settings' }" class="nav-link">
             <i class="las la-cog icon"></i>
             <span class="link-text">Settings</span>
           </router-link>
@@ -65,7 +53,7 @@ body {
 }
 
 // active class
-.active-class {
+.router-link-active {
   background: $nav-bg-secondary;
   filter: grayscale(0%) !important;
   background: $nav-bg-secondary;
