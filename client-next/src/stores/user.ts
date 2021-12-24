@@ -5,6 +5,7 @@ const state = reactive({
   token: localStorage.getItem("access_token"),
   error: "",
   avatarURL: "",
+  name: "",
 });
 
 const getters = reactive({
@@ -17,11 +18,17 @@ const getters = reactive({
   getAvatarURL: () => {
     return state.avatarURL;
   },
+  getName: () => {
+    return state.name;
+  },
 });
 
 const actions = {
   storeAvatarURL: (avatarURL: string) => {
     state.avatarURL = avatarURL;
+  },
+  storeUserName: (name: string) => {
+    state.name = name;
   },
   storeToken: async (token: string) => {
     // store token in localStorage
