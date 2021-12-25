@@ -23,6 +23,37 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent, onMounted, PropType, ref } from "vue";
+import { Task } from "../types/taskTypes.interface";
+import { deleteTask as deleteTaskById } from "../services/taskService";
+import taskStore from "../stores/task";
+
+export default defineComponent({
+  props: {
+    task: { type: Object as PropType<Task>, required: true },
+  },
+  setup(props) {
+    const completed = ref(false);
+
+    onMounted(() => {
+      completed.value = props.task.completed;
+    });
+
+    // service functions
+    const deleteTask = async () => {
+      const success = await deleteTaskById(props.task._id || "");
+      if (success) taskStore.deleteTask(props.task._id || "");
+    };
+
+    return {
+      completed,
+      deleteTask,
+    };
+  },
+});
+</script>
+
 <style lang="scss" scoped>
 @import "@/assets/toggles.scss";
 
