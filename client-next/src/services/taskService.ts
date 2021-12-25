@@ -12,13 +12,13 @@ export const getTasks = async (): Promise<Array<Task>> => {
   }
 };
 
-export const postTask = async (payload: Task): Promise<Task> => {
+export const postTask = async (payload: Task): Promise<Task | null> => {
   try {
     const task: Task = await (await axios.post("/api/task", payload)).data;
     return task;
   } catch (error) {
     console.log("failed to create task");
-    return error.data;
+    return null;
   }
 };
 
