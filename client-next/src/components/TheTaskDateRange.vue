@@ -36,9 +36,15 @@ export default defineComponent({
       emit("update-date-query", queryDate[2]);
     });
 
+    const incrementDate = () => {
+      if (dateIndex.value > 0) return;
+      dateIndex.value++;
+    };
+
     return {
       dateIndex,
       formattedDate,
+      incrementDate,
     };
   },
 });
