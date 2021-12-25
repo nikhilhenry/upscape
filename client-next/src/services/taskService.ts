@@ -1,4 +1,5 @@
 import axios from "axios";
+import task from "../stores/task";
 import { Task } from "../types/TaskTypes.interface";
 
 export const getTasks = async (): Promise<Array<Task>> => {
@@ -18,6 +19,19 @@ export const postTask = async (payload: Task): Promise<Task> => {
   } catch (error) {
     console.log("failed to create task");
     return error.data;
+  }
+};
+
+export const updateTask = async (
+  taskId: string,
+  payload: Task
+): Promise<Task> => {
+  try {
+    const updatedTask: Task = await axios.put(`/api/task/${taskId}`, task);
+    return updatedTask;
+  } catch (error) {
+    console.log("task updated failed");
+    return payload;
   }
 };
 
