@@ -13,5 +13,5 @@ export interface TaskUpdateRequest {
   name?: string;
   duration?: string;
   completed?: boolean;
-  highlight: boolean;
+  highlight?: boolean;
 }
