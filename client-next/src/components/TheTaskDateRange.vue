@@ -41,10 +41,15 @@ export default defineComponent({
       dateIndex.value++;
     };
 
+    const isDisabled = computed(() => {
+      return dateIndex.value > 0 ? true : false;
+    });
+
     return {
       dateIndex,
       formattedDate,
       incrementDate,
+      isDisabled,
     };
   },
 });
