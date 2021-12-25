@@ -8,3 +8,10 @@ export interface Task {
   completed_at?: string;
   highlight: boolean;
 }
+
+export interface TaskUpdateRequest {
+  name?: string;
+  duration?: string;
+  completed?: boolean;
+  highlight: boolean;
+}
