@@ -1,4 +1,4 @@
-import { computed, reactive } from "vue";
+import { computed, reactive, VueElement } from "vue";
 import { Task } from "../types/TaskTypes.interface";
 
 const state = reactive({
@@ -55,6 +55,10 @@ const actions = {
   },
   storeTask: (task: Task) => {
     state.tasks.push(task);
+  },
+  updateTask: (updatedTask: Task) => {
+    const index = state.tasks.findIndex((task) => task._id === updatedTask._id);
+    state.tasks[index] = updatedTask;
   },
   deleteTask: (taskId: string) => {
     const index = state.tasks.findIndex((task) => task._id === taskId);
