@@ -26,7 +26,10 @@
 <script lang="ts">
 import { defineComponent, onMounted, PropType, ref } from "vue";
 import { Task } from "../types/taskTypes.interface";
-import { deleteTask as deleteTaskById } from "../services/taskService";
+import {
+  deleteTask as deleteTaskById,
+  updateTask as updatedTaskById,
+} from "../services/taskService";
 import taskStore from "../stores/task";
 
 export default defineComponent({
@@ -41,6 +44,13 @@ export default defineComponent({
     });
 
     // service functions
+    const completeTask = async () => {
+      const updatedTask = await updatedTaskById(props.task._id || "", {
+        completed: !props.task.completed,
+      });
+      if (updatedTask) taskStore.updateTask(updatedTask);
+    };
+
     const deleteTask = async () => {
       const success = await deleteTaskById(props.task._id || "");
       if (success) taskStore.deleteTask(props.task._id || "");
@@ -49,6 +59,7 @@ export default defineComponent({
     return {
       completed,
       deleteTask,
+      completeTask,
     };
   },
 });
