@@ -2,9 +2,11 @@ import axios from "axios";
 import task from "../stores/task";
 import { Task, TaskUpdateRequest } from "../types/TaskTypes.interface";
 
-export const getTasks = async (): Promise<Array<Task>> => {
+export const getTasks = async (range = "today"): Promise<Array<Task>> => {
   try {
-    const tasks: Task[] = await (await axios.get("/api/task")).data;
+    const tasks: Task[] = await (
+      await axios.get(`/api/task?range=${range}`)
+    ).data;
     return tasks;
   } catch (error) {
     console.log("failed to query tasks");
