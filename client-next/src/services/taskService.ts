@@ -29,7 +29,9 @@ export const updateTask = async (
   payload: TaskUpdateRequest
 ): Promise<Task | null> => {
   try {
-    const updatedTask: Task = await axios.put(`/api/task/${taskId}`, task);
+    const updatedTask: Task = await (
+      await axios.put(`/api/task/${taskId}`, payload)
+    ).data;
     return updatedTask;
   } catch (error) {
     console.log("task updated failed");
