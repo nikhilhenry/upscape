@@ -66,7 +66,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/toggles.scss";
+@import "../assets/toggles.scss";
 
 $flex-gap: 2rem;
 
