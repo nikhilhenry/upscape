@@ -51,7 +51,6 @@ export default defineComponent({
     onMounted(async () => {
       if (!isLoaded.value) {
         const tasks = await getTasks(queryDate.value);
-        console.log(tasks);
         taskStore.storeTasks(tasks);
       }
     });
