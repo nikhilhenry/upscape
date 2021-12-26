@@ -3,6 +3,7 @@ import userStore from "../stores/user";
 
 import Login from "../views/Login.vue";
 import Home from "../views/Home.vue";
+import Tasks from "../views/Tasks.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -20,7 +21,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "Tasks",
-    component: Home,
+    component: Tasks,
     meta: { requiresAuth: true },
   },
   {
