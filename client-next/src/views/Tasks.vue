@@ -22,14 +22,66 @@
 
       <!-- tasks  -->
       <ul class="task-list">
-            <li v-for="task in tasks" :key="task._id">
-              <TaskItem :task="task" />
-            </li>
-          </transition-group>
+        <li v-for="task in tasks" :key="task._id">
+          <TaskItem :task="task" />
+        </li>
       </ul>
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref, computed, onMounted } from "vue";
+import TheAvatar from "../components/TheAvatar.vue";
+import TheTaskDateRangeVue from "../components/TheTaskDateRange.vue";
+import TaskItem from "../components/TaskItem.vue";
+import taskStore from "../stores/task";
+export default defineComponent({
+  components: {
+    TheAvatar,
+    TheTaskDateRangeVue,
+    TaskItem,
+  },
+  setup() {
+    // query tasks tasks
+    const isLoaded = computed(() => {
+      return taskStore.getters.getTasks.length ? true : false;
+    });
+    onMounted(() => {
+      if (!isLoaded.value) {
+      }
+    });
+
+    const tasks = computed(() => {
+      return taskStore.getters.getTasks;
+    });
+    const totalDuration = computed(() => {
+      return showRemaining.value
+        ? taskStore.getters.getRemainingTime
+        : taskStore.getters.getTotalTime;
+    });
+    const queryDate = ref("today");
+    const showRemaining = ref(true);
+
+    // colors clas
+    const colorClass = computed(() => {
+      if (totalDuration.value < 2) return "light";
+      if (totalDuration.value < 4.5) return "medium";
+      if (totalDuration.value < 6) return "medium-heavy";
+      if (totalDuration.value >= 6) return "heavy";
+      return "none";
+    });
+
+    return {
+      tasks,
+      queryDate,
+      showRemaining,
+      totalDuration,
+      colorClass,
+    };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 @import "../assets/time-color-classes.scss";
