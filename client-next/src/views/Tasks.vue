@@ -7,7 +7,7 @@
         <TheAvatar />
       </div>
       <div class="secondary-bar">
-        <TheTasksDateRange
+        <TheTaskDateRange
           v-bind:queryDate="queryDate"
           v-on:update:query="queryDate = $event"
         />
@@ -21,7 +21,7 @@
       </div>
 
       <!-- tasks  -->
-      <ul class="task-list">
+      <ul class="task-list" v-if="tasks.length">
         <li v-for="task in tasks" :key="task._id">
           <TaskItem :task="task" />
         </li>
@@ -33,13 +33,14 @@
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from "vue";
 import TheAvatar from "../components/TheAvatar.vue";
-import TheTaskDateRangeVue from "../components/TheTaskDateRange.vue";
+import TheTaskDateRange from "../components/TheTaskDateRange.vue";
 import TaskItem from "../components/TaskItem.vue";
 import taskStore from "../stores/task";
+import { getTasks } from "../services/taskService";
 export default defineComponent({
   components: {
     TheAvatar,
-    TheTaskDateRangeVue,
+    TheTaskDateRange,
     TaskItem,
   },
   setup() {
@@ -47,8 +48,11 @@ export default defineComponent({
     const isLoaded = computed(() => {
       return taskStore.getters.getTasks.length ? true : false;
     });
-    onMounted(() => {
+    onMounted(async () => {
       if (!isLoaded.value) {
+        const tasks = await getTasks(queryDate.value);
+        console.log(tasks);
+        taskStore.storeTasks(tasks);
       }
     });
 
