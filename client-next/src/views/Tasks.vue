@@ -22,16 +22,18 @@
 
       <!-- tasks  -->
       <ul class="task-list" v-if="tasks.length">
-        <li v-for="(task, index) in tasks" :key="task._id">
-          <TaskItem
-            :task="task"
-            draggable="true"
-            @dragstart="dragStart($event, index)"
-            @drop="dragDrop($event, index)"
-            @dragenter.prevent
-            @dragover.prevent
-          />
-        </li>
+        <transition-group type="transition" name="flip-list">
+          <li v-for="(task, index) in tasks" :key="task._id">
+            <TaskItem
+              :task="task"
+              draggable="true"
+              @dragstart="dragStart($event, index)"
+              @drop="dragDrop($event, index)"
+              @dragenter.prevent
+              @dragover.prevent
+            />
+          </li>
+        </transition-group>
       </ul>
     </div>
   </div>
