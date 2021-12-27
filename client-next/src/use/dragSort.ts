@@ -11,7 +11,7 @@ export default function useDragSort() {
   // 'dragover'
   function dragOver() {}
   // 'drop'
-  function dragDrop() {}
+  function dragDrop(event: any, index: Number) {}
   // 'dragenter'
   function dragEnter() {}
   // 'dragleave'
