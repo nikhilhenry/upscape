@@ -1,4 +1,4 @@
-export default function useDragSort(itemList: any) {
+export default function useDragSort(itemList: Object[]) {
   let dragStartIndex: number, dragEndIndex: number;
 
   // list components
