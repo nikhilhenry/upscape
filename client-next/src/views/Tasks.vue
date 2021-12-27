@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted } from "vue";
+import { defineComponent, ref, computed, onMounted, watch } from "vue";
 import TheAvatar from "../components/TheAvatar.vue";
 import TheTaskDateRange from "../components/TheTaskDateRange.vue";
 import TaskItem from "../components/TaskItem.vue";
@@ -73,6 +73,12 @@ export default defineComponent({
       if (totalDuration.value < 6) return "medium-heavy";
       if (totalDuration.value >= 6) return "heavy";
       return "none";
+    });
+
+    // query new tasks
+    watch(queryDate, async (queryDate) => {
+      const newTasks = await getTasks(queryDate);
+      taskStore.setTaskList(newTasks);
     });
 
     return {
