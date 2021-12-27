@@ -51,6 +51,7 @@ import TaskItem from "../components/TaskItem.vue";
 import taskStore from "../stores/task";
 import { getTasks } from "../services/taskService";
 import useDragSort from "../use/dragSort";
+import useColorClass from "../use/colorClass";
 export default defineComponent({
   components: {
     TheAvatar,
@@ -85,15 +86,6 @@ export default defineComponent({
     const queryDate = ref("today");
     const showRemaining = ref(true);
 
-    // colors clas
-    const colorClass = computed(() => {
-      if (totalDuration.value < 2) return "light";
-      if (totalDuration.value < 4.5) return "medium";
-      if (totalDuration.value < 6) return "medium-heavy";
-      if (totalDuration.value >= 6) return "heavy";
-      return "none";
-    });
-
     // query new tasks
     watch(queryDate, async (queryDate) => {
       const newTasks = await getTasks(queryDate);
@@ -101,6 +93,7 @@ export default defineComponent({
     });
 
     const dragFunctions = useDragSort(tasks);
+    const colorClass = useColorClass(parseFloat(totalDuration.value));
 
     return {
       tasks,
