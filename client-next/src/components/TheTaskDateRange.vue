@@ -20,7 +20,7 @@ import { computed, defineComponent, ref, watch } from "vue";
 import getDate from "../functions/getDate";
 
 export default defineComponent({
-  setup() {
+  setup(_, { emit }) {
     const dateIndex = ref(0);
 
     const formattedDate = computed(() => {
@@ -31,6 +31,12 @@ export default defineComponent({
       if (dateIndex.value > 0) return;
       dateIndex.value++;
     };
+
+    watch(formattedDate, (queryDate) => {
+      // send query date to parent component
+      if (!queryDate) return null;
+      emit("update-date-query", queryDate[2]);
+    });
 
     const isDisabled = computed(() => {
       return dateIndex.value > 0 ? true : false;
