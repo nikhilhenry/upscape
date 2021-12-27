@@ -63,8 +63,13 @@ export default defineComponent({
       }
     });
 
-    const tasks = computed(() => {
-      return taskStore.getters.getTasks;
+    const tasks = computed({
+      get: () => {
+        return taskStore.getters.getTasks;
+      },
+      set: (taskList) => {
+        taskStore.setTaskList(taskList);
+      },
     });
     const totalDuration = computed(() => {
       return showRemaining.value
@@ -89,7 +94,7 @@ export default defineComponent({
       taskStore.setTaskList(newTasks);
     });
 
-    const dragFunctions = useDragSort(toRaw(tasks.value));
+    const dragFunctions = useDragSort(tasks);
 
     return {
       tasks,
