@@ -40,6 +40,16 @@
         </transition-group>
       </ul>
     </div>
+    <div class="fab">
+      <div v-if="canCreate">
+        <router-link
+          :to="{ path: 'tasks/create', query: { range: queryDate } }"
+          class="create-button"
+          >Create Task</router-link
+        >
+      </div>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -92,6 +102,11 @@ export default defineComponent({
       taskStore.setTaskList(newTasks);
     });
 
+    // create logic
+    const canCreate = computed(() => {
+      return queryDate.value == "today" || queryDate.value == "tomorrow";
+    });
+
     const dragFunctions = useDragSort(tasks);
     const colorClass = useColorClass(parseFloat(totalDuration.value));
 
@@ -100,6 +115,7 @@ export default defineComponent({
       queryDate,
       showRemaining,
       totalDuration,
+      canCreate,
       colorClass,
       ...dragFunctions,
     };
