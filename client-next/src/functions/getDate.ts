@@ -9,19 +9,15 @@ function getFormattedDate(date: Date) {
 }
 
 function getQueryDate(date: Date) {
-  let month = new Date(date).getMonth() + 1;
-  let day = new Date(date).getDate();
-  const year = new Date(date).getFullYear().toString().substr(-2);
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  const year = date.getFullYear().toString().substr(-2);
 
   let monthNum, dayNum;
 
-  if (day < 10) {
-    dayNum = "0" + day;
-  }
+  day < 10 ? (dayNum = "0" + day) : (dayNum = day);
 
-  if (month < 10) {
-    monthNum = "0" + month;
-  }
+  month < 10 ? (monthNum = "0" + month) : (monthNum = month);
 
   const queryDate = monthNum + "/" + dayNum + "/" + year;
   return queryDate;
