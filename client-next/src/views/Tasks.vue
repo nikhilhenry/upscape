@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, watch } from "vue";
+import { defineComponent, ref, computed, onMounted, watch, toRaw } from "vue";
 import TheAvatar from "../components/TheAvatar.vue";
 import TheTaskDateRange from "../components/TheTaskDateRange.vue";
 import TaskItem from "../components/TaskItem.vue";
@@ -89,7 +89,7 @@ export default defineComponent({
       taskStore.setTaskList(newTasks);
     });
 
-    const dragFunctions = useDragSort(tasks.value);
+    const dragFunctions = useDragSort(toRaw(tasks.value));
 
     return {
       tasks,
