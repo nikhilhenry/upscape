@@ -23,6 +23,15 @@ const routes: RouteRecordRaw[] = [
     name: "Tasks",
     component: Tasks,
     meta: { requiresAuth: true },
+    children: [
+      {
+        path: "create",
+        component: () => import("../views/CreateTask.vue"),
+        meta: {
+          requiresAuth: true,
+        },
+      },
+    ],
   },
   {
     path: "/",
