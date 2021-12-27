@@ -1,8 +1,8 @@
-export default function useDragSort() {
-  let dragStartIndex: Number, dragEndIndex: Number;
+export default function useDragSort(itemList: any) {
+  let dragStartIndex: number, dragEndIndex: number;
 
   // list components
-  function dragStart(event: any, index: Number) {
+  function dragStart(event: any, index: number) {
     event.dataTransfer.dropEffect = "move";
     event.dataTransfer.effectAllowed = "move";
 
@@ -13,7 +13,7 @@ export default function useDragSort() {
   // 'dragover'
   function dragOver() {}
   // 'drop'
-  function dragDrop(event: any, index: Number) {
+  function dragDrop(event: any, index: number) {
     dragEndIndex = index;
     swapItems(dragStartIndex, dragEndIndex);
   }
@@ -22,8 +22,11 @@ export default function useDragSort() {
   // 'dragleave'
   function dragLeave() {}
 
-  function swapItems(fromIndex: Number, toIndex: Number) {
-    console.log(fromIndex, toIndex);
+  function swapItems(fromIndex: number, toIndex: number) {
+    const itemOne = itemList[fromIndex];
+    const itemTwo = itemList[toIndex];
+
+    console.log(itemOne, itemTwo);
   }
 
   return {

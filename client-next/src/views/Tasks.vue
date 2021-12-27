@@ -89,7 +89,7 @@ export default defineComponent({
       taskStore.setTaskList(newTasks);
     });
 
-    const dragFunctions = useDragSort();
+    const dragFunctions = useDragSort(tasks.value);
 
     return {
       tasks,
