@@ -4,7 +4,7 @@ import App from "./App.vue";
 import axios from "axios";
 import SidebarLayout from "./layouts/SidebarLayout.vue";
 import EmptyLayout from "./layouts/EmptyLayout.vue";
-import "./assets/index.css";
+import "./assets/tailwind.css";
 
 // axios defaults
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
