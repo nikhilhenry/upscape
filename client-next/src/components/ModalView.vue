@@ -76,7 +76,7 @@
             >
               <DialogTitle
                 as="h3"
-                class="text-lg font-medium leading-6 text-gray-100"
+                class="text-2xl font-medium leading-6 text-gray-100"
               >
                 {{ modalTitle }}
               </DialogTitle>
