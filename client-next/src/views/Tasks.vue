@@ -9,7 +9,7 @@
       <div class="secondary-bar">
         <TheTaskDateRange
           v-bind:queryDate="queryDate"
-          v-on:update:query="queryDate = $event"
+          v-on:update-date-query="queryDate = $event"
         />
         <h3
           class="total-duration"
