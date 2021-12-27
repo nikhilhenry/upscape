@@ -43,7 +43,7 @@
     <div class="fab">
       <div v-if="canCreate">
         <router-link
-          :to="{ path: 'tasks/create', query: { range: queryDate } }"
+          :to="{ path: '/tasks/create', query: { range: queryDate } }"
           class="create-button"
           >Create Task</router-link
         >
