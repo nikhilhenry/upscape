@@ -27,7 +27,9 @@
             :task="task"
             draggable="true"
             @dragstart="dragStart($event, index)"
-            @dragdrop="dragDrop($event, index)"
+            @drop="dragDrop($event, index)"
+            @dragenter.prevent
+            @dragover.prevent
           />
         </li>
       </ul>
