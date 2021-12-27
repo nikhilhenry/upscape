@@ -1,6 +1,6 @@
-import { toRaw } from "vue";
+import { toRaw, WritableComputedRef } from "vue";
 
-export default function useDragSort(itemList: any, setter: Function) {
+export default function useDragSort(itemList: WritableComputedRef<{}[]>) {
   let dragStartIndex: number, dragEndIndex: number;
 
   // list components
@@ -33,10 +33,6 @@ export default function useDragSort(itemList: any, setter: Function) {
     rawList[toIndex] = itemOne;
 
     itemList.value = rawList;
-
-    console.log(itemOne, itemTwo);
-
-    console.log(setter);
   }
 
   return {
