@@ -57,6 +57,8 @@ const actions = {
     state.tasks.push(task);
   },
   setTaskList: (taskList: Task[] | []) => {
+    // clear old list
+    state.tasks = [];
     state.tasks = taskList;
   },
   updateTask: (updatedTask: Task) => {
