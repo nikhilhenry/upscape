@@ -78,40 +78,8 @@
                 as="h3"
                 class="text-lg font-medium leading-6 text-gray-100"
               >
-                Payment successful
+                {{ modalTitle }}
               </DialogTitle>
-              <div class="mt-2">
-                <p class="text-sm text-neutral-50">
-                  Your payment has been successfully submitted. We’ve sent you
-                  an email with all of the details of your order.
-                </p>
-              </div>
-
-              <div class="mt-4">
-                <button
-                  type="button"
-                  class="
-                    inline-flex
-                    justify-center
-                    px-4
-                    py-2
-                    text-sm
-                    font-medium
-                    text-blue-900
-                    bg-blue-100
-                    border border-transparent
-                    rounded-md
-                    hover:bg-blue-200
-                    focus:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-offset-2
-                    focus-visible:ring-blue-500
-                  "
-                  @click="closeModal"
-                >
-                  Got it, thanks!
-                </button>
-              </div>
             </div>
           </TransitionChild>
         </div>
@@ -132,6 +100,12 @@ import {
 import { useRouter } from "vue-router";
 
 export default defineComponent({
+  props: {
+    modalTitle: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
     TransitionRoot,
     TransitionChild,
