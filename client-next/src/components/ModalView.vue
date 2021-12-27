@@ -1,6 +1,35 @@
 <template>
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" @close="closeModal">
+      >
+      <div
+        class="
+          modal-close
+          absolute
+          top-0
+          right-0
+          cursor-pointer
+          flex flex-col
+          items-center
+          mt-4
+          mr-4
+          text-slate-400 text-sm
+          z-50
+        "
+        @click="closeModal"
+      >
+        <svg
+          class="fill-current text-slate-400"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+          />
+        </svg>
+        <span class="text-sm">(Esc)</span>
+      </div>
       <div class="fixed inset-0 z-10 overflow-y-auto">
         <div class="min-h-screen px-4 text-center">
           <TransitionChild
@@ -47,12 +76,12 @@
             >
               <DialogTitle
                 as="h3"
-                class="text-lg font-medium leading-6 text-gray-900"
+                class="text-lg font-medium leading-6 text-gray-100"
               >
                 Payment successful
               </DialogTitle>
               <div class="mt-2">
-                <p class="text-sm text-gray-500">
+                <p class="text-sm text-neutral-50">
                   Your payment has been successfully submitted. We’ve sent you
                   an email with all of the details of your order.
                 </p>
