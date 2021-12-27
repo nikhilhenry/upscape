@@ -15,7 +15,7 @@ const getters = reactive({
     const tasks = state.tasks;
 
     if (!tasks) {
-      return 0;
+      return "0";
     }
 
     let totalTime = 0;
@@ -36,7 +36,7 @@ const getters = reactive({
     const tasks = state.tasks;
 
     if (!tasks) {
-      return 0;
+      return "0";
     }
 
     let totalTime = 0;
