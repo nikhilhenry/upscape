@@ -22,8 +22,12 @@
 
       <!-- tasks  -->
       <ul class="task-list" v-if="tasks.length">
-        <transition-group type="transition" name="flip-list">
-          <li v-for="(task, index) in tasks" :key="task._id">
+        <transition-group type="transition" name="list-complete">
+          <li
+            v-for="(task, index) in tasks"
+            :key="task._id"
+            class="list-complete-item"
+          >
             <TaskItem
               :task="task"
               draggable="true"
@@ -165,5 +169,19 @@ export default defineComponent({
 .ghost {
   box-shadow: 5px 5px 2.5px -1px rgba(0, 0, 0, 0.14);
   opacity: 0.7;
+}
+
+.list-complete-item {
+  transition: all 0.8s ease;
+}
+
+.list-complete-enter-from,
+.list-complete-leave-to {
+  opacity: 0;
+  transform: translatey(30px);
+}
+
+.list-complete-leave-active {
+  position: absolute;
 }
 </style>
