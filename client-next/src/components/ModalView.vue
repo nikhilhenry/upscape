@@ -40,7 +40,7 @@
                 align-middle
                 transition-all
                 transform
-                bg-white
+                bg-slate-800
                 shadow-xl
                 rounded-2xl
               "
