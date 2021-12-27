@@ -27,15 +27,6 @@ export default defineComponent({
       return getDate(dateIndex.value) || [];
     });
 
-    watch(formattedDate, (queryDate) => {
-      // send query date to parent component
-      if (!queryDate) return null;
-      const emit = defineEmits<{
-        (event: "update-date-query", queryDate: string): string;
-      }>();
-      emit("update-date-query", queryDate[2]);
-    });
-
     const incrementDate = () => {
       if (dateIndex.value > 0) return;
       dateIndex.value++;
