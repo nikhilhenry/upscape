@@ -100,6 +100,7 @@ import {
   DialogOverlay,
   DialogTitle,
 } from "@headlessui/vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   components: {
@@ -112,11 +113,13 @@ export default defineComponent({
 
   setup() {
     const isOpen = ref(true);
+    const router = useRouter();
 
     return {
       isOpen,
       closeModal() {
         isOpen.value = false;
+        router.go(-1);
       },
     };
   },
