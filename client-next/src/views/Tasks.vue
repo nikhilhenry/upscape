@@ -22,8 +22,12 @@
 
       <!-- tasks  -->
       <ul class="task-list" v-if="tasks.length">
-        <li v-for="task in tasks" :key="task._id">
-          <TaskItem :task="task" />
+        <li v-for="(task, index) in tasks" :key="task._id">
+          <TaskItem
+            :task="task"
+            draggable="true"
+            @dragstart="dragStart($event, index)"
+          />
         </li>
       </ul>
     </div>
@@ -37,6 +41,7 @@ import TheTaskDateRange from "../components/TheTaskDateRange.vue";
 import TaskItem from "../components/TaskItem.vue";
 import taskStore from "../stores/task";
 import { getTasks } from "../services/taskService";
+import useDragSort from "../use/dragSort";
 export default defineComponent({
   components: {
     TheAvatar,
@@ -81,12 +86,15 @@ export default defineComponent({
       taskStore.setTaskList(newTasks);
     });
 
+    const { dragStart } = useDragSort();
+
     return {
       tasks,
       queryDate,
       showRemaining,
       totalDuration,
       colorClass,
+      dragStart,
     };
   },
 });
