@@ -1,4 +1,5 @@
 import { computed, reactive, VueElement } from "vue";
+import { updateTask } from "../services/taskService";
 import { Task } from "../types/TaskTypes.interface";
 
 const state = reactive({
@@ -58,6 +59,15 @@ const actions = {
   },
   setTaskList: (taskList: Task[] | []) => {
     // clear old list
+    state.tasks = [];
+    state.tasks = taskList;
+  },
+  updateTaskList: (taskList: Task[]) => {
+    // update order id with api
+    taskList.forEach(async (task, index) => {
+      await updateTask(task._id!, { id: index });
+    });
+
     state.tasks = [];
     state.tasks = taskList;
   },
