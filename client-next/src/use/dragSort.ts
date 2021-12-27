@@ -26,6 +26,9 @@ export default function useDragSort(itemList: Object[]) {
     const itemOne = itemList[fromIndex];
     const itemTwo = itemList[toIndex];
 
+    itemList[fromIndex] = itemTwo;
+    itemList[toIndex] = itemOne;
+
     console.log(itemOne, itemTwo);
   }
 
