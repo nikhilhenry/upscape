@@ -70,7 +70,7 @@ export default defineComponent({
         return taskStore.getters.getTasks;
       },
       set: (taskList) => {
-        taskStore.setTaskList(taskList);
+        taskStore.updateTaskList(taskList);
       },
     });
     const totalDuration = computed(() => {
