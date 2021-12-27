@@ -80,7 +80,9 @@
               >
                 {{ modalTitle }}
               </DialogTitle>
-              <slot></slot>
+              <div class="mt-3">
+                <slot></slot>
+              </div>
             </div>
           </TransitionChild>
         </div>
