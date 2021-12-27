@@ -1,6 +1,6 @@
 <template>
   <ModalView :modalTitle="'Create Task'">
-    <form>
+    <form @submit.prevent="submitForm">
       <div class="mb-6">
         <label class="label">Task Name</label>
         <input
@@ -8,11 +8,18 @@
           class="input-field"
           placeholder="Eat sushi 🍣"
           required
+          name="taskName"
         />
       </div>
       <div class="mb-6">
         <label class="label">Task Duration</label>
-        <input type="number" class="input-field" placeholder="0" required />
+        <input
+          type="number"
+          class="input-field"
+          placeholder="0"
+          required
+          name="taskDuration"
+        />
       </div>
       <div class="flex items-start mb-6">
         <div class="flex items-center h-5">
@@ -27,7 +34,7 @@
               border-gray-600
               focus:ring-offset-sky-500
             "
-            required
+            name="highlight"
           />
         </div>
         <div class="ml-3 text-sm">
@@ -65,6 +72,17 @@ import { defineComponent } from "vue";
 import ModalView from "../components/ModalView.vue";
 export default defineComponent({
   components: { ModalView },
+  setup() {
+    const submitForm = (event: any) => {
+      const formData: any = new FormData(event.target);
+      const { taskName, taskDuration, highlight } =
+        Object.fromEntries(formData);
+    };
+
+    return {
+      submitForm,
+    };
+  },
 });
 </script>
 
