@@ -27,6 +27,7 @@
             :task="task"
             draggable="true"
             @dragstart="dragStart($event, index)"
+            @dragdrop="dragDrop($event, index)"
           />
         </li>
       </ul>
@@ -86,7 +87,7 @@ export default defineComponent({
       taskStore.setTaskList(newTasks);
     });
 
-    const { dragStart } = useDragSort();
+    const dragFunctions = useDragSort();
 
     return {
       tasks,
@@ -94,7 +95,7 @@ export default defineComponent({
       showRemaining,
       totalDuration,
       colorClass,
-      dragStart,
+      ...dragFunctions,
     };
   },
 });
