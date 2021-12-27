@@ -7,6 +7,7 @@ export interface Task {
   created_at?: string;
   completed_at?: string;
   highlight: boolean;
+  id: number;
 }
 
 export interface TaskUpdateRequest {
@@ -14,4 +15,5 @@ export interface TaskUpdateRequest {
   duration?: string;
   completed?: boolean;
   highlight?: boolean;
+  id?: number;
 }
