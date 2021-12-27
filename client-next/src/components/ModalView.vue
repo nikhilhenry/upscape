@@ -71,7 +71,7 @@
                 transform
                 bg-slate-800
                 shadow-xl
-                rounded-2xl
+                rounded-xl
               "
             >
               <DialogTitle
