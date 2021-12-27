@@ -56,6 +56,9 @@ const actions = {
   storeTask: (task: Task) => {
     state.tasks.push(task);
   },
+  setTaskList: (taskList: Task[] | []) => {
+    state.tasks = taskList;
+  },
   updateTask: (updatedTask: Task) => {
     const index = state.tasks.findIndex((task) => task._id === updatedTask._id);
     state.tasks[index] = updatedTask;
