@@ -83,6 +83,29 @@
           </div>
         </div>
       </section>
+      <div class="logout fixed bottom-16 left-1/2 -translate-x-1/2">
+        <button
+          type="submit"
+          class="
+            inline-flex
+            text-white
+            font-medium
+            rounded-lg
+            text-lg
+            w-full
+            sm:w-auto
+            ml-4
+            px-5
+            py-2.5
+            text-center
+            bg-blue-600
+            hover:bg-blue-700
+            focus:ring-blue-800
+          "
+        >
+          Logout
+        </button>
+      </div>
     </div>
   </div>
 </template>
