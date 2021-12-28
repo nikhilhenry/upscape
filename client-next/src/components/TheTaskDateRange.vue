@@ -3,7 +3,9 @@
     <div class="flex flex-row items-center text-center">
       <i class="las la-angle-left text-4xl" @click="dateIndex--"></i>
       <div class="content">
-        <h3 class="mx-5 mb-2 text-2xl capitalize">{{ formattedDate[0] }}</h3>
+        <h3 class="mx-5 mb-2 text-2xl font-medium capitalize">
+          {{ formattedDate[0] }}
+        </h3>
         <p class="my-0 mx-4 text-xl uppercase">{{ formattedDate[1] }}</p>
       </div>
       <i
