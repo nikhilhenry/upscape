@@ -2,17 +2,17 @@
   <div class="tasks">
     <div class="container">
       <!-- title bar -->
-      <div class="title-bar">
+      <div class="title-bar mb-4">
         <h1 class="title">Tasks</h1>
         <TheAvatar />
       </div>
-      <div class="secondary-bar">
+      <div class="flex flex-row justify-between items-center">
         <TheTaskDateRange
           v-bind:queryDate="queryDate"
           v-on:update-date-query="queryDate = $event"
         />
         <h3
-          class="total-duration"
+          class="text-2xl cursor-pointer"
           :class="colorClass"
           @click="showRemaining = !showRemaining"
         >
@@ -21,7 +21,7 @@
       </div>
 
       <!-- tasks  -->
-      <ul class="task-list" v-if="tasks.length">
+      <ul class="mt-12 list-none m-0 p-0" v-if="tasks.length">
         <transition-group type="transition" name="list-complete">
           <li
             v-for="(task, index) in tasks"
@@ -40,7 +40,7 @@
         </transition-group>
       </ul>
     </div>
-    <div class="fab">
+    <div class="fixed bottom-12 left-1/2 -translate-x-1/2">
       <div v-if="canCreate">
         <router-link
           :to="{ path: '/tasks/create', query: { range: queryDate } }"
@@ -126,39 +126,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "../assets/time-color-classes.scss";
 
-.secondary-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  .total-duration {
-    font-size: 24px;
-    cursor: pointer;
-  }
-}
-
-.task-list {
-  margin-top: 3rem;
-  list-style: none;
-  margin-left: 0;
-  padding: 0;
-}
-
-.fab {
-  position: fixed;
-  bottom: 50px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  // right: 50%;
-}
-
 .create-button {
   color: #fff;
   background-color: $primary;
   border: none;
   font-size: 1.5rem;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   padding: 0.5rem 1.2rem 0.5rem;
   border-radius: 0.2rem;
   margin: 0;
