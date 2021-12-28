@@ -34,7 +34,7 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: "/",
+    path: "/settings",
     name: "Settings",
     component: () => import("../views/Settings.vue"),
     meta: { requiresAuth: true },
