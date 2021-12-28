@@ -69,14 +69,33 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useRoute } from "vue-router";
 import ModalView from "../components/ModalView.vue";
+import { postTask } from "../services/taskService";
+import taskStore from "../stores/task";
+import { Task } from "../types/taskTypes.interface";
 export default defineComponent({
   components: { ModalView },
   setup() {
-    const submitForm = (event: any) => {
+    const route = useRoute();
+
+    const submitForm = async (event: any) => {
       const formData: any = new FormData(event.target);
       const { taskName, taskDuration, highlight } =
         Object.fromEntries(formData);
+
+      // create task
+      const taskRequest: Task = {
+        name: taskName,
+        duration: parseInt(taskDuration),
+        highlight: highlight ? true : false,
+        id: taskStore.getters.getTasks.length,
+        completed: false,
+        is_tomorrow: route.query.range == "tomorrow" ? true : false,
+      };
+
+      const task = await postTask(taskRequest);
+      if (task) taskStore.storeTask(task);
     };
 
     return {
