@@ -12,6 +12,7 @@
       </section>
       <div class="logout fixed bottom-16 left-1/2 -translate-x-1/2">
         <button
+          @click="logoutUser"
           type="submit"
           class="
             inline-flex
@@ -42,12 +43,25 @@ import { defineComponent } from "vue";
 import TheAvatar from "../components/TheAvatar.vue";
 import SettingsUsername from "../components/SettingsUsername.vue";
 import SettingsPassword from "../components/SettingsPassword.vue";
+import userStore from "../stores/user";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   components: {
     TheAvatar,
     SettingsUsername,
     SettingsPassword,
+  },
+  setup() {
+    const router = useRouter();
+    const logoutUser = () => {
+      userStore.logout();
+      router.push({ name: "Login" });
+    };
+
+    return {
+      logoutUser,
+    };
   },
 });
 </script>
