@@ -7,81 +7,8 @@
         <TheAvatar />
       </div>
       <section class="mt-16 grid grid-cols-2 gap-x-16">
-        <div class="mb-6">
-          <label class="label">Change Username</label>
-          <div class="flex">
-            <input
-              type="text"
-              class="input-field"
-              placeholder="New Name"
-              required
-              name="taskName"
-            />
-            <button
-              type="submit"
-              class="
-                inline-flex
-                text-white
-                font-medium
-                rounded-lg
-                text-sm
-                w-full
-                sm:w-auto
-                ml-4
-                px-5
-                py-2.5
-                text-center
-                bg-blue-600
-                hover:bg-blue-700
-                focus:ring-blue-800
-              "
-            >
-              Update
-            </button>
-          </div>
-        </div>
-        <div class="mb-6">
-          <label class="label">Update Password</label>
-          <label class="sub-label">Current Password</label>
-          <input
-            type="text"
-            class="input-field"
-            placeholder="New Name"
-            required
-            name="taskName"
-          />
-          <label class="sub-label">New Password</label>
-          <div class="flex">
-            <input
-              type="text"
-              class="input-field"
-              placeholder="New Name"
-              required
-              name="taskName"
-            />
-            <button
-              type="submit"
-              class="
-                inline-flex
-                text-white
-                font-medium
-                rounded-lg
-                text-sm
-                w-full
-                sm:w-auto
-                ml-4
-                px-5
-                py-2.5
-                text-center
-                bg-blue-600
-                hover:bg-blue-700
-                focus:ring-blue-800
-              "
-            >
-              Update
-            </button>
-          </div>
-        </div>
+        <SettingsUsername />
+        <SettingsPassword />
       </section>
       <div class="logout fixed bottom-16 left-1/2 -translate-x-1/2">
         <button
@@ -113,10 +40,14 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import TheAvatar from "../components/TheAvatar.vue";
+import SettingsUsername from "../components/SettingsUsername.vue";
+import SettingsPassword from "../components/SettingsPassword.vue";
 
 export default defineComponent({
   components: {
     TheAvatar,
+    SettingsUsername,
+    SettingsPassword,
   },
 });
 </script>
