@@ -43,8 +43,6 @@ import { defineComponent } from "vue";
 import TheAvatar from "../components/TheAvatar.vue";
 import SettingsUsername from "../components/SettingsUsername.vue";
 import SettingsPassword from "../components/SettingsPassword.vue";
-import userStore from "../stores/user";
-import { useRouter } from "vue-router";
 import useLogout from "../use/logout";
 
 export default defineComponent({
