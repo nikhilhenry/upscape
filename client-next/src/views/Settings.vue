@@ -9,13 +9,36 @@
       <section class="mt-16 grid grid-cols-2 gap-x-16">
         <div class="mb-6">
           <label class="label">Change Username</label>
-          <input
-            type="text"
-            class="input-field"
-            placeholder="New Name"
-            required
-            name="taskName"
-          />
+          <div class="flex">
+            <input
+              type="text"
+              class="input-field"
+              placeholder="New Name"
+              required
+              name="taskName"
+            />
+            <button
+              type="submit"
+              class="
+                inline-flex
+                text-white
+                font-medium
+                rounded-lg
+                text-sm
+                w-full
+                sm:w-auto
+                ml-4
+                px-5
+                py-2.5
+                text-center
+                bg-blue-600
+                hover:bg-blue-700
+                focus:ring-blue-800
+              "
+            >
+              Update
+            </button>
+          </div>
         </div>
         <div class="mb-6">
           <label class="label">Update Password</label>
@@ -28,13 +51,36 @@
             name="taskName"
           />
           <label class="sub-label">New Password</label>
-          <input
-            type="text"
-            class="input-field"
-            placeholder="New Name"
-            required
-            name="taskName"
-          />
+          <div class="flex">
+            <input
+              type="text"
+              class="input-field"
+              placeholder="New Name"
+              required
+              name="taskName"
+            />
+            <button
+              type="submit"
+              class="
+                inline-flex
+                text-white
+                font-medium
+                rounded-lg
+                text-sm
+                w-full
+                sm:w-auto
+                ml-4
+                px-5
+                py-2.5
+                text-center
+                bg-blue-600
+                hover:bg-blue-700
+                focus:ring-blue-800
+              "
+            >
+              Update
+            </button>
+          </div>
         </div>
       </section>
     </div>
@@ -54,7 +100,7 @@ export default defineComponent({
 
 <style lang="scss">
 .input-field {
-  @apply w-9/12 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white;
+  @apply w-full text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white;
 }
 
 .label {
