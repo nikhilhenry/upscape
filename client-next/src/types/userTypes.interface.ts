@@ -12,3 +12,8 @@ export interface User {
   name: string;
   img_url: string;
 }
+
+export interface UserRequest {
+  name?: string;
+  img_url?: string;
+}

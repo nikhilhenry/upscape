@@ -1,5 +1,10 @@
 import axios from "axios";
-import { Form, Response, User } from "../types/userTypes.interface";
+import {
+  Form,
+  Response,
+  User,
+  UserRequest,
+} from "../types/userTypes.interface";
 
 export const login = async (form: Form): Promise<Response> => {
   try {
@@ -24,6 +29,18 @@ export const getMeta = async (): Promise<User> => {
     return userMeta;
   } catch (error) {
     console.log(error);
-    return { name: "", imgUrl: "" };
+    return { name: "", img_url: "" };
+  }
+};
+
+export const updateMeta = async (
+  payload: UserRequest
+): Promise<User | null> => {
+  try {
+    const user: User = await (await axios.put("/api/user", payload)).data;
+    return user;
+  } catch (error) {
+    console.log(error);
+    return null;
   }
 };
