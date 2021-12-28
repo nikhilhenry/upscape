@@ -86,14 +86,6 @@ $flex-gap: 2rem;
     margin: 1rem 0 0.5rem 0rem;
   }
 
-  .date {
-    font-size: 1em;
-    color: rgba($text-secondary, $alpha: 0.8);
-    font-weight: 100;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
   .duration {
     font-size: 1.2rem;
     color: $text-secondary;
@@ -132,21 +124,6 @@ $flex-gap: 2rem;
     align-items: center;
     justify-content: flex-end;
     min-width: 300px;
-  }
-}
-
-.tags {
-  list-style: none;
-  margin: 0;
-  margin-left: $flex-gap;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  .tag {
-    color: #fff;
-    padding: 0.1rem 0.5rem 0.1rem;
-    margin-left: 0.5rem;
-    border-radius: 0.3rem;
   }
 }
 
