@@ -8,8 +8,10 @@
         placeholder="New Name"
         required
         name="taskName"
+        v-model="username"
       />
       <button
+        @click="updateName"
         type="submit"
         class="
           inline-flex
@@ -33,3 +35,26 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import { updateMeta } from "../services/userService";
+import userStore from "../stores/user";
+
+export default defineComponent({
+  setup() {
+    const username = ref("");
+    const updateName = async () => {
+      if (!username) return null;
+      const response = await updateMeta({ name: username.value });
+      if (!response) return null;
+      userStore.storeUserMeta(response);
+    };
+
+    return {
+      username,
+      updateName,
+    };
+  },
+});
+</script>
