@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   Form,
+  PasswordRequest,
   Response,
   User,
   UserRequest,
@@ -42,5 +43,16 @@ export const updateMeta = async (
   } catch (error) {
     console.log(error);
     return null;
+  }
+};
+
+export const updatePassword = async (payload: PasswordRequest) => {
+  try {
+    const response = await (
+      await axios.put("/api/user/password", payload)
+    ).data;
+    return response;
+  } catch (error) {
+    return;
   }
 };

@@ -17,3 +17,8 @@ export interface UserRequest {
   name?: string;
   img_url?: string;
 }
+
+export interface PasswordRequest {
+  current_password: string;
+  new_password: string;
+}
