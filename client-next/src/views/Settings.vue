@@ -45,6 +45,7 @@ import SettingsUsername from "../components/SettingsUsername.vue";
 import SettingsPassword from "../components/SettingsPassword.vue";
 import userStore from "../stores/user";
 import { useRouter } from "vue-router";
+import useLogout from "../use/logout";
 
 export default defineComponent({
   components: {
@@ -53,11 +54,7 @@ export default defineComponent({
     SettingsPassword,
   },
   setup() {
-    const router = useRouter();
-    const logoutUser = () => {
-      userStore.logout();
-      router.push({ name: "Login" });
-    };
+    const logoutUser = useLogout();
 
     return {
       logoutUser,
