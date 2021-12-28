@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="container">
+    <div class="w-full h-full my-4 mx-auto lg:max-w-7xl md:max-w-full">
       <!-- title bar -->
       <div class="title-bar">
         <h1 class="title">
