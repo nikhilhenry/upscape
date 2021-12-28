@@ -1,13 +1,13 @@
 <template>
   <div class="date-range">
-    <div class="wrapper">
-      <i class="las la-angle-left" @click="dateIndex--"></i>
+    <div class="flex flex-row items-center text-center">
+      <i class="las la-angle-left text-4xl" @click="dateIndex--"></i>
       <div class="content">
-        <h3 class="day">{{ formattedDate[0] }}</h3>
-        <p>{{ formattedDate[1] }}</p>
+        <h3 class="mx-5 mb-2 text-2xl capitalize">{{ formattedDate[0] }}</h3>
+        <p class="my-0 mx-4 text-xl uppercase">{{ formattedDate[1] }}</p>
       </div>
       <i
-        class="las la-angle-right"
+        class="las la-angle-right text-4xl"
         @click="incrementDate"
         :class="{ 'is-disabled': isDisabled }"
       ></i>
@@ -53,37 +53,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  text-align: center;
-
-  .las {
-    font-size: 2.5rem;
-  }
-
-  .is-disabled {
-    color: rgba(darken($text-primary, 20%), 0.5);
-    cursor: not-allowed;
-  }
-
-  h3 {
-    margin-left: 1.2rem;
-    margin-right: 1.2rem;
-    margin-bottom: 5px;
-    margin-top: 0;
-    font-size: 24px;
-    text-transform: capitalize;
-  }
-
-  p {
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    font-size: 18px;
-    text-transform: uppercase;
-  }
+.is-disabled {
+  color: rgba(darken($text-primary, 20%), 0.5);
+  cursor: not-allowed;
 }
 </style>
