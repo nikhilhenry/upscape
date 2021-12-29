@@ -13,7 +13,7 @@
           items-center
           mt-4
           mr-4
-          text-slate-400 text-sm
+          text-skin-base text-sm
           z-50
         "
         @click="closeModal"
@@ -69,14 +69,14 @@
                 align-middle
                 transition-all
                 transform
-                bg-slate-800
+                bg-skin-elevated
                 shadow-xl
                 rounded-xl
               "
             >
               <DialogTitle
                 as="h3"
-                class="text-2xl font-medium leading-6 text-gray-100"
+                class="text-2xl font-medium leading-6 text-skin-base"
               >
                 {{ modalTitle }}
               </DialogTitle>

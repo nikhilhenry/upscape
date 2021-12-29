@@ -13,7 +13,7 @@ module.exports = {
         skin: {
           fill: "var(--color-fill)",
           muted: "var(--color-muted)",
-          elevate: "var(--color-elevated)",
+          elevated: "var(--color-elevated)",
           "button-accent": "var(--color-button-accent)",
           "button-accent-hover": "var(--color-button-accent-hover)",
           "button-muted": "var(--color-button-muted)",
