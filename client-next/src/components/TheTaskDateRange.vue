@@ -1,5 +1,5 @@
 <template>
-  <div class="date-range">
+  <div class="date-range text-skin-base">
     <div class="flex flex-row items-center text-center">
       <i class="las la-angle-left text-4xl" @click="dateIndex--"></i>
       <div class="content">
@@ -56,7 +56,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .is-disabled {
-  color: rgba(darken($text-primary, 20%), 0.5);
-  cursor: not-allowed;
+  @apply text-skin-muted cursor-not-allowed;
 }
 </style>
