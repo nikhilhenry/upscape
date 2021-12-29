@@ -19,7 +19,7 @@
         @click="closeModal"
       >
         <svg
-          class="fill-current text-slate-400"
+          class="fill-current text-skin-muted"
           width="18"
           height="18"
           viewBox="0 0 18 18"
