@@ -1,6 +1,6 @@
 <template>
   <div
-    class="task"
+    class="task text-skin-base"
     v-bind:class="{ 'is-completed': completed }"
     @dblclick="deleteTask()"
   >
@@ -24,9 +24,7 @@
           class="fas fa-star text-xl text-yellow-300"
           v-if="task.highlight"
         ></i>
-        <span class="text-xl text-zinc-300 font-normal mx-8"
-          >{{ task.duration }} MIN</span
-        >
+        <span class="text-xl font-normal mx-8">{{ task.duration }} MIN</span>
         <input
           id="c1"
           type="checkbox"
