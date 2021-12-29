@@ -1,6 +1,6 @@
 <template>
   <div
-    class="task text-skin-base"
+    class="task"
     v-bind:class="{ 'is-completed': completed }"
     @dblclick="deleteTask()"
   >
@@ -9,11 +9,12 @@
         flex
         justify-between
         items-center
-        bg-background-800
+        bg-skin-muted
         px-6
         py-6
         rounded-2xl
         mb-2
+        text-skin-base
       "
     >
       <div class="left">
