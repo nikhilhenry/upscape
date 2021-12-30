@@ -1,5 +1,5 @@
 import { deleteTask, postTask } from "../services/taskService";
-import { Task } from "../types/TaskTypes.interface";
+import { Task } from "../types/taskTypes.interface";
 import taskStore from "../stores/task";
 
 export default function useShiftTask() {

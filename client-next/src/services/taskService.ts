@@ -1,6 +1,6 @@
 import axios from "axios";
 import task from "../stores/task";
-import { Task, TaskUpdateRequest } from "../types/TaskTypes.interface";
+import { Task, TaskUpdateRequest } from "../types/taskTypes.interface";
 
 export const getTasks = async (range = "today"): Promise<Array<Task>> => {
   try {

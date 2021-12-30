@@ -1,6 +1,6 @@
 import { computed, reactive, VueElement } from "vue";
 import { updateTask } from "../services/taskService";
-import { Task } from "../types/TaskTypes.interface";
+import { Task } from "../types/taskTypes.interface";
 
 const state = reactive({
   tasks: [] as Array<Task>,
