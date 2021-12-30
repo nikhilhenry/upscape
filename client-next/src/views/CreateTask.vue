@@ -59,6 +59,7 @@
           bg-skin-button-accent
           hover:bg-skin-button-accent-hover
           focus:bg-skin-button-accent-hover
+          transition-colors
         "
       >
         <svg

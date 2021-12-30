@@ -30,6 +30,7 @@
             hover:bg-skin-button-accent-hover
             focus:bg-skin-button-accent-hover
             bg-opacity-70
+            transition-colors
           "
         >
           Logout
