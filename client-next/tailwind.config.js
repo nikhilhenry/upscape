@@ -38,7 +38,7 @@ module.exports = {
           elevated: withOpacity("--color-elevated"),
         },
       },
-      shadowColor: {
+      boxShadowColor: {
         skin: {
           muted: withOpacity("--color-muted"),
         },
