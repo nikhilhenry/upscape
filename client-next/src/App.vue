@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from "vue";
+import { defineComponent, computed } from "vue";
 import { useRouter } from "vue-router";
 
 const defaultLayout = "default";
@@ -27,17 +27,16 @@ export default defineComponent({
 
 <style lang="scss">
 :root {
-  background: $background;
+  @apply bg-skin-base;
 }
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $text-primary;
-  background: $background;
   margin: 0;
   padding: 0;
+  @apply bg-skin-base text-skin-base;
 }
 
 body {
