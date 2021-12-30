@@ -49,6 +49,21 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: "/inbox",
+    name: "Inbox",
+    component: () => import("../views/Inbox.vue"),
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: "create",
+        component: () => import("../views/CreateActionable.vue"),
+        meta: {
+          requiresAuth: true,
+        },
+      },
+    ],
+  },
+  {
     path: "/settings",
     name: "Settings",
     component: () => import("../views/Settings.vue"),
