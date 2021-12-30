@@ -11,12 +11,38 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent, onMounted } from "vue";
 import TheAvatar from "../components/TheAvatar.vue";
+import { getWeeklyItems } from "../services/actionableService";
+import actionableStore from "../stores/actionable";
 
 export default defineComponent({
   components: {
     TheAvatar: TheAvatar,
+  },
+  setup() {
+    const isLoaded = computed(() => {
+      return actionableStore.getters.getWeeklyItems.length ? true : false;
+    });
+    const weeklyItems = computed({
+      get: () => {
+        return actionableStore.getters.getWeeklyItems;
+      },
+      set: (actionableItems) => {
+        actionableStore.updateWeeklyItemList(actionableItems);
+      },
+    });
+
+    onMounted(async () => {
+      if (!isLoaded.value) {
+        const weeklyItems = await getWeeklyItems();
+        actionableStore.storeWeeklyItems(weeklyItems);
+      }
+    });
+
+    return {
+      weeklyItems,
+    };
   },
 });
 </script>
