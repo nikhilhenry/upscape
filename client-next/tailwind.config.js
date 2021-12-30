@@ -30,6 +30,13 @@ module.exports = {
           "button-elevated-hover": withOpacity("--color-button-elevated-hover"),
         },
       },
+      borderColor: {
+        skin: {
+          fill: withOpacity("--color-fill"),
+          muted: withOpacity("--color-muted"),
+          elevated: withOpacity("--color-elevated"),
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],
