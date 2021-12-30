@@ -16,6 +16,13 @@
             <span class="link-text">Home</span>
           </router-link>
         </li>
+        <!-- weekly -->
+        <li class="nav-item">
+          <router-link :to="{ name: 'Weekly' }" class="nav-link">
+            <i class="las la-calendar icon"></i>
+            <span class="link-text">Weekly</span>
+          </router-link>
+        </li>
         <!-- tasks -->
         <li class="nav-item">
           <router-link :to="{ name: 'Tasks' }" class="nav-link">
