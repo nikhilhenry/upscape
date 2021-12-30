@@ -51,9 +51,6 @@ export default defineComponent({
     ActionableItem: ActionableItem,
   },
   setup() {
-    const isLoaded = computed(() => {
-      return actionableStore.getters.getWeeklyItems.length ? true : false;
-    });
     const weeklyItems = computed({
       get: () => {
         return actionableStore.getters.getWeeklyItems;
@@ -64,10 +61,8 @@ export default defineComponent({
     });
 
     onMounted(async () => {
-      if (!isLoaded.value) {
-        const weeklyItems = await getWeeklyItems();
-        actionableStore.storeWeeklyItems(weeklyItems);
-      }
+      const weeklyItems = await getWeeklyItems();
+      actionableStore.storeWeeklyItems(weeklyItems);
     });
 
     const dragFunctions = useDragSort(weeklyItems);

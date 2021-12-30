@@ -21,7 +21,7 @@ const getters = reactive({
 
 const actions = {
   storeInboxItems: (actionables: Actionable[]) => {
-    state.inboxItems = state.inboxItems.concat(actionables);
+    state.inboxItems = actionables;
   },
   storeInboxItem: (actionable: Actionable) => {
     state.inboxItems.push(actionable);
@@ -43,7 +43,7 @@ const actions = {
     state.inboxItems.splice(index, 1);
   },
   storeWeeklyItems: (actionables: Actionable[]) => {
-    state.weeklyItems = state.weeklyItems.concat(actionables);
+    state.weeklyItems = actionables;
   },
   storeWeeklyItem: (actionable: Actionable) => {
     state.weeklyItems.push(actionable);
