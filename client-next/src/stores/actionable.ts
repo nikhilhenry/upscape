@@ -48,6 +48,12 @@ const actions = {
   storeWeeklyItem: (actionable: Actionable) => {
     state.weeklyItems.push(actionable);
   },
+  updateWeeklyItem: (updatedActionable: Actionable) => {
+    const index = state.weeklyItems.findIndex(
+      (weeklyItem) => weeklyItem._id === updatedActionable._id
+    );
+    state.weeklyItems[index] = updatedActionable;
+  },
   updateWeeklyItemList: (weeklyItems: Actionable[]) => {
     // update order id with api
     weeklyItems.forEach(async (weeklyItem, index) => {
