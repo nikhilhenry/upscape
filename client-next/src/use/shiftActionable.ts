@@ -15,10 +15,8 @@ export default function useShiftActionable() {
 
     if (shiftedActionable == null) return;
     if (shiftedActionable.inbox) {
-      actionableStore.storeInboxItem(actionable);
       actionableStore.deleteWeeklyItem(actionable._id);
     } else {
-      actionableStore.storeWeeklyItem(actionable);
       actionableStore.deleteInboxItem(actionable._id);
     }
   };
