@@ -88,10 +88,11 @@ export default defineComponent({
       isLoading.value = !isLoading.value;
       const actionable = await postActionable(actionableRequest);
       isLoading.value = !isLoading.value;
-      if (actionable) itemType == "inbox"
-            ? actionableStore.storeInboxItem(actionable)
-            : actionableStore.storeWeeklyItem(actionable),
-    }
+      if (actionable)
+        itemType == "inbox"
+          ? actionableStore.storeInboxItem(actionable)
+          : actionableStore.storeWeeklyItem(actionable);
+    };
 
     return {
       submitForm,
