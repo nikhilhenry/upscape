@@ -65,3 +65,5 @@ const actions = {
     state.weeklyItems.splice(index, 1);
   },
 };
+
+export default { state, getters, ...actions };
