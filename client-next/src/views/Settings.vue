@@ -16,7 +16,7 @@
           type="submit"
           class="
             inline-flex
-            text-white
+            text-skin-base
             font-medium
             rounded-lg
             text-lg
@@ -26,9 +26,10 @@
             px-5
             py-2.5
             text-center
-            bg-blue-600
-            hover:bg-blue-700
-            focus:ring-blue-800
+            bg-skin-button-accent
+            hover:bg-skin-button-accent-hover
+            focus:bg-skin-button-accent-hover
+            bg-opacity-70
           "
         >
           Logout
@@ -63,14 +64,14 @@ export default defineComponent({
 
 <style lang="scss">
 .input-field {
-  @apply w-full text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white;
+  @apply w-full text-sm rounded-lg focus:border-skin-fill block p-2.5 bg-skin-muted border-skin-elevated placeholder:text-skin-muted text-skin-base;
 }
 
 .label {
-  @apply block my-5 text-xl font-medium text-gray-300;
+  @apply block my-5 text-xl font-medium text-skin-base;
 }
 
 .sub-label {
-  @apply block my-3 text-lg font-light text-gray-300;
+  @apply block my-3 text-lg font-light text-skin-base;
 }
 </style>
