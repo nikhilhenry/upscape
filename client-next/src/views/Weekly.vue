@@ -1,5 +1,5 @@
 <template>
-  <div class="tasks">
+  <div class="weeklyItems">
     <div class="container">
       <!-- title bar -->
       <div class="title-bar mb-4">
