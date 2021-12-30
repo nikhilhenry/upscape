@@ -33,6 +33,7 @@
           v-model="completed"
           @click="completeTask"
         />
+        <TaskItemMenu />
       </div>
     </div>
   </div>
@@ -46,8 +47,10 @@ import {
   updateTask as updatedTaskById,
 } from "../services/taskService";
 import taskStore from "../stores/task";
+import TaskItemMenu from "./TaskItemMenu.vue";
 
 export default defineComponent({
+  components: { TaskItemMenu },
   props: {
     task: { type: Object as PropType<Task>, required: true },
   },
