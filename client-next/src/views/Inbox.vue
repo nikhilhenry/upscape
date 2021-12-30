@@ -51,9 +51,6 @@ export default defineComponent({
     ActionableItem: ActionableItem,
   },
   setup() {
-    const isLoaded = computed(() => {
-      return actionableStore.getters.getInboxItems.length ? true : false;
-    });
     const inboxItems = computed({
       get: () => {
         return actionableStore.getters.getInboxItems;
@@ -64,10 +61,8 @@ export default defineComponent({
     });
 
     onMounted(async () => {
-      if (!isLoaded.value) {
-        const inboxItems = await getInboxItems();
-        actionableStore.storeInboxItems(inboxItems);
-      }
+      const inboxItems = await getInboxItems();
+      actionableStore.storeInboxItems(inboxItems);
     });
 
     const dragFunctions = useDragSort(inboxItems);
