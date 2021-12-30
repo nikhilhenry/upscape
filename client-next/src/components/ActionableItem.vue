@@ -38,6 +38,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, PropType, ref, toRaw } from "vue";
 import { Actionable } from "../types/actionableTypes.interface";
+import ActionableItemMenu from "./ActionableItemMenu.vue";
 import {
   deleteActionable as deleteActionableById,
   updateActionable as updatedActionableById,
@@ -45,6 +46,7 @@ import {
 import actionableStore from "../stores/actionable";
 
 export default defineComponent({
+  components: { ActionableItemMenu },
   props: {
     actionable: { type: Object as PropType<Actionable>, required: true },
   },
