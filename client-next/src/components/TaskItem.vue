@@ -9,7 +9,7 @@
         flex
         justify-between
         items-center
-        bg-skin-muted
+        bg-skin-elevated
         px-6
         py-6
         rounded-2xl
