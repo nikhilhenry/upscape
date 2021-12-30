@@ -31,7 +31,7 @@ func GetInboxItems(client *mongo.Database) gin.HandlerFunc {
 			return
 		}
 
-		inboxItems := getDocsFromCursor(cursor)
+		inboxItems := getActionablesFromCursor(cursor)
 		c.JSON(http.StatusOK, inboxItems)
 		return
 	}
@@ -96,4 +96,26 @@ func DeleteInboxItem(client *mongo.Database) gin.HandlerFunc {
 			c.JSON(http.StatusOK, gin.H{"message": "deleted successfully"})
 		}
 	}
+}
+
+func getActionablesFromCursor(cursor *mongo.Cursor) []models.Actionable {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	var actionables []models.Actionable
+
+	defer cursor.Close(ctx)
+	for cursor.Next(ctx) {
+		var actionable models.Actionable
+		cursor.Decode(&actionable)
+		actionables = append(actionables, actionable)
+	}
+
+	if actionables == nil {
+		myslice := make([]models.Actionable, 0)
+
+		return myslice
+	}
+
+	return actionables
 }
