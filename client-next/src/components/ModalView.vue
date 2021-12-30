@@ -69,7 +69,7 @@
                 align-middle
                 transition-all
                 transform
-                bg-skin-elevated
+                bg-skin-pop
                 shadow-xl
                 rounded-xl
               "
