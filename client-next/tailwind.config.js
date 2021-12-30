@@ -24,6 +24,7 @@ module.exports = {
           base: withOpacity("--color-base"),
           muted: withOpacity("--color-muted"),
           elevated: withOpacity("--color-elevated"),
+          pop: withOpacity("--color-pop"),
           "button-accent": withOpacity("--color-button-accent"),
           "button-accent-hover": withOpacity("--color-button-accent-hover"),
           "button-muted": withOpacity("--color-button-muted"),
