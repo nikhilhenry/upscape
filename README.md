@@ -12,17 +12,18 @@
 
 Built for productivity enthusiasts.
 
-> Latest release version: **August 2021 / Production v1.3.3**
+> Latest release version: **December 2021 / Production v2.0.0**
 
 ## Stack
 
 - [Gin](https://gin-gonic.com/) backend
 - [Go](golang.org) powered backend
 - [MongoDB Atlas](https://cloud.mongodb.com/v2/5ea9386c468f9c5f315a6535#metrics/replicaSet/5ec2597012bfec1f1f998f60/explorer) (DaaS)
-- [Vue.js V2](https://vuejs.org/) Client SPA
+- [Vue.js V3](https://v3.vuejs.org/) Client SPA
 - [JWT](jwt.io) for auth
 - [Heroku](https://dashboard.heroku.com/apps/carenikhil) for PaaS
 - [Github](https://github.com/nikhilhenry/) CI/CD
+- [Tailwind](https://tailwind.com) CSS Utility Classes
 
 ## Development
 
