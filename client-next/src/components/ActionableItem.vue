@@ -43,10 +43,8 @@ import {
   updateActionable as updatedActionableById,
 } from "../services/actionableService";
 import actionableStore from "../stores/actionable";
-import ActionableItemMenu from "./ActionableItemMenu.vue";
 
 export default defineComponent({
-  components: { ActionableItemMenu },
   props: {
     actionable: { type: Object as PropType<Actionable>, required: true },
   },

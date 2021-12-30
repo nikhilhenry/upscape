@@ -6,19 +6,41 @@
         <h1 class="title">Weekly Action Items</h1>
         <TheAvatar />
       </div>
+      <!-- Weekly  -->
+      <ul class="mt-12 list-none m-0 p-0" v-if="weeklyItems.length">
+        <transition-group type="transition" name="list-complete">
+          <li
+            v-for="(weeklyItem, index) in weeklyItems"
+            :key="weeklyItem._id"
+            class="list-complete-item"
+          >
+            <ActionableItem
+              :actionable="weeklyItem"
+              draggable="true"
+              @dragstart="dragStart($event, index)"
+              @drop="dragDrop($event, index)"
+              @dragenter.prevent
+              @dragover.prevent
+            />
+          </li>
+        </transition-group>
+      </ul>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, onMounted } from "vue";
+import ActionableItem from "../components/ActionableItem.vue";
 import TheAvatar from "../components/TheAvatar.vue";
 import { getWeeklyItems } from "../services/actionableService";
 import actionableStore from "../stores/actionable";
+import useDragSort from "../use/dragSort";
 
 export default defineComponent({
   components: {
     TheAvatar: TheAvatar,
+    ActionableItem: ActionableItem,
   },
   setup() {
     const isLoaded = computed(() => {
@@ -40,8 +62,11 @@ export default defineComponent({
       }
     });
 
+    const dragFunctions = useDragSort(weeklyItems);
+
     return {
       weeklyItems,
+      ...dragFunctions,
     };
   },
 });
