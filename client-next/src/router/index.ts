@@ -34,6 +34,12 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: "/weekly",
+    name: "Weekly",
+    component: () => import("../views/Weekly.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
     path: "/settings",
     name: "Settings",
     component: () => import("../views/Settings.vue"),
