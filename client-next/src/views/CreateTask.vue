@@ -30,8 +30,8 @@
               h-4
               rounded
               border
-              bg-gray-700
-              border-gray-600
+              bg-skin-muted
+              border-skin-elevated
               focus:ring-offset-sky-500
             "
             name="highlight"
@@ -47,10 +47,7 @@
         type="submit"
         class="
           inline-flex
-          text-white
-          bg-blue-700
-          hover:bg-blue-800
-          focus:ring-4 focus:ring-blue-300
+          text-skin-base
           font-medium
           rounded-lg
           text-sm
@@ -59,12 +56,14 @@
           px-5
           py-2.5
           text-center
-          dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+          bg-skin-button-accent
+          hover:bg-skin-button-accent-hover
+          focus:bg-skin-button-accent-hover
         "
       >
         <svg
           v-if="isLoading"
-          class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+          class="animate-spin -ml-1 mr-3 h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
         >
@@ -132,10 +131,10 @@ export default defineComponent({
 
 <style lang="scss">
 .input-field {
-  @apply bg-gray-50 border border-gray-300 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+  @apply w-full text-sm rounded-lg focus:border-skin-fill block p-2.5 bg-skin-muted border-skin-elevated placeholder:text-skin-muted text-skin-base;
 }
 
 .label {
-  @apply block mb-2 text-sm font-medium text-gray-300;
+  @apply block my-5 text-xl font-medium text-skin-base;
 }
 </style>
