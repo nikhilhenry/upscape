@@ -2,9 +2,9 @@
   <div class="ml-8">
     <Menu as="div" class="relative inline-block text-left" v-slot="{ open }">
       <MenuButton
-        class="hover:text-skin-inverted transition-colors"
+        class="hover:text-skin-inverted transition-colors text-lg"
         :class="open ? 'text-skin-inverted' : 'text-inherit'"
-        ><i class="fas fa-chevron-down"></i
+        >Options<i class="fas fa-chevron-down ml-6"></i
       ></MenuButton>
       <transition
         enter-active-class="transition duration-100 ease-out"
@@ -32,7 +32,7 @@
           <div class="px-2 py-2 flex flex-col w-max text-lg">
             <MenuItem v-slot="{ active }">
               <button
-                @click="selectOption('shiftTask')"
+                @click="selectOption('shiftActionable')"
                 :class="[
                   active
                     ? 'bg-skin-fill bg-opacity-50 text-skin-base'
@@ -43,26 +43,12 @@
                 <i
                   class="fas fa-paper-plane w-5 h-5 mr-2 text-skin-inverted"
                 ></i>
-                Shift tomorrow
+                Shift Actionable
               </button>
             </MenuItem>
             <MenuItem v-slot="{ active }">
               <button
-                @click="selectOption('startTimer')"
-                :class="[
-                  active
-                    ? 'bg-skin-fill bg-opacity-50 text-skin-base'
-                    : 'text-skin-muted',
-                  'group flex rounded-md items-center w-full px-2 py-2 transition-colors',
-                ]"
-              >
-                <i class="fas fa-play w-5 h-5 mr-2 text-skin-inverted"></i>
-                Start Timer
-              </button>
-            </MenuItem>
-            <MenuItem v-slot="{ active }">
-              <button
-                @click="selectOption('deleteTask')"
+                @click="selectOption('deleteActionable')"
                 :class="[
                   active
                     ? 'bg-skin-fill bg-opacity-50 text-skin-base'
@@ -71,7 +57,7 @@
                 ]"
               >
                 <i class="fas fa-backspace w-5 h-5 mr-2 text-skin-inverted"></i>
-                Delete Task
+                Delete Actionable
               </button>
             </MenuItem>
           </div>
