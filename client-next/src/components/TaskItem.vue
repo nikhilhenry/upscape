@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, ref } from "vue";
+import { defineComponent, onMounted, PropType, ref, toRaw } from "vue";
 import { Task } from "../types/taskTypes.interface";
 import {
   deleteTask as deleteTaskById,
@@ -48,6 +48,7 @@ import {
 } from "../services/taskService";
 import taskStore from "../stores/task";
 import TaskItemMenu from "./TaskItemMenu.vue";
+import useShiftTask from "../use/shiftTask";
 
 export default defineComponent({
   components: { TaskItemMenu },
@@ -74,9 +75,10 @@ export default defineComponent({
       if (success) taskStore.deleteTask(props.task._id || "");
     };
 
+    const shiftTask = useShiftTask();
     // dropdown actions
     const dropDownAction = (action: string) => {
-      if (action === "shiftTask") return;
+      if (action === "shiftTask") shiftTask(toRaw(props.task));
       if (action === "startTimer") return;
       if (action === "deleteTask") return deleteTask();
     };
