@@ -76,7 +76,7 @@
             >
               <DialogTitle
                 as="h3"
-                class="text-2xl font-medium leading-6 text-skin-base"
+                class="text-2xl font-medium leading-6 text-skin-base capitalize"
               >
                 {{ modalTitle }}
               </DialogTitle>
