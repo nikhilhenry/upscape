@@ -47,18 +47,17 @@ func main() {
 	// instantiate router
 	router := gin.New()
 
-
 	// define go logger
 	router.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
 		// your custom format
 		return fmt.Sprintf("[%s] \"%s %s %s %d %s \" %s\"\n",
-				param.TimeStamp.Format(time.RFC1123),
-				param.Method,
-				param.Path,
-				param.Request.Proto,
-				param.StatusCode,
-				param.Latency,
-				param.ErrorMessage,
+			param.TimeStamp.Format(time.RFC1123),
+			param.Method,
+			param.Path,
+			param.Request.Proto,
+			param.StatusCode,
+			param.Latency,
+			param.ErrorMessage,
 		)
 	}))
 
@@ -84,6 +83,10 @@ func main() {
 	router.PUT("/api/user", middlewares.IsAuthenticated, controllers.UpdateUser(clientDatabase))
 	router.PUT("/api/user/password", middlewares.IsAuthenticated, controllers.UpdateUserPassword(clientDatabase))
 	router.GET("/api/user", middlewares.IsAuthenticated, controllers.GetUserMeta(clientDatabase))
+	//inbox routes
+	router.GET("/api/inbox", middlewares.IsAuthenticated, controllers.GetInboxItems(clientDatabase))
+	router.POST("/api/inbox", middlewares.IsAuthenticated, controllers.CreateInboxItem(clientDatabase))
+	router.DELETE("/api/inbox", middlewares.IsAuthenticated, controllers.DeleteInboxItem(clientDatabase))
 	// task routes
 	router.GET("/api/task", middlewares.IsAuthenticated, controllers.GetTasks(clientDatabase))
 	router.POST("/api/task", middlewares.IsAuthenticated, controllers.CreateTask(clientDatabase))
