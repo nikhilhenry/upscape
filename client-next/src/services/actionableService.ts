@@ -46,10 +46,9 @@ export const updateActionable = async (
   payload: ActionableUpdate
 ): Promise<Actionable | null> => {
   try {
-    const updatedActionable: Actionable = await axios.put(
-      `/api/actionable/${actionableId}`,
-      payload
-    );
+    const updatedActionable: Actionable = await (
+      await axios.put(`/api/actionable/${actionableId}`, payload)
+    ).data;
     return updatedActionable;
   } catch (error) {
     console.log(error);
