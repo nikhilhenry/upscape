@@ -1,3 +1,12 @@
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(${variableName},${opacityValue})`;
+    }
+    return `rgb(${variableName})`;
+  };
+}
+
 module.exports = {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
@@ -11,14 +20,18 @@ module.exports = {
       },
       backgroundColor: {
         skin: {
-          fill: "var(--color-fill)",
-          muted: "var(--color-muted)",
-          elevated: "var(--color-elevated)",
-          "button-accent": "var(--color-button-accent)",
-          "button-accent-hover": "var(--color-button-accent-hover)",
-          "button-muted": "var(--color-button-muted)",
-          "button-elevated": "var(--color-button-elevated)",
-          "button-elevated-hover": "var(--color-button-elevated-hover)",
+          fill: withOpacity("var(--color-fill)"),
+          muted: withOpacity("var(--color-muted)"),
+          elevated: withOpacity("var(--color-elevated)"),
+          "button-accent": withOpacity("var(--color-button-accent)"),
+          "button-accent-hover": withOpacity(
+            "var(--color-button-accent-hover)"
+          ),
+          "button-muted": withOpacity("var(--color-button-muted)"),
+          "button-elevated": withOpacity("var(--color-button-elevated)"),
+          "button-elevated-hover": withOpacity(
+            "var(--color-button-elevated-hover)"
+          ),
         },
       },
     },
