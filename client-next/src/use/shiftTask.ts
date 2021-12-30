@@ -1,18 +1,19 @@
 import { deleteTask, postTask } from "../services/taskService";
 import { Task } from "../types/TaskTypes.interface";
+import taskStore from "../stores/task";
 
-export default function useShiftTask(task: Task) {
-  return async () => {
-    if (!task._id) return;
-    const newTask = task;
-    // set to tomorrow
+export default function useShiftTask() {
+  return async (task: Task) => {
+    const { _id, created_at, completed_at, ...newTask } = task;
+    if (_id == null) return;
     newTask.is_tomorrow = true;
 
     // create new task
     const shiftedTask = await postTask(newTask);
-    if (shiftedTask) {
-      // delete old task
-      await deleteTask(task._id);
-    }
+
+    if (shiftedTask == null) return;
+
+    const success = await deleteTask(_id);
+    if (success) taskStore.deleteTask(_id);
   };
 }
