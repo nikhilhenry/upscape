@@ -12,8 +12,8 @@
     --color-muted: 15, 15, 15;
     --color-elevated: 35, 36, 41;
     --color-pop: 17, 24, 39;
-    --color-button-accent: 51, 65, 85;
-    --color-button-accent-hover: 15, 23, 42;
+    --color-button-accent: 24, 144, 255;
+    --color-button-accent-hover: 2, 132, 199;
     --color-button-muted: 3, 105, 161;
   }
 }
