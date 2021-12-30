@@ -1,5 +1,8 @@
 import axios from "axios";
-import { Actionable } from "../types/actionableTypes.interface";
+import {
+  Actionable,
+  ActionableUpdate,
+} from "../types/actionableTypes.interface";
 
 export const getInboxItems = async (): Promise<Array<Actionable>> => {
   try {
@@ -40,7 +43,7 @@ export const postActionable = async (
 
 export const updateActionable = async (
   actionableId: string,
-  payload: Actionable
+  payload: ActionableUpdate
 ): Promise<Actionable | null> => {
   try {
     const updatedActionable: Actionable = await axios.put(
