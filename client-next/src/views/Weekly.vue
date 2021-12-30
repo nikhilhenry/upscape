@@ -26,6 +26,14 @@
         </transition-group>
       </ul>
     </div>
+    <div class="fixed bottom-12 left-1/2 -translate-x-1/2">
+      <router-link
+        :to="{ path: '/weekly/create', query: { type: 'weekly' } }"
+        class="create-button rounded-lg"
+        >Create Action Item</router-link
+      >
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -73,6 +81,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.create-button {
+  color: #fff;
+  background-color: $primary;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 1.2rem 0.5rem;
+  margin: 0;
+  text-decoration: none;
+  transition: all 200ms ease-in;
+  &:hover {
+    // display:none;
+    background-color: darken($primary, 5%);
+  }
+}
 .flip-list-move {
   transition: transform 0.5s;
 }

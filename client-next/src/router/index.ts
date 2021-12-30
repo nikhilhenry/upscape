@@ -38,6 +38,15 @@ const routes: RouteRecordRaw[] = [
     name: "Weekly",
     component: () => import("../views/Weekly.vue"),
     meta: { requiresAuth: true },
+    children: [
+      {
+        path: "create",
+        component: () => import("../views/CreateActionable.vue"),
+        meta: {
+          requiresAuth: true,
+        },
+      },
+    ],
   },
   {
     path: "/settings",
