@@ -7,7 +7,7 @@
         <TheAvatar />
       </div>
       <!-- Weekly  -->
-      <ul class="mt-12 list-none m-0 p-0" v-if="weeklyItems.length">
+      <ul class="mt-16 list-none m-0 p-0" v-if="weeklyItems.length">
         <transition-group type="transition" name="list-complete">
           <li
             v-for="(weeklyItem, index) in weeklyItems"
