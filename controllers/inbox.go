@@ -76,7 +76,7 @@ func CreateInboxItem(client *mongo.Database) gin.HandlerFunc {
 	}
 }
 
-func DeleteInboxItem(client *mongo.Database) gin.HandlerFunc {
+func DeleteActionableItem(client *mongo.Database) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//	establish connection
 		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
