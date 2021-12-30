@@ -1,7 +1,9 @@
 <template>
   <div class="ml-8">
-    <Menu as="div" class="relative inline-block text-left">
-      <MenuButton class="hover:text-skin-inverted transition-colors"
+    <Menu as="div" class="relative inline-block text-left" v-slot="{ open }">
+      <MenuButton
+        class="hover:text-skin-inverted transition-colors"
+        :class="open ? 'text-skin-inverted' : 'text-inherit'"
         ><i class="fas fa-chevron-down"></i
       ></MenuButton>
       <transition
