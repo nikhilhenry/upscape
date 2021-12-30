@@ -29,7 +29,7 @@
           v-model="completed"
           @click="completeActionable"
         />
-        <ActionableItemMenu @select-option="" />
+        <ActionableItemMenu @select-option="dropDownAction($event)" />
       </div>
     </div>
   </div>
@@ -44,6 +44,7 @@ import {
   updateActionable as updatedActionableById,
 } from "../services/actionableService";
 import actionableStore from "../stores/actionable";
+import useShiftActionable from "../use/shiftActionable";
 
 export default defineComponent({
   components: { ActionableItemMenu },
@@ -80,10 +81,19 @@ export default defineComponent({
       }
     };
 
+    const shiftActionable = useShiftActionable();
+    // dropdown actions
+    const dropDownAction = (action: string) => {
+      if (action === "shiftActionable")
+        shiftActionable(toRaw(props.actionable));
+      if (action === "deleteActionable") return deleteActionable();
+    };
+
     return {
       completed,
       deleteActionable,
       completeActionable,
+      dropDownAction,
     };
   },
 });
