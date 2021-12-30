@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar bg-skin-muted">
+    <nav class="navbar bg-skin-muted shadow-lg shadow-skin-muted">
       <ul class="navbar-nav">
         <li class="logo">
           <a href="#" class="nav-link">

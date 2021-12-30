@@ -38,6 +38,11 @@ module.exports = {
           elevated: withOpacity("--color-elevated"),
         },
       },
+      shadowColor: {
+        skin: {
+          muted: withOpacity("--color-muted"),
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],
