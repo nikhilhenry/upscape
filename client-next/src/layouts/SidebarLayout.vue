@@ -16,6 +16,13 @@
             <span class="link-text">Home</span>
           </router-link>
         </li>
+        <!-- inbox -->
+        <li class="nav-item">
+          <router-link :to="{ name: 'Inbox' }" class="nav-link">
+            <i class="las la-inbox icon"></i>
+            <span class="link-text">Inbox</span>
+          </router-link>
+        </li>
         <!-- weekly -->
         <li class="nav-item">
           <router-link :to="{ name: 'Weekly' }" class="nav-link">
