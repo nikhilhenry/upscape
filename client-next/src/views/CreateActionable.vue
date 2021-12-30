@@ -1,47 +1,15 @@
 <template>
-  <ModalView :modalTitle="'Create Weekly'">
+  <ModalView :modalTitle="`Create ${itemType}`">
     <form @submit.prevent="submitForm">
       <div class="mb-6">
-        <label class="label">Task Name</label>
+        <label class="label">Actionable Name</label>
         <input
           type="text"
           class="input-field"
           placeholder="Eat sushi 🍣"
           required
-          name="taskName"
+          name="actionableName"
         />
-      </div>
-      <div class="mb-6">
-        <label class="label">Task Duration</label>
-        <input
-          type="number"
-          class="input-field"
-          placeholder="0"
-          required
-          name="taskDuration"
-        />
-      </div>
-      <div class="flex items-start mb-6">
-        <div class="flex items-center h-5">
-          <input
-            type="checkbox"
-            class="
-              w-4
-              h-4
-              rounded
-              border
-              bg-skin-muted
-              border-skin-elevated
-              focus:ring-offset-sky-500
-            "
-            name="highlight"
-          />
-        </div>
-        <div class="ml-3 text-sm">
-          <label for="remember" class="font-medium text-gray-300"
-            >Highlight of the Day</label
-          >
-        </div>
       </div>
       <button
         type="submit"
@@ -92,39 +60,43 @@
 import { defineComponent, ref } from "vue";
 import { useRoute } from "vue-router";
 import ModalView from "../components/ModalView.vue";
-import { postTask } from "../services/taskService";
-import taskStore from "../stores/task";
-import { Task } from "../types/taskTypes.interface";
+import { postActionable } from "../services/actionableService";
+import actionableStore from "../stores/actionable";
+import { Actionable } from "../types/actionableTypes.interface";
 export default defineComponent({
   components: { ModalView },
   setup() {
     const route = useRoute();
     const isLoading = ref(false);
+    const itemType = route.query.type;
 
     const submitForm = async (event: any) => {
       const formData: any = new FormData(event.target);
-      const { taskName, taskDuration, highlight } =
-        Object.fromEntries(formData);
+      const { actionableName } = Object.fromEntries(formData);
 
       // create task
-      const taskRequest: Task = {
-        name: taskName,
-        duration: parseInt(taskDuration),
-        highlight: highlight ? true : false,
-        id: taskStore.getters.getTasks.length,
+      const actionableRequest: Actionable = {
+        name: actionableName,
+        id:
+          itemType == "inbox"
+            ? actionableStore.getters.getInboxItems.length
+            : actionableStore.getters.getWeeklyItems.length,
         completed: false,
-        is_tomorrow: route.query.range == "tomorrow" ? true : false,
+        inbox: itemType == "inbox" ? true : false,
       };
 
       isLoading.value = !isLoading.value;
-      const task = await postTask(taskRequest);
+      const actionable = await postActionable(actionableRequest);
       isLoading.value = !isLoading.value;
-      if (task) taskStore.storeTask(task);
-    };
+      if (actionable) itemType == "inbox"
+            ? actionableStore.storeInboxItem(actionable)
+            : actionableStore.storeWeeklyItem(actionable),
+    }
 
     return {
       submitForm,
       isLoading,
+      itemType,
     };
   },
 });
