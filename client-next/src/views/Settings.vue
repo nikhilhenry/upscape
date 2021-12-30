@@ -64,7 +64,7 @@ export default defineComponent({
 
 <style lang="scss">
 .input-field {
-  @apply w-full text-sm rounded-lg focus:border-skin-fill block p-2.5 bg-skin-muted border-skin-elevated placeholder:text-skin-muted text-skin-base;
+  @apply w-full text-sm rounded-lg focus:border-skin-fill block p-2.5 bg-skin-elevated bg-opacity-80 border-skin-elevated placeholder:text-skin-muted text-skin-base;
 }
 
 .label {
