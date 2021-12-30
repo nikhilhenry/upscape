@@ -32,6 +32,7 @@
           <div class="px-2 py-2 flex flex-col w-max text-lg">
             <MenuItem v-slot="{ active }">
               <button
+                @click="selectOption('shiftTask')"
                 :class="[
                   active
                     ? 'bg-skin-fill bg-opacity-50 text-skin-base'
@@ -47,6 +48,7 @@
             </MenuItem>
             <MenuItem v-slot="{ active }">
               <button
+                @click="selectOption('startTimer')"
                 :class="[
                   active
                     ? 'bg-skin-fill bg-opacity-50 text-skin-base'
@@ -60,6 +62,7 @@
             </MenuItem>
             <MenuItem v-slot="{ active }">
               <button
+                @click="selectOption('deleteTask')"
                 :class="[
                   active
                     ? 'bg-skin-fill bg-opacity-50 text-skin-base'
@@ -80,4 +83,12 @@
 
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+
+const emit = defineEmits<{
+  (event: "select-option", optionName: string): void;
+}>();
+
+const selectOption = (optionName: string) => {
+  emit("select-option", optionName);
+};
 </script>

@@ -33,7 +33,7 @@
           v-model="completed"
           @click="completeTask"
         />
-        <TaskItemMenu />
+        <TaskItemMenu @select-option="dropDownAction($event)" />
       </div>
     </div>
   </div>
@@ -74,10 +74,18 @@ export default defineComponent({
       if (success) taskStore.deleteTask(props.task._id || "");
     };
 
+    // dropdown actions
+    const dropDownAction = (action: string) => {
+      if (action === "shiftTask") return;
+      if (action === "startTimer") return;
+      if (action === "deleteTask") return deleteTask();
+    };
+
     return {
       completed,
       deleteTask,
       completeTask,
+      dropDownAction,
     };
   },
 });
