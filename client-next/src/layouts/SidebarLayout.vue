@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar">
+    <nav class="navbar bg-skin-muted">
       <ul class="navbar-nav">
         <li class="logo">
           <a href="#" class="nav-link">
@@ -58,13 +58,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-body {
-  color: black;
-  background-color: white;
-  margin: 0;
-  padding: 0;
-}
-
 .main {
   margin-left: 5rem;
   padding: 1rem;
@@ -72,15 +65,12 @@ body {
 
 // active class
 .router-link-active {
-  background: $nav-bg-secondary;
+  @apply bg-opacity-10 bg-skin-base text-skin-muted;
   filter: grayscale(0%) !important;
-  background: $nav-bg-secondary;
-  color: $nav-text-secondary;
 }
 
 .navbar {
   position: fixed;
-  background-color: $nav-bg-primary;
   transition: width 200ms ease;
   z-index: 5;
 }
@@ -106,15 +96,13 @@ body {
     display: flex;
     align-items: center;
     height: 5rem;
-    color: $nav-text-primary;
     text-decoration: none;
     filter: grayscale(100%) opacity(0.7);
     transition: $transistion-speed;
+    @apply hover:bg-skin-base hover:bg-opacity-10 hover:text-skin-base;
 
     &:hover {
       filter: grayscale(0%);
-      background: $nav-bg-secondary;
-      color: $nav-text-secondary;
     }
 
     .link-text {
@@ -131,7 +119,7 @@ body {
 
 // nav-item colors
 .icon {
-  color: $nav-icon-primary;
+  @apply text-skin-inverted;
   font-size: 32px;
   transition: $transistion-speed;
   margin: 0 auto 0;
@@ -143,7 +131,7 @@ body {
   text-transform: uppercase;
   margin: 1rem 0 1rem;
   text-align: center;
-  color: $nav-text-secondary;
+  @apply text-skin-base;
   font-size: 1.5rem;
   letter-spacing: 0.3ch;
   width: 100%;
@@ -176,7 +164,6 @@ body {
     bottom: 0;
     width: 100vw;
     height: 5rem;
-    border-top: 1px solid $nav-bg-secondary;
   }
 
   .logo {
@@ -203,7 +190,6 @@ body {
     top: 0;
     width: 5rem;
     height: 100vh;
-    border-right: 1px solid $nav-bg-secondary;
     &:hover {
       width: 16rem;
       .link-text {
