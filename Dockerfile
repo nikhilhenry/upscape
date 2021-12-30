@@ -13,7 +13,6 @@ FROM node:lts-alpine AS client
 
 WORKDIR /usr/src/app/client
 COPY ./client-next/package*.json ./
-ENV NODE_ENV=production
 RUN npm install --also=dev
 RUN ls
 COPY ./client-next .
