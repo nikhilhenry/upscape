@@ -44,7 +44,7 @@
       <div v-if="canCreate">
         <router-link
           :to="{ path: '/tasks/create', query: { range: queryDate } }"
-          class="create-button"
+          class="create-button rounded-lg"
           >Create Task</router-link
         >
       </div>
@@ -132,7 +132,6 @@ export default defineComponent({
   border: none;
   font-size: 1.5rem;
   padding: 0.5rem 1.2rem 0.5rem;
-  border-radius: 0.2rem;
   margin: 0;
   text-decoration: none;
   transition: all 200ms ease-in;
