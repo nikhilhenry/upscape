@@ -16,6 +16,5 @@ type Actionable struct {
 type ActionableUpdate struct {
 	Name      string `json:"name,omitempty" validate:"required,max=20" bson:"name,omitempty"`
 	Oid       *int   `json:"id,omitempty" bson:"id,omitempty"`
-	Inbox     bool   `json:"inbox" bson:"inbox"`
-	Completed *bool  `json:"completed,omitempty" bson:"completed,omitempty"`
+	Inbox     *bool   `json:"inbox" bson:"inbox"`
 }
