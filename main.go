@@ -83,10 +83,15 @@ func main() {
 	router.PUT("/api/user", middlewares.IsAuthenticated, controllers.UpdateUser(clientDatabase))
 	router.PUT("/api/user/password", middlewares.IsAuthenticated, controllers.UpdateUserPassword(clientDatabase))
 	router.GET("/api/user", middlewares.IsAuthenticated, controllers.GetUserMeta(clientDatabase))
-	//inbox routes
+	// inbox routes
 	router.GET("/api/inbox", middlewares.IsAuthenticated, controllers.GetInboxItems(clientDatabase))
 	router.POST("/api/inbox", middlewares.IsAuthenticated, controllers.CreateInboxItem(clientDatabase))
-	router.DELETE("/api/inbox/:id", middlewares.IsAuthenticated, controllers.DeleteActionableItem(clientDatabase))
+	// weekly routes
+	router.GET("/api/weekly", middlewares.IsAuthenticated, controllers.GetWeeklyItems(clientDatabase))
+	router.POST("/api/weekly", middlewares.IsAuthenticated, controllers.CreateWeeklyItem(clientDatabase))
+	// actionable routes
+	router.DELETE("/api/actionable/:id", middlewares.IsAuthenticated, controllers.DeleteActionableItem(clientDatabase))
+	router.PUT("/api/actionable/:id", middlewares.IsAuthenticated, controllers.UpdateActionableItem(clientDatabase))
 	// task routes
 	router.GET("/api/task", middlewares.IsAuthenticated, controllers.GetTasks(clientDatabase))
 	router.POST("/api/task", middlewares.IsAuthenticated, controllers.CreateTask(clientDatabase))
