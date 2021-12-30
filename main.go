@@ -86,7 +86,7 @@ func main() {
 	//inbox routes
 	router.GET("/api/inbox", middlewares.IsAuthenticated, controllers.GetInboxItems(clientDatabase))
 	router.POST("/api/inbox", middlewares.IsAuthenticated, controllers.CreateInboxItem(clientDatabase))
-	router.DELETE("/api/inbox", middlewares.IsAuthenticated, controllers.DeleteInboxItem(clientDatabase))
+	router.DELETE("/api/inbox/:id", middlewares.IsAuthenticated, controllers.DeleteInboxItem(clientDatabase))
 	// task routes
 	router.GET("/api/task", middlewares.IsAuthenticated, controllers.GetTasks(clientDatabase))
 	router.POST("/api/task", middlewares.IsAuthenticated, controllers.CreateTask(clientDatabase))
