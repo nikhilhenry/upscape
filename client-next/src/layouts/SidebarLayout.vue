@@ -65,7 +65,7 @@ export default defineComponent({
 
 // active class
 .router-link-active {
-  @apply bg-opacity-10 bg-skin-base text-skin-muted;
+  @apply bg-opacity-40 bg-skin-base text-skin-muted;
   filter: grayscale(0%) !important;
 }
 
