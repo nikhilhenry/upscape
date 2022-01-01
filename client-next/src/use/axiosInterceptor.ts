@@ -1,14 +1,17 @@
 import axios from "axios";
-import { useRoute, useRouter } from "vue-router";
+import { Router } from "vue-router";
+import userStore from "../stores/user";
 
-export default function () {
-  const router = useRouter();
-  const route = useRoute();
-
+export const useErrorInterceptor = function (router: Router) {
   axios.interceptors.response.use(undefined, (error) => {
     const statusCode = error.response ? error.response.status : null;
     if (statusCode === 401) {
-      router.push({ name: "Login", query: { redirect: route.fullPath } });
+      console.log("unauthorized");
+      // logout user
+      userStore.logout();
+      router.push({
+        name: "Login",
+      });
     }
   });
-}
+};
