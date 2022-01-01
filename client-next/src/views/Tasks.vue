@@ -110,7 +110,7 @@ export default defineComponent({
     const dragFunctions = useDragSort(tasks);
 
     const colorClass = computed(() => {
-      return useColorClass(parseFloat(totalDuration.value));
+      return useColorClass(totalDuration);
     });
 
     return {
