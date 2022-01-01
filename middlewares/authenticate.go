@@ -23,12 +23,12 @@ func IsAuthenticated(c *gin.Context) {
 	// get token from header
 	header := Header{}
 	if err := c.ShouldBindHeader(&header); err != nil {
-		c.AbortWithStatusJSON(http.StatusBadRequest, err)
+		c.AbortWithStatusJSON(http.StatusUnauthorized, err)
 	}
 
 	// check if token present
 	if len(header.Token) < 1 {
-		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "no token sent"})
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "no token sent"})
 		return
 	}
 
@@ -41,12 +41,12 @@ func IsAuthenticated(c *gin.Context) {
 	})
 
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
 	if !token.Valid {
-		c.AbortWithStatusJSON(http.StatusForbidden, gin.H{"error": "not authorised"})
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "not authorised"})
 		return
 	}
 
