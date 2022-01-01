@@ -7,6 +7,6 @@ export default function useColorClass(totalDuration: ComputedRef<string>) {
   if (duration < 2) return "light";
   if (duration < 4.5) return "medium";
   if (duration < 6) return "medium-heavy";
-  if (duration >= 6) return "heavy";
+  if (duration >= 6) return "text-cyan-300";
   return "none";
 }
