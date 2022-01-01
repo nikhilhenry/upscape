@@ -33,11 +33,12 @@ import { defineComponent, ref } from "vue";
 import { login } from "../services/userService";
 import { Form, Response } from "../types/userTypes.interface";
 import userStore from "../stores/user";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
   setup() {
     const router = useRouter();
+    const route = useRoute();
     const password = ref("");
     const isLoading = ref(false);
     const error = ref("");
@@ -49,7 +50,8 @@ export default defineComponent({
       if (response.token) {
         // store token to user store
         userStore.storeToken(response.token || "");
-        router.push({ name: "Home" });
+        const redirectRoute = route.query.redirect!.toString();
+        router.push({ path: redirectRoute });
       } else {
         console.log(response);
         error.value = response.message;
