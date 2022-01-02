@@ -27,10 +27,8 @@ export default function useDragSort(itemList: WritableComputedRef<{}[]>) {
   function swapItems(fromIndex: number, toIndex: number) {
     const rawList = toRaw(itemList.value);
     const itemOne = rawList[fromIndex];
-    const itemTwo = rawList[toIndex];
 
-    rawList[fromIndex] = itemTwo;
-    rawList[toIndex] = itemOne;
+    rawList.splice(toIndex, 0, itemOne);
 
     itemList.value = rawList;
   }
