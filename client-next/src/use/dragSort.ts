@@ -1,4 +1,4 @@
-import { toRaw, WritableComputedRef } from "vue";
+import { computed, toRaw, WritableComputedRef } from "vue";
 
 export default function useDragSort(itemList: WritableComputedRef<{}[]>) {
   let dragStartIndex: number, dragEndIndex: number;
@@ -28,9 +28,15 @@ export default function useDragSort(itemList: WritableComputedRef<{}[]>) {
     const rawList = toRaw(itemList.value);
     const itemOne = rawList[fromIndex];
 
-    rawList.splice(toIndex, 1, itemOne);
+    rawList.splice(fromIndex, 1);
 
-    itemList.value = rawList;
+    const arrayStart = rawList.slice(0, fromIndex);
+    const arrayEnd = rawList.slice(toIndex, rawList.length);
+
+    arrayStart.push(itemOne);
+    const computedArray = arrayStart.concat(arrayEnd);
+
+    itemList.value = computedArray;
   }
 
   return {
