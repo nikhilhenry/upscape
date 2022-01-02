@@ -28,7 +28,7 @@ export default function useDragSort(itemList: WritableComputedRef<{}[]>) {
     const rawList = toRaw(itemList.value);
     const itemOne = rawList[fromIndex];
 
-    rawList.splice(toIndex, 0, itemOne);
+    rawList.splice(toIndex, 1, itemOne);
 
     itemList.value = rawList;
   }
