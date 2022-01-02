@@ -30,7 +30,7 @@ export default function useDragSort(itemList: WritableComputedRef<{}[]>) {
 
     rawList.splice(fromIndex, 1);
 
-    const arrayStart = rawList.slice(0, fromIndex);
+    const arrayStart = rawList.slice(0, toIndex - 1);
     const arrayEnd = rawList.slice(toIndex, rawList.length);
 
     arrayStart.push(itemOne);
