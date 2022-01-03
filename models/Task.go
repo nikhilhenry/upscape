@@ -9,7 +9,7 @@ import (
 type Task struct {
 	ID          primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	Oid         int                `json:"id,omitempty" bson:"id,omitempty"`
-	Name        string             `json:"name,omitempty" validate:"required,max=20" bson:"name,omitempty"`
+	Name        string             `json:"name,omitempty" validate:"required,max=30" bson:"name,omitempty"`
 	Duration    int                `json:"duration,omitempty" bson:"duration,omitempty"`
 	Completed   bool               `json:"completed" bson:"completed"`
 	Highlight   bool               `json:"highlight,omitempty" bson:"highlight,omitempty"`
