@@ -21,6 +21,7 @@
               @drop="dragDrop($event, index)"
               @dragenter.prevent
               @dragover.prevent
+              style="-webkit-user-drag: element"
             />
           </li>
         </transition-group>
