@@ -51,7 +51,7 @@
     </nav>
 
     <!-- router view -->
-    <router-view class="main h-screen" tabindex="-1" />
+    <router-view class="main h-screen" tabindex="0" />
   </div>
 </template>
 
