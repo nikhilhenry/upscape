@@ -5,9 +5,6 @@ export default function useDragSort(itemList: WritableComputedRef<{}[]>) {
 
   // list components
   function dragStart(event: any, index: number) {
-    event.dataTransfer.dropEffect = "move";
-    event.dataTransfer.effectAllowed = "move";
-
     dragStartIndex = index;
   }
 
