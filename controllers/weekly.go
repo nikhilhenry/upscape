@@ -2,15 +2,16 @@ package controllers
 
 import (
 	"context"
+	"net/http"
+	"time"
+	"upscape/helpers"
+	"upscape/models"
+
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"net/http"
-	"time"
-	"upscape/helpers"
-	"upscape/models"
 )
 
 func GetWeeklyItems(client *mongo.Database) gin.HandlerFunc {
@@ -22,7 +23,7 @@ func GetWeeklyItems(client *mongo.Database) gin.HandlerFunc {
 
 		//	create filter and sort
 		opts := options.Find().SetSort(bson.M{"id": 1})
-		filter := bson.D{{"inbox", false}}
+		filter := bson.M{"inbox":false}
 
 		//	query database
 		cursor, err := collection.Find(ctx, filter, opts)
@@ -33,7 +34,6 @@ func GetWeeklyItems(client *mongo.Database) gin.HandlerFunc {
 
 		weeklyItems := getActionablesFromCursor(cursor)
 		c.JSON(http.StatusOK, weeklyItems)
-		return
 	}
 }
 
