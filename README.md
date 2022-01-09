@@ -12,7 +12,7 @@
 
 Built for productivity enthusiasts.
 
-> Latest release version: **December 2021 / Production v2.0.0**
+> Latest release version: **January 2022 / Production v2.0.4**
 
 ## Stack
 
