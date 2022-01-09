@@ -1,14 +1,7 @@
 <template>
   <div>
     <nav
-      class="
-        navbar
-        bg-skin-muted
-        shadow-xl shadow-skin-muted
-        hover:w-64
-        focus:w-64
-        active:w-64
-      "
+      class="navbar bg-skin-muted shadow-xl shadow-skin-muted hover:w-64 focus:w-64 active:w-64"
     >
       <ul class="navbar-nav">
         <li class="logo">
@@ -58,7 +51,7 @@
     </nav>
 
     <!-- router view -->
-    <router-view class="main h-screen" tabindex="0" />
+    <router-view class="main h-screen" tabindex="-1" />
   </div>
 </template>
 
