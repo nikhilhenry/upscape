@@ -35,9 +35,6 @@
               @drop="dragDrop($event, index)"
               @dragenter.prevent
               @dragover.prevent
-              @touchstart="dragStart($event, index)"
-              @touchmove="dragDrop($event, index)"
-              @touchend.prevent
               style="-webkit-user-drag: element"
             />
           </li>
