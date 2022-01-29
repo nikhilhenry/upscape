@@ -23,14 +23,21 @@
       <!-- tasks  -->
       <ul class="mt-12 list-none m-0 p-0" v-if="tasks.length">
         <draggable
+          class="list-group"
           v-model="tasks"
-          group="people"
           @start="drag = true"
           @end="drag = false"
-          item-key="id"
+          itemKey="id"
+          tag="transition-group"
+          :component-data="{
+            tag: 'ul',
+            type: 'transition-group',
+            name: !drag ? 'flip-list' : null,
+          }"
+          v-bind="dragOptions"
         >
           <template #item="{ element }">
-            <TaskItem :task="element" />
+            <TaskItem :task="element" class="list-group-item" />
           </template>
         </draggable>
       </ul>
@@ -107,8 +114,14 @@ export default defineComponent({
       return useColorClass(totalDuration);
     });
 
+    // drag options
     const drag = ref(false);
-
+    const dragOptions = {
+      animation: 600,
+      group: "description",
+      disabled: false,
+      ghostClass: "ghost",
+    };
     return {
       tasks,
       queryDate,
@@ -117,6 +130,7 @@ export default defineComponent({
       canCreate,
       colorClass,
       drag,
+      dragOptions,
     };
   },
 });
