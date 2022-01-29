@@ -50,7 +50,7 @@ export default defineComponent({
       if (response.token) {
         // store token to user store
         userStore.storeToken(response.token || "");
-        const redirectRoute = route.query.redirect!.toString();
+        const redirectRoute = (route.query.redirect || "/").toString();
         router.push({ path: redirectRoute });
       } else {
         console.log(response);
