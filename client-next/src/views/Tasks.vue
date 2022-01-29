@@ -22,23 +22,17 @@
 
       <!-- tasks  -->
       <ul class="mt-12 list-none m-0 p-0" v-if="tasks.length">
-        <transition-group type="transition" name="list-complete">
-          <li
-            v-for="(task, index) in tasks"
-            :key="task._id"
-            class="list-complete-item"
-          >
-            <TaskItem
-              :task="task"
-              draggable="true"
-              @dragstart="dragStart($event, index)"
-              @drop="dragDrop($event, index)"
-              @dragenter.prevent
-              @dragover.prevent
-              style="-webkit-user-drag: element"
-            />
-          </li>
-        </transition-group>
+        <draggable
+          v-model="tasks"
+          group="people"
+          @start="drag = true"
+          @end="drag = false"
+          item-key="id"
+        >
+          <template #item="{ element }">
+            <TaskItem :task="element" />
+          </template>
+        </draggable>
       </ul>
     </div>
     <div class="fixed bottom-12 left-1/2 -translate-x-1/2">
@@ -61,13 +55,14 @@ import TheTaskDateRange from "../components/TheTaskDateRange.vue";
 import TaskItem from "../components/TaskItem.vue";
 import taskStore from "../stores/task";
 import { getTasks } from "../services/taskService";
-import useDragSort from "../use/dragSort";
 import useColorClass from "../use/colorClass";
+import draggable from "vuedraggable";
 export default defineComponent({
   components: {
     TheAvatar,
     TheTaskDateRange,
     TaskItem,
+    draggable,
   },
   setup() {
     // query tasks tasks
@@ -108,11 +103,11 @@ export default defineComponent({
       return queryDate.value == "today" || queryDate.value == "tomorrow";
     });
 
-    const dragFunctions = useDragSort(tasks);
-
     const colorClass = computed(() => {
       return useColorClass(totalDuration);
     });
+
+    const drag = ref(false);
 
     return {
       tasks,
@@ -121,7 +116,7 @@ export default defineComponent({
       totalDuration,
       canCreate,
       colorClass,
-      ...dragFunctions,
+      drag,
     };
   },
 });
@@ -167,5 +162,10 @@ export default defineComponent({
 
 .list-complete-leave-active {
   position: absolute;
+}
+
+.ghost {
+  box-shadow: 5px 5px 2.5px -1px rgba(0, 0, 0, 0.14);
+  opacity: 0.7;
 }
 </style>
