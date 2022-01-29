@@ -11,6 +11,9 @@ export const useErrorInterceptor = function (router: Router) {
       userStore.logout();
       router.push({
         name: "Login",
+        query: {
+          redirect: router.currentRoute.value.fullPath,
+        },
       });
     }
   });
